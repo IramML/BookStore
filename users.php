@@ -14,29 +14,40 @@
     <header>
         <h1><a href="index.php">Library</a></h1>
     </header>
-    <?php
-        $servidor="localhost";
-        $nombreUsuario="root";
-        $password="123!\"#QWE";
-        $db="biblioteca";
-
-        $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-    ?>
     <div id="title">
         <h2>Clients</h2>
         <a id="add-user" href="newUser.php"><img class="option" src="img/plus.png" alt="Add user"></a>
     </div>
     <div id="users-content">
-        <!--
-        <form class="user" action="users.php">
-            <p class="user-name">Person 1</p>
-            <p class="user-phone">1234567890</p>
-            <div class="user-options">
-                <input class="option" type="image" value="Edit" src="img/edit.png" alt="Edit User" />
-                <input class="option" type="image" value="Delete" src="img/person-remove.png" alt="Delete User" />
-            </div> 
-        </form>
-        -->
+        <?php
+            $servidor="localhost";
+            $nombreUsuario="root";
+            $password="123!\"#QWE";
+            $db="biblioteca";
+
+            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
+            if($conexion->connect_error){
+                die("Conexion fallida: ".$conexion->connect_error);
+            }
+            $sql="SELECT * FROM users";
+            $resultado=$conexion->query($sql);
+            if($resultado->num_rows>0){
+                while($row=$resultado->fetch_assoc()){
+                    ?>
+                    <div class="user">
+                        <p class="user-code"><?php echo $row['u_code']?></p>
+                        <p class="user-name"><?php echo $row['name']." ".$row['last_name']?></p>
+                        <p class="user-phone"><?php echo $row['phone']?></p>
+                        <form method="POST" action="users.php" class="user-options"  id="form<?php echo $row['u_code'];?>">
+                            <input class="option" type="image" value="Edit" src="img/edit.png" alt="Edit User" />
+                            <input class="option" type="image" value="Delete" src="img/person-remove.png" alt="Delete User" />
+                        </form> 
+                </div>  
+                    <?php
+                }
+            }
+            $conexion->close();
+        ?>
     </div>
 </body>
 </html>

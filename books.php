@@ -19,22 +19,42 @@
         <a id="add-book" href="newBook.php"><img class="option" src="img/plus.png" alt="Add book"></a>
     </div>
     <div id="book-content">
-        <!--
-        <form class="book" action="books.php">
-            <div class="book-information">
-                <p class="book-title item">Book 1</p>
-                <p class="book-editorial item">Editorial: Editorial</p>
-                <p class="book-author item">Author: Author 1</p>
-                <p class="book-num-pages item">number of pages: 300</p>
-                <p class="book-cost item">Cost: 200$</p>
-            </div>
-            
-            <div class="book-options">
-                <input class="option" type="image" value="Edit" src="img/edit.png" alt="Edit book" />
-                <input class="option" type="image" value="Delete" src="img/trash.png" alt="Delete book" />
-            </div> 
-        </form>
-        -->
+    <?php
+            $servidor="localhost";
+            $nombreUsuario="root";
+            $password="123!\"#QWE";
+            $db="biblioteca";
+
+            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
+            if($conexion->connect_error){
+                die("Conexion fallida: ".$conexion->connect_error);
+            }
+
+            $sql="SELECT * FROM book";
+            $resultado=$conexion->query($sql);
+            if($resultado->num_rows>0){
+                while($row=$resultado->fetch_assoc()){
+                    ?>
+               <div class="book">
+                    <div class="book-information">
+                        <p class="book-code item"><?php echo $row['b_code']?></p>
+                        <p class="book-title item"><?php echo $row['title']?></p>
+                        <p class="book-editorial item"><strong>Editorial:</strong> <?php echo $row['editorial']?></p>
+                        <p class="book-author item"><strong>Author:</strong> <?php echo $row['author']?></p>
+                        <p class="book-num-pages item"><strong>number of pages:</strong> <?php echo $row['num_pages']?></p>
+                        <p class="book-cost item"><strong>Cost:</strong> <?php echo $row['cost']?>$</p>
+                    </div>
+                    
+                    <form method="POST" class="book-options" action="books.php" id="form<?php echo $row['u_code'];?>">
+                        <input class="option" type="image" value="Edit" src="img/edit.png" alt="Edit book" />
+                        <input class="option" type="image" value="Delete" src="img/trash.png" alt="Delete book" />
+                    </form> 
+                </div>
+                    <?php
+                }
+            }
+            $conexion->close();
+        ?>
     </div>
 </body>
 </html>

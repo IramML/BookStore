@@ -23,14 +23,21 @@
     margin: auto;
     display: block;
     width: 80%;
-    border-radius: 20px;
-    background: #fff;
     margin: 20px auto; 
 }
 .user{
+    border-radius: 20px;
+    background: #fff;
     display: block;
     padding: 40px 25px;
+    margin: 30px auto;
 }
+.user-code{
+    display: inline;
+    font-size: 1.5em;
+    font-weight: bolder;
+    margin-right: 25px;
+ }
 .user-name{
    display: inline;
    font-size: 1.5em;

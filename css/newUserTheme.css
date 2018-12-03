@@ -6,6 +6,18 @@ form{
     padding: 20px 20px 20px 40px;
     margin: 20px auto;
 }
+.error{
+    background: #FF9185;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.correct{
+    background: #A0DEA7;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 10px;
+}
 h2{
     text-align: center
 }

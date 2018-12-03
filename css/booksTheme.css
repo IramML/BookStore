@@ -23,19 +23,24 @@
     margin: auto;
     display: block;
     width: 80%;
-    border-radius: 20px;
-    background: #fff;
     margin: 20px auto; 
 }
 .book{
     display: block;
     padding: 40px 25px;
+    border-radius: 20px;
+    background: #fff;
+    margin: 20px auto; 
 }
 .book-information{
     display: inline-block;
     width: 80%;
     margin-right: 25px;
  
+}
+.book-code{
+    font-weight: bolder;
+    font-size: 1.8em;
 }
 .book-title{
     font-weight: bold;
@@ -62,7 +67,7 @@
     margin: 12px 25px;
 }
 .book-options{
-    width: 10%;
+    width: 12%;
     float: right;
 }
 .option{

@@ -12,7 +12,7 @@ create table Book(
    num_pages varchar(5) NOT NULL,
    editorial varchar(20) NOT NULL,
    author varchar(30) NOT NULL
-)
+);
 create table orders(
    order_num int(6) NOT NULL,
    user_code int(4) NOT NULL,
@@ -21,4 +21,4 @@ create table orders(
    delivery_date  DATE NOT NULL,
    FOREIGN KEY (user_code) REFERENCES Users(u_code),
    FOREIGN KEY (book_code) REFERENCES Book(b_code)
-)
+);

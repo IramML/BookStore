@@ -14,33 +14,80 @@
     <header>
         <h1><a href="users.php">Clients</a></h1>
     </header>
-    <?php
-        $servidor="localhost";
-        $nombreUsuario="root";
-        $password="123!\"#QWE";
-        $db="biblioteca";
+    <form id="form" action="newUser.php" method="POST">
+        <?php
+            $servidor="localhost";
+            $nombreUsuario="root";
+            $password="123!\"#QWE";
+            $db="biblioteca";
 
-        $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-    ?>
-    <form action="newUser.php">
+            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
+            if($conexion->connect_error){
+                die("Conexion fallida: ".$conexion->connect_error);
+            }
+
+            $name="";
+            $lastName="";
+            $phone="";
+            $age=0;
+            if(isset($_POST['name'])){
+                $name=$_POST['name'];
+                $lastName=$_POST['last_name'];
+                $phone=$_POST['phone'];
+                $age=$_POST['age'];
+
+                $fields=array();
+                if($name=="")   
+                    array_push($fields, "The name field can not be empty");
+                if($lastName=="")   
+                    array_push($fields, "The last name field can not be empty");
+                if($phone=="")   
+                    array_push($fields, "The phone field can not be empty");
+                if(strlen($phone)!=10)   
+                    array_push($fields, "The phone field is not correct");
+                if($age<18)   
+                    array_push($fields, "You are not old enough");
+                    
+                if(count($fields)>0){
+                    echo "<div class='error'>";
+                    for($i=0; $i<count($fields); $i++){
+                        echo "<li>".$fields[$i]."</li>";
+                    }
+                }else{
+                    echo "<div class='correct'>Correct data";
+                    $sql="INSERT INTO users(name, last_name, phone, age)
+                        VALUES('$name', 
+                        '$lastName', 
+                        '$phone', 
+                        '$age')";
+                    if($conexion->query($sql)===true){
+                    }else{
+                        die("Error when inserting data ".$conexion->error);
+                    }
+                    
+                }
+                echo "</div>";
+            }
+        ?>
         <h2>Create new user</h2>
         <p>Name:</p>
         <div class="field-conteiner">
-            <input name="name" type="text" class="field" placeholder="Name..." value=""><br/>
+            <input name="name" type="text" class="field" placeholder="Name..." value="<?php echo $name?>"><br/>
         </div>
         <p>Last name:</p>
         <div class="field-conteiner">
-            <input name="last_name" type="text" class="field" placeholder="Last name..." value=""><br/>
+            <input name="last_name" type="text" class="field" placeholder="Last name..." value="<?php echo $lastName?>"><br/>
         </div>
         <p>Phone:</p>
         <div class="field-conteiner">
-            <input name="email" type="text" class="field" placeholder="1234567890" value=""><br/>
+            <input name="phone" type="text" class="field" placeholder="1234567890" value="<?php echo $phone?>"><br/>
         </div>
         <p>Age:</p>
         <div class="field-conteiner">
-            <input type="number"  value="18" name="age" min="1" max="120"><br/>
+            <input type="number"  value="<?php if(isset($_POST['age']))echo $age; else echo 18; ?>" name="age" min="1" max="120"><br/>
         </div>
         <input type="submit" id="btn-save" value="Save">
     </form>
+
 </body>
 </html>

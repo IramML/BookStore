@@ -1,10 +1,9 @@
 #form{
     background: #fff;
-    border-radius: 25px; 
-    width: 60%;
-    display: block;
-    padding: 20px 20px 20px 40px;
-    margin: 20px auto;
+    width: 75%;
+    margin: 25px auto;
+    padding: 25px;
+    border-radius: 25px;
 }
 .error{
     background: #FF9185;
@@ -18,6 +17,7 @@
     padding: 10px;
     border-radius: 10px;
 }
+
 h2{
     text-align: center
 }
@@ -25,9 +25,9 @@ p{
     font-size: 1.2em;
 }
 .field-conteiner{
-    display: inline-block;
-    width: 40%;
-    margin: 20px 40px;
+    display: block;
+    margin: 20px auto;
+    margin: 20px 25px;
 }
 input[type="text"]{
     padding: 8px 5px;
@@ -41,6 +41,20 @@ input[type="number"]{
     border: solid grey 1px;
     font-size: 1.2em;
 }
+input[type="date"]{
+    padding: 5px 2px;
+    border-radius: 5px;
+    border: solid grey 1px;
+    font-size: 1.2em;
+}
+select{
+    width: 25%;
+    padding: 5px 2px;
+    border-radius: 5px;
+    border: solid grey 1px;
+    font-size: 1.2em;
+    margin: 20px 25px;
+}
 #btn-save{
     border: solid #27994B 1px;
     background: #27994B;
@@ -49,7 +63,7 @@ input[type="number"]{
     border-radius: 10px;
     cursor: pointer;
     display: block;
-    margin: 20px auto;
+    margin: 50px auto 10px auto;
     font-size: 1.2em;
     font-weight: 600;
 }
