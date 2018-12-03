@@ -1,2 +1,5 @@
 # libraryPHP
-library system developed with PHP
+
+**In development**
+
+library system developed with PHP and MySQL

@@ -1,0 +1,23 @@
+#options-content{
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+.option{
+    display: inline-block;
+    width: 38%;
+    background: #fff;
+    margin: 40px 5%;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+.option p{
+    color: #27994B; 
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.option:hover{
+    box-shadow: #000 0px 0px 2px;
+}

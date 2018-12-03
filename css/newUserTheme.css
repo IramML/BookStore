@@ -1,0 +1,47 @@
+form{
+    background: #fff;
+    border-radius: 25px; 
+    width: 60%;
+    display: block;
+    padding: 20px 20px 20px 40px;
+    margin: 20px auto;
+}
+h2{
+    text-align: center
+}
+p{
+    font-size: 1.2em;
+}
+.field-conteiner{
+    display: block;
+    margin: 20px auto;
+}
+input[type="text"]{
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: solid grey 1px;
+    font-size: 1.2em;
+}
+input[type="number"]{
+    padding: 5px 2px;
+    border-radius: 5px;
+    border: solid grey 1px;
+    font-size: 1.2em;
+}
+#btn-save{
+    border: solid #27994B 1px;
+    background: #27994B;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+#btn-save:hover{
+    background: #fff;
+    color: #27994B;
+    transition: background 1s, color 1s;
+}
