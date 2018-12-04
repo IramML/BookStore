@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/mainTheme.css">
     <link rel="stylesheet" href="css/indexTheme.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ultra" rel="stylesheet">
-    <title>Biblioteca</title>
+    <title>Library</title>
 </head>
 <body>
     <header>

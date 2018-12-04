@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/mainTheme.css">
     <link rel="stylesheet" href="css/makeOrder.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ultra" rel="stylesheet">
-    <title>Biblioteca</title>
+    <title>Library</title>
 </head>
 <body>
     <header>
@@ -31,11 +31,12 @@
             $clientCode="";
             $bookCode="";
             $deliveryDate="";
+            $todayDate=date("Y-m-d");
             if(isset($_POST['order_code'])){
                 $orderCode=$_POST['order_code'];
                 $clientCode=$_POST['client_code'];
                 $bookCode=$_POST['book_code'];
-                $todayDate=date("Y-m-d");;
+                
                 $deliveryDate=$_POST['delivery'];
 
                 $fields=array();
@@ -112,7 +113,7 @@
         </select>
         <div class="field-conteiner">
             <p>delivery date:</p>
-            <input name="delivery" id="date" type="date" value="<?php echo $deliveryDate;?>">
+            <input name="delivery" id="date" type="date" value="<?php if(isset($_POST['delivery'])) echo $deliveryDate; else echo $todayDate;?>">
         </div>
         <input type="submit" id="btn-save" value="Save">
     </form>

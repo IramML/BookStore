@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/mainTheme.css">
     <link rel="stylesheet" href="css/booksTheme.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ultra" rel="stylesheet">
-    <title>Biblioteca</title>
+    <title>Library</title>
 </head>
 <body>
     <header>
@@ -29,7 +29,13 @@
             if($conexion->connect_error){
                 die("Conexion fallida: ".$conexion->connect_error);
             }
-
+            if(isset($_POST['delete'])){
+                $id=$_POST['delete'];
+                $sql="DELETE FROM book WHERE b_code='$id'";
+                if($conexion->query($sql)===false){
+                    die("Error".$conexion->error);
+                }
+            }
             $sql="SELECT * FROM book";
             $resultado=$conexion->query($sql);
             if($resultado->num_rows>0){
@@ -44,10 +50,9 @@
                         <p class="book-num-pages item"><strong>number of pages:</strong> <?php echo $row['num_pages']?></p>
                         <p class="book-cost item"><strong>Cost:</strong> <?php echo $row['cost']?>$</p>
                     </div>
-                    
-                    <form method="POST" class="book-options" action="books.php" id="form<?php echo $row['u_code'];?>">
-                        <input class="option" type="image" value="Edit" src="img/edit.png" alt="Edit book" />
-                        <input class="option" type="image" value="Delete" src="img/trash.png" alt="Delete book" />
+                    <form method="POST" class="book-options" action="books.php" id="form<?php echo $row['b_code'];?>">
+                        <input type="hidden" name="delete" value="<?php echo $row['b_code'];?>">
+                        <input class="option" type="image" src="img/trash.png" alt="Delete book" />
                     </form> 
                 </div>
                     <?php

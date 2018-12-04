@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/mainTheme.css">
     <link rel="stylesheet" href="css/usersTheme.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ultra" rel="stylesheet">
-    <title>Biblioteca</title>
+    <title>Library</title>
 </head>
 <body>
     <header>
@@ -16,7 +16,7 @@
     </header>
     <div id="title">
         <h2>Clients</h2>
-        <a id="add-user" href="newUser.php"><img class="option" src="img/plus.png" alt="Add user"></a>
+        <a id="add-user" href="newUser.php"><img class="option" src="img/person-add.png" alt="Add user"></a>
     </div>
     <div id="users-content">
         <?php
@@ -31,6 +31,13 @@
             }
             $sql="SELECT * FROM users";
             $resultado=$conexion->query($sql);
+            if(isset($_POST['delete'])){
+                $id=$_POST['delete'];
+                $sql="DELETE FROM users WHERE u_code=$id";
+                if($conexion->query($sql)===false){
+                    die("Error al insertar datos".$conexion->error);
+                }
+            }
             if($resultado->num_rows>0){
                 while($row=$resultado->fetch_assoc()){
                     ?>
@@ -39,8 +46,8 @@
                         <p class="user-name"><?php echo $row['name']." ".$row['last_name']?></p>
                         <p class="user-phone"><?php echo $row['phone']?></p>
                         <form method="POST" action="users.php" class="user-options"  id="form<?php echo $row['u_code'];?>">
-                            <input class="option" type="image" value="Edit" src="img/edit.png" alt="Edit User" />
-                            <input class="option" type="image" value="Delete" src="img/person-remove.png" alt="Delete User" />
+                            <input type="hidden" name="delete" value="<?php echo $row['u_code'];?>">
+                            <input class="option" type="image" src="img/person-remove.png" alt="Delete User" />
                         </form> 
                 </div>  
                     <?php

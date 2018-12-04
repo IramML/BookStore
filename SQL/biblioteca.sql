@@ -19,6 +19,7 @@ create table orders(
    book_code varchar(8) NOT NULL,
    loan_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    delivery_date  DATE NOT NULL,
+   delivered BOOLEAN NOT NULL,
    FOREIGN KEY (user_code) REFERENCES Users(u_code),
    FOREIGN KEY (book_code) REFERENCES Book(b_code)
 );
