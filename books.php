@@ -1,3 +1,6 @@
+<?php
+    include_once 'includes/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,28 +23,18 @@
     </div>
     <div id="book-content">
     <?php
-            $servidor="localhost";
-            $nombreUsuario="root";
-            $password="123!\"#QWE";
-            $db="biblioteca";
-
-            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-            if($conexion->connect_error){
-                die("Conexion fallida: ".$conexion->connect_error);
+        $db=new DB();
+        if(isset($_POST['delete'])){
+            $id=$_POST['delete'];
+            $query=$db->connect()->prepare('DELETE FROM book WHERE b_code=:id');
+            if($query->execute(['id'=>$id])===false){
+                die("Error deleting data".$query->errorCode());
             }
-            if(isset($_POST['delete'])){
-                $id=$_POST['delete'];
-                $sql="DELETE FROM book WHERE b_code='$id'";
-                if($conexion->query($sql)===false){
-                    die("Error".$conexion->error);
-                }
-            }
-            $sql="SELECT * FROM book";
-            $resultado=$conexion->query($sql);
-            if($resultado->num_rows>0){
-                while($row=$resultado->fetch_assoc()){
-                    ?>
-               <div class="book">
+        }
+        $result=$db->connect()->query("SELECT * FROM book");
+            while($row=$result->fetch(PDO::FETCH_ASSOC)){
+                ?>
+                <div class="book">
                     <div class="book-information">
                         <p class="book-code item"><?php echo $row['b_code']?></p>
                         <p class="book-title item"><?php echo $row['title']?></p>
@@ -55,11 +48,10 @@
                         <input class="option" type="image" src="img/trash.png" alt="Delete book" />
                     </form> 
                 </div>
-                    <?php
-                }
+                <?php
             }
-            $conexion->close();
-        ?>
+        
+    ?>
     </div>
 </body>
 </html>

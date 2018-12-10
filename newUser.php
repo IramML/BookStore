@@ -1,3 +1,6 @@
+<?php
+    include_once 'includes/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +19,7 @@
     </header>
     <form id="form" action="newUser.php" method="POST">
         <?php
-            $servidor="localhost";
-            $nombreUsuario="root";
-            $password="123!\"#QWE";
-            $db="biblioteca";
-
-            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-            if($conexion->connect_error){
-                die("Conexion fallida: ".$conexion->connect_error);
-            }
+            $db=new DB();
 
             $name="";
             $lastName="";
@@ -55,35 +50,31 @@
                     }
                 }else{
                     echo "<div class='correct'>Correct data";
-                    $sql="INSERT INTO users(name, last_name, phone, age)
-                        VALUES('$name', 
-                        '$lastName', 
-                        '$phone', 
-                        '$age')";
-                    if($conexion->query($sql)===true){
-                    }else{
-                        die("Error when inserting data ".$conexion->error);
+                    $query=$db->connect()->prepare('INSERT INTO users(name, last_name, phone, age)
+                    VALUES(:name, :last_name, :phone, :age)');
+                    if($query->execute(['name'=>$name, 'last_name'=>$lastName,
+                            'phone'=>$phone, 'age'=>$age])===false){
+                        die("Error when inserting data ".$query->errorCode());
                     }
-                    
                 }
                 echo "</div>";
             }
         ?>
         <h2>Create new user</h2>
-        <p>Name:</p>
         <div class="field-conteiner">
+            <p>Name:</p>
             <input name="name" type="text" class="field" placeholder="Name..." value="<?php echo $name?>"><br/>
         </div>
-        <p>Last name:</p>
         <div class="field-conteiner">
+            <p>Last name:</p>
             <input name="last_name" type="text" class="field" placeholder="Last name..." value="<?php echo $lastName?>"><br/>
         </div>
-        <p>Phone:</p>
         <div class="field-conteiner">
+            <p>Phone:</p>
             <input name="phone" type="text" class="field" placeholder="1234567890" value="<?php echo $phone?>"><br/>
         </div>
-        <p>Age:</p>
         <div class="field-conteiner">
+            <p>Age:</p>
             <input type="number"  value="<?php if(isset($_POST['age']))echo $age; else echo 18; ?>" name="age" min="1" max="120"><br/>
         </div>
         <input type="submit" id="btn-save" value="Save">

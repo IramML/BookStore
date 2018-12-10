@@ -1,3 +1,6 @@
+<?php
+    include_once 'includes/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,16 +19,8 @@
     </header>
         
     <form id="form" method="POST" action="newBook.php">
-    <?php
-            $servidor="localhost";
-            $nombreUsuario="root";
-            $password="123!\"#QWE";
-            $db="biblioteca";
-
-            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-            if($conexion->connect_error){
-                die("Conexion fallida: ".$conexion->connect_error);
-            }
+        <?php
+            $db=new DB();
 
             $bCode="";
             $title="";
@@ -59,20 +54,17 @@
                     }
                 }else{
                     echo "<div class='correct'>Correct data";
-                   $sql="INSERT INTO book(b_code, title, num_pages, editorial, author, cost)
-                        VALUES('$bCode', '$title', '$numPages', '$editorial', '$author', '$cost')";
-                    if($conexion->query($sql)===true){
-                    }else{
-                        die("Error when inserting data ".$conexion->error);
+                    $query=$db->connect()->prepare('INSERT INTO book(b_code, title, num_pages, editorial, author, cost)
+                        VALUES(:b_code, :title, :num_pages, :editorial, :author, :cost)');
+                    if($query->execute(['b_code'=>$bCode,'title'=>$title,'num_pages'=>$numPages,
+                                        'editorial'=>$editorial,'author'=>$author,'cost'=>$cost])===false){
+                        die("Error when inserting data ".$query->errorCode());
                     }
-                    
                 }
                 echo "</div>";
             }
-            $conexion->close();
         ?>
         <h2>Register new book</h2>
-        
         <div class="field-conteiner">
             <p>Code:</p>
             <input name="code" type="text" class="field" placeholder="NDA97532" value="<?php echo $bCode?>"><br/>

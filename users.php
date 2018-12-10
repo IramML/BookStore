@@ -1,3 +1,6 @@
+<?php
+    include_once 'includes/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,26 +23,18 @@
     </div>
     <div id="users-content">
         <?php
-            $servidor="localhost";
-            $nombreUsuario="root";
-            $password="123!\"#QWE";
-            $db="biblioteca";
-
-            $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-            if($conexion->connect_error){
-                die("Conexion fallida: ".$conexion->connect_error);
-            }
-            $sql="SELECT * FROM users";
-            $resultado=$conexion->query($sql);
+            $db=new DB();
+           
             if(isset($_POST['delete'])){
                 $id=$_POST['delete'];
-                $sql="DELETE FROM users WHERE u_code=$id";
-                if($conexion->query($sql)===false){
-                    die("Error al insertar datos".$conexion->error);
+                $query=$db->connect()->prepare('DELETE FROM users WHERE u_code=:id');
+                if($query->execute(['id'=>$id])===false){
+                    die("Error deleting data".$query->errorCode());
                 }
-            }
-            if($resultado->num_rows>0){
-                while($row=$resultado->fetch_assoc()){
+            } 
+            $result=$db->connect()->query('SELECT * FROM users');
+            if($result->rowCount()>0){
+                while($row=$result->fetch(PDO::FETCH_ASSOC)){
                     ?>
                     <div class="user">
                         <p class="user-code"><?php echo $row['u_code']?></p>
@@ -49,11 +44,10 @@
                             <input type="hidden" name="delete" value="<?php echo $row['u_code'];?>">
                             <input class="option" type="image" src="img/person-remove.png" alt="Delete User" />
                         </form> 
-                </div>  
+                    </div>  
                     <?php
                 }
             }
-            $conexion->close();
         ?>
     </div>
 </body>

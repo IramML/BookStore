@@ -1,3 +1,6 @@
+<?php
+    include_once 'includes/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,29 +22,18 @@
         <div id="orders-today">
             <h2>Delivery today</h2>
             <?php 
-                $servidor="localhost";
-                $nombreUsuario="root";
-                $password="123!\"#QWE";
-                $db="biblioteca";
-    
-                $conexion=new mysqli($servidor, $nombreUsuario, $password, $db);
-                if($conexion->connect_error){
-                    die("Conexion fallida: ".$conexion->connect_error);
-                }
+                $db=new DB();
                 if(isset($_POST['delivered'])){
                     $id=$_POST['delivered'];
-
-                    $sql="UPDATE orders
-                            SET delivered=1 WHERE order_num=$id";
-                    if($conexion->query($sql)===false){
-                        die("Error al actualizar los datos".$conexion->error);
+                    $query=$db->connect()->prepare('UPDATE orders
+                            SET delivered=1 WHERE order_num=:id');
+                    if($query->execute(['id'=>$id])===false){
+                        die("Error updating data ".$query->errorCode());
                     }
                 }
-
-                $sql="SELECT * FROM orders";
-                $resultado=$conexion->query($sql);
-                if($resultado->num_rows>0){
-                    while($row=$resultado->fetch_assoc()){
+                $result=$db->connect()->query('SELECT * FROM orders');
+                if($result->rowCount()>0){
+                    while($row=$result->fetch(PDO::FETCH_ASSOC)){
                         $orderNum=$row['order_num'];
                         $clientCode=$row['user_code'];
                         $bookCode=$row['book_code'];
@@ -51,20 +43,18 @@
                             <div class="order">
                                 <div class="order-information">
                                     <p class="order-code item"><?php echo "<strong>".$orderNum."</strong>";?> </p>
-                                    <p class="client-code item"><?php echo "<strong>".$clientCode."</strong>"." - "; 
-                                        $sql="SELECT * FROM users where u_code=$clientCode";
-                                        $resultadoUsers=$conexion->query($sql);
-                                        if($resultadoUsers->num_rows>0){
-                                            while($rowUsers=$resultadoUsers->fetch_assoc()){
+                                    <p class="client-code item"><?php echo "<strong>".$clientCode."</strong>"." - ";
+                                        $resultUsers=$db->connect()->query("SELECT * FROM users where u_code='$clientCode'");
+                                        if($resultUsers->rowCount()>0){
+                                            while($rowUsers=$resultUsers->fetch(PDO::FETCH_ASSOC)){
                                                 echo $rowUsers['name']." ".$rowUsers['last_name'];
                                             }
                                         }
                                     ?></p>
-                                    <p class="book-code item"><?php echo "<strong>".$bookCode."</strong>"." - "; 
-                                    $sql="SELECT * FROM book where b_code='$bookCode'";
-                                    $resultBooks=$conexion->query($sql);
-                                    if($resultBooks->num_rows>0){
-                                        while($rowBooks=$resultBooks->fetch_assoc()){
+                                    <p class="book-code item"><?php echo "<strong>".$bookCode."</strong>"." - ";
+                                    $resultBooks=$db->connect()->query("SELECT * FROM book where b_code='$bookCode'");
+                                    if($resultBooks->rowCount()>0){
+                                        while($rowBooks=$resultBooks->fetch(PDO::FETCH_ASSOC)){
                                             echo $rowBooks['title'];
                                         }
                                     }?></p>
@@ -83,11 +73,10 @@
                 }
             ?>
             <h2>Delivery later</h2>
-                <?php 
-                    $sql="SELECT * FROM orders";
-                    $resultado=$conexion->query($sql);
-                    if($resultado->num_rows>0){
-                        while($row=$resultado->fetch_assoc()){
+                <?php
+                    $result=$db->connect()->query('SELECT * FROM orders');
+                    if($result->rowCount()>0){
+                        while($row=$result->fetch(PDO::FETCH_ASSOC)){
                             $orderNum=$row['order_num'];
                             $clientCode=$row['user_code'];
                             $bookCode=$row['book_code'];
@@ -97,20 +86,20 @@
                                 <div class="order">
                                     <div class="order-information">
                                         <p class="order-code item"><?php echo $orderNum;?> </p>
-                                        <p class="client-code item"><?php echo "<strong>".$clientCode."</strong>"." - "; 
-                                            $sql="SELECT * FROM users where u_code=$clientCode";
-                                            $resultadoUsers=$conexion->query($sql);
-                                            if($resultadoUsers->num_rows>0){
-                                                while($rowUsers=$resultadoUsers->fetch_assoc()){
+                                        <p class="client-code item"><?php echo "<strong>".$clientCode."</strong>"." - ";
+                                            $resultUsers=$db->connect()->query("SELECT * FROM users where u_code='$clientCode'");
+                                            if($resultUsers->rowCount()>0){
+                                                while($rowUsers=$resultUsers->fetch(PDO::FETCH_ASSOC)){
                                                     echo $rowUsers['name']." ".$rowUsers['last_name'];
                                                 }
                                             }
                                         ?></p>
                                         <p class="book-code item"><?php echo "<strong>".$bookCode."</strong>"." - "; 
-                                        $sql="SELECT * FROM book where b_code='$bookCode'";
-                                        $resultBooks=$conexion->query($sql);
-                                        if($resultBooks->num_rows>0){
-                                            while($rowBooks=$resultBooks->fetch_assoc()){
+                                        $sql="";
+
+                                        $resultBooks=$db->connect()->query("SELECT * FROM book where b_code='$bookCode'");
+                                        if($resultBooks->rowCount()>0){
+                                            while($rowBooks=$resultBooks->fetch(PDO::FETCH_ASSOC)){
                                                 echo $rowBooks['title'];
                                             }
                                         }?></p>
@@ -127,7 +116,6 @@
                             }
                         }
                     }
-                    $conexion->close();
                 ?>
         </div>
     </div>
