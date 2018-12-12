@@ -49,7 +49,7 @@
                     }
                 }else{
                     echo "<div class='correct'>Correct data";
-                    $query=$db->connect()->prepare('INSERT INTO orders(order_num, user_code, book_code, delivery_date, delivered)
+                    $query=$db->connect()->prepare('INSERT INTO orders(order_num, client_code, book_code, delivery_date, delivered)
                         VALUES(:order_num, :client_code, :book_code, :delivery_date, 0)');
                     if($query->execute(['order_num'=>$orderCode,'client_code'=>$clientCode,'book_code'=>$bookCode,'delivery_date'=>$deliveryDate])===false) {
                         die("Error when inserting data " . $query->errorCode());
@@ -65,11 +65,11 @@
         <select name="client_code" id="">
             <option value="">Select a client code</option>
             <?php
-                $result=$db->connect()->query('SELECT * FROM users');
+                $result=$db->connect()->query('SELECT * FROM client');
                 if($result->rowCount()>0){
                     while($row=$result->fetch(PDO::FETCH_ASSOC)){
                         ?>
-                        <option value="<?php echo $row['u_code']?>" <?php if($clientCode==$row['u_code'])echo "selected"?>><?php echo $row['u_code']." - ".$row['name']." ".$row['last_name'];?></option>
+                        <option value="<?php echo $row['c_code']?>" <?php if($clientCode==$row['c_code'])echo "selected"?>><?php echo $row['c_code']." - ".$row['name']." ".$row['last_name'];?></option>
                         <?php
                     }
                 }

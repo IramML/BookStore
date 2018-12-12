@@ -1,3 +1,10 @@
+<?php
+    include_once 'includes/createTables.php';
+
+    /*$password='password';
+    $hash=password_hash($password, PASSWORD_DEFAULT, ['cost'=>10]);
+    echo password_verify($password, $hash);*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +22,7 @@
         <h1>Library</h1>
     </header>
     <div id="options-content">
-        <a href="users.php" class="option">
+        <a href="clients.php" class="option">
             <p>Clients</p>
             <img src="img/person.png" alt="Users">
         </a>

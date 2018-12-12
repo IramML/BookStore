@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/mainTheme.css">
-    <link rel="stylesheet" href="css/booksTheme.css">
+    <link rel="stylesheet" href="css/usersTheme.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ultra" rel="stylesheet">
     <title>Library</title>
 </head>
@@ -15,19 +15,18 @@
         <h1><a href="index.php">Library</a></h1>
     </header>
     <div id="title">
-        <h2>Books</h2>
-        <a id="add-book" href="newBook.php"><img class="option" src="img/plus.png" alt="Add book"></a>
+        <h2>Clients</h2>
+        <a id="add-user" href="newClient.php"><img class="option" src="img/person-add.png" alt="Add user"></a>
     </div>
-    <div id="book-content">
-    <?php
-        include_once 'includes/Views/ClientItems.php';
-        $bookItems=new BookItems();
-                /*
-
-                */
-
-        
-    ?>
+    <div id="users-content">
+        <?php
+            include_once 'includes/Views/ClientItems.php';
+            $clientItems=new ClientItems();
+            if(isset($_POST['delete'])){
+                $id=$_POST['delete'];
+                $clientItems->deleteItem($id);
+            }else $clientItems->getAllItems();
+        ?>
     </div>
 </body>
 </html>

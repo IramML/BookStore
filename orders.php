@@ -35,7 +35,7 @@
                 if($result->rowCount()>0){
                     while($row=$result->fetch(PDO::FETCH_ASSOC)){
                         $orderNum=$row['order_num'];
-                        $clientCode=$row['user_code'];
+                        $clientCode=$row['client_code'];
                         $bookCode=$row['book_code'];
                         if($row['delivered']==0){
                             if(date('d/m/Y',strtotime($row['loan_date']))==date('d/m/Y',strtotime($row['delivery_date']))){
@@ -44,7 +44,7 @@
                                 <div class="order-information">
                                     <p class="order-code item"><?php echo "<strong>".$orderNum."</strong>";?> </p>
                                     <p class="client-code item"><?php echo "<strong>".$clientCode."</strong>"." - ";
-                                        $resultUsers=$db->connect()->query("SELECT * FROM users where u_code='$clientCode'");
+                                        $resultUsers=$db->connect()->query("SELECT * FROM client where c_code='$clientCode'");
                                         if($resultUsers->rowCount()>0){
                                             while($rowUsers=$resultUsers->fetch(PDO::FETCH_ASSOC)){
                                                 echo $rowUsers['name']." ".$rowUsers['last_name'];
@@ -59,12 +59,7 @@
                                         }
                                     }?></p>
                                     <p class="loan-date item"><strong>Loan:</strong> <?php echo date('d/m/Y',strtotime($row['loan_date']));?></p>
-                                    <p class="delivery-date item"><strong>Delivery:</strong> <?php echo date('d/m/Y',strtotime($row['delivery_date']));?></p>
                                 </div>
-                                <form method="POST" class="order-options" action="orders.php" id="form<?php echo $row['order_num'];?>">
-                                        <input type="hidden" name="delivered" value="<?php echo $orderNum;?>">
-                                        <input class="option" type="image" src="img/checkmark.png" alt="Delivered" />
-                                </form> 
                             </div>
                             <?php
                             }
@@ -78,7 +73,7 @@
                     if($result->rowCount()>0){
                         while($row=$result->fetch(PDO::FETCH_ASSOC)){
                             $orderNum=$row['order_num'];
-                            $clientCode=$row['user_code'];
+                            $clientCode=$row['client_code'];
                             $bookCode=$row['book_code'];
                             if($row['delivered']==0){
                                 if(date('d/m/Y',strtotime($row['loan_date']))!=date('d/m/Y',strtotime($row['delivery_date']))){
@@ -87,16 +82,14 @@
                                     <div class="order-information">
                                         <p class="order-code item"><?php echo $orderNum;?> </p>
                                         <p class="client-code item"><?php echo "<strong>".$clientCode."</strong>"." - ";
-                                            $resultUsers=$db->connect()->query("SELECT * FROM users where u_code='$clientCode'");
+                                            $resultUsers=$db->connect()->query("SELECT * FROM client where c_code='$clientCode'");
                                             if($resultUsers->rowCount()>0){
                                                 while($rowUsers=$resultUsers->fetch(PDO::FETCH_ASSOC)){
                                                     echo $rowUsers['name']." ".$rowUsers['last_name'];
                                                 }
                                             }
                                         ?></p>
-                                        <p class="book-code item"><?php echo "<strong>".$bookCode."</strong>"." - "; 
-                                        $sql="";
-
+                                        <p class="book-code item"><?php echo "<strong>".$bookCode."</strong>"." - ";
                                         $resultBooks=$db->connect()->query("SELECT * FROM book where b_code='$bookCode'");
                                         if($resultBooks->rowCount()>0){
                                             while($rowBooks=$resultBooks->fetch(PDO::FETCH_ASSOC)){
@@ -104,12 +97,8 @@
                                             }
                                         }?></p>
                                         <p class="loan-date item"><strong>Loan:</strong> <?php echo date('d/m/Y',strtotime($row['loan_date']));?></p>
-                                        <p class="delivery-date item"><strong>Delivery:</strong> <?php echo date('d/m/Y',strtotime($row['delivery_date']));?></p>
                                     </div>
-                                    <form method="POST" class="order-options" action="orders.php" id="form<?php echo $row['order_num'];?>">
-                                        <input type="hidden" name="delivered" value="<?php echo $orderNum;?>">
-                                        <input class="option" type="image" src="img/checkmark.png" alt="Delivered" />
-                                    </form> 
+
                                 </div>
                                 <?php
                                 }
