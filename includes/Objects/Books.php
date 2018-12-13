@@ -10,8 +10,42 @@
             $query->execute(['code'=>$id]);
             return $query;
         }
-        function registerBook(){
+        function registerPhysicalAndPDF($code, $title, $numPages, $editorial, $author, $cost, $fileImage, $filePDF){
+            $query=$this->connect()->prepare('INSERT INTO book(b_code, title, num_pages, editorial, author, cost, b_image) 
+                                              VALUES(:code, :title, :num_pages, :editorial, :author, :cost,
+                                              :url)');
+            $query->execute(['code'=>$code, 'title'=>$title, 'num_pages'=>$numPages, 'editorial'=>$editorial,
+                            'author'=>$author, 'cost'=>$cost, 'url'=>$fileImage]);
 
+            $query=$this->connect()->prepare('INSERT INTO physicalbook(b_physical_code)
+                                              VALUES(:code)');
+            $query->execute(['code'=>$code]);
+
+            $query=$this->connect()->prepare('INSERT INTO pdfbook(pdf_code, url)
+                                              VALUES(:code, :url)');
+            $query->execute(['code'=>$code, 'url'=>$filePDF]);
+        }
+        function registerPDF($code, $title, $numPages, $editorial, $author, $cost, $fileImage, $filePDF){
+            $query=$this->connect()->prepare('INSERT INTO book(b_code, title, num_pages, editorial, author, cost, b_image) 
+                                              VALUES(:code, :title, :num_pages, :editorial, :author, :cost,
+                                              :url)');
+            $query->execute(['code'=>$code, 'title'=>$title, 'num_pages'=>$numPages, 'editorial'=>$editorial,
+                'author'=>$author, 'cost'=>$cost, 'url'=>$fileImage]);
+
+            $query=$this->connect()->prepare('INSERT INTO pdfbook(pdf_code, url)
+                                              VALUES(:code, :url)');
+            $query->execute(['code'=>$code, 'url'=>$filePDF]);
+        }
+        function registerPhysical($code, $title, $numPages, $editorial, $author, $cost, $fileImage){
+            $query=$this->connect()->prepare('INSERT INTO book(b_code, title, num_pages, editorial, author, cost, b_image) 
+                                              VALUES(:code, :title, :num_pages, :editorial, :author, :cost,
+                                              :url)');
+            $query->execute(['code'=>$code, 'title'=>$title, 'num_pages'=>$numPages, 'editorial'=>$editorial,
+                'author'=>$author, 'cost'=>$cost, 'url'=>$fileImage]);
+
+            $query=$this->connect()->prepare('INSERT INTO physicalbook(b_physical_code)
+                                              VALUES(:code)');
+            $query->execute(['code'=>$code]);
         }
     }
 ?>

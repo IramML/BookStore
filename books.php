@@ -20,13 +20,9 @@
     </div>
     <div id="book-content">
     <?php
-        include_once 'includes/Views/ClientItems.php';
+        include_once 'includes/Views/BookItems.php';
         $bookItems=new BookItems();
-                /*
-
-                */
-
-        
+        $bookItems->getAllItems();
     ?>
     </div>
 </body>

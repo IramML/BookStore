@@ -34,6 +34,8 @@
                 $author=$_POST['author'];
                 $cost=$_POST['cost'];
                 $image=$_FILES['file'];
+                $therePhysical=$_POST['there_physical'];
+                $PDFFile=$_FILES['filePDF'];
                 $fields=array();
                 if($bCode=="")   
                     array_push($fields, "The code field can not be empty");
@@ -44,7 +46,6 @@
                 if($author=="")   
                     array_push($fields, "The author field can not be empty");
                 $isImage=getimagesize($image['tmp_name']);
-                echo $image['tmp_name'];
                 $imageExtension=strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
                 if($isImage==false)
                     array_push($fields, "The file is not an image");
@@ -58,6 +59,14 @@
                              array_push($fields, "Only admit files with jpg/jpeg/png extensions");
                      }
                  }
+                 if($PDFFile['name']!=""){
+                     $PDFExtension=strtolower(pathinfo($PDFFile['name'], PATHINFO_EXTENSION));
+                     if($PDFExtension!="pdf")
+                         array_push($fields, "this is not a pdf file");
+                 }else{
+                    if($therePhysical=="no")
+                        array_push($fields, "there must be a physical book or pdf");
+                 }
                 if(count($fields)>0){
                     echo "<div class='error'>";
                     for($i=0; $i<count($fields); $i++){
@@ -65,7 +74,13 @@
                     }
                 }else{
                     echo "<div class='correct'>Correct data";
-                    $register->register($bCode, $title, $numPages, $editorial, $author, $cost, $image, $imageExtension);
+                    if($PDFFile['name']!=""&&$therePhysical=="yes")
+                        $register->registerPhysicalAndPDF($bCode, $title, $numPages, $editorial, $author, $cost, $image, $PDFFile);
+                    else if($PDFFile['name']!="")
+                        $register->registerPDF($bCode, $title, $numPages, $editorial, $author, $cost, $image, $PDFFile);
+                    else if($therePhysical=="yes")
+                        $register->registerphysical($bCode, $title, $numPages, $editorial, $author, $cost, $image);
+
                 }
                 echo "</div>";
             }
@@ -103,6 +118,15 @@
         <div class="field-conteiner">
             <p>Upload image:</p>
             <input type="file" name="file"><br/>
+        </div>
+        <div class="field-conteiner">
+            <p>Physical book:</p>
+            <input type="radio" name="there_physical" value="yes" checked>Yes<br/>
+            <input type="radio" name="there_physical" value="no">No<br/>
+        </div>
+        <div class="field-conteiner">
+            <p>Upload PDF (optional if there is a physical book):</p>
+            <input type="file" name="filePDF"><br/>
         </div>
         <input type="submit" id="btn-save" value="Save">
     </form>

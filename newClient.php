@@ -15,7 +15,7 @@ include_once 'includes/db.php';
 </head>
 <body>
 <header>
-    <h1><a href="users.php">Clients</a></h1>
+    <h1><a href="clients.php">Clients</a></h1>
 </header>
 <form id="form" action="newClient.php" method="POST">
     <?php

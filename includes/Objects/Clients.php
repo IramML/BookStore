@@ -11,6 +11,10 @@
             return $query;
         }
         function deleteUser($id){
+            $query=$this->connect()->prepare('DELETE FROM clientphysical WHERE cp_code=:id');
+            if($query->execute(['id'=>$id])===false){
+                die("Error deleting data ".$query->errorInfo());
+            }
             $query=$this->connect()->prepare('DELETE FROM client WHERE c_code=:id');
             if($query->execute(['id'=>$id])===false){
                 die("Error deleting data ".$query->errorInfo());
