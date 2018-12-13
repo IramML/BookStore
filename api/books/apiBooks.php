@@ -10,15 +10,16 @@ include_once '../../includes/Objects/Books.php';
                 $books["books"] = array();
                 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                     $book = array(
-                        'id' => $row['b_code'],
-                        'title' => $row['title'],
-                        'num_pages' => $row['num_pages'],
-                        'editorial' => $row['editorial'],
-                        'author' => $row['author'],
-                        'cost' => $row['cost']
+                        'id'=>$row['b_code'],
+                        'title'=>$row['title'],
+                        'pages'=>$row['num_pages'],
+                        'editorial'=>$row['editorial'],
+                        'author'=>$row['author'],
+                        'cost'=>$row['cost'],
+                        'image'=>$row['b_image']
                     );
                     array_push($books["books"], $book);
-
+                    echo "Images\/Books\/MLP06969.jpg";
                 }
                 $this->printJSON($books);
             } else {

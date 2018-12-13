@@ -88,10 +88,6 @@
                 }
             ?>
         </select>
-        <div class="field-conteiner">
-            <p>delivery date:</p>
-            <input name="delivery" id="date" type="date" value="<?php if(isset($_POST['delivery'])) echo $deliveryDate; else echo $todayDate;?>">
-        </div>
         <input type="submit" id="btn-save" value="Save">
     </form>
 </body>

@@ -19,44 +19,41 @@ include_once 'includes/db.php';
 </header>
 <form id="form" action="newClient.php" method="POST">
     <?php
-    $db=new DB();
-    $name="";
-    $lastName="";
-    $phone="";
-    $age=0;
-    if(isset($_POST['name'])){
-        $name=$_POST['name'];
-        $lastName=$_POST['last_name'];
-        $phone=$_POST['phone'];
-        $age=$_POST['age'];
-        $fields=array();
-        if($name=="")
-            array_push($fields, "The name field can not be empty");
-        if($lastName=="")
-            array_push($fields, "The last name field can not be empty");
-        if($phone=="")
-            array_push($fields, "The phone field can not be empty");
-        if(strlen($phone)!=10)
-            array_push($fields, "The phone field is not correct");
-        if($age<18)
-            array_push($fields, "You are not old enough");
+        include_once 'includes/Helpers/RegisterClient.php';
+        $register=new RegisterClient();
 
-        if(count($fields)>0){
-            echo "<div class='error'>";
-            for($i=0; $i<count($fields); $i++){
-                echo "<li>".$fields[$i]."</li>";
+        $name="";
+        $lastName="";
+        $phone="";
+        $age=0;
+        if(isset($_POST['name'])){
+            $name=$_POST['name'];
+            $lastName=$_POST['last_name'];
+            $phone=$_POST['phone'];
+            $age=$_POST['age'];
+            $fields=array();
+            if($name=="")
+                array_push($fields, "The name field can not be empty");
+            if($lastName=="")
+                array_push($fields, "The last name field can not be empty");
+            if($phone=="")
+                array_push($fields, "The phone field can not be empty");
+            if(strlen($phone)!=10)
+                array_push($fields, "The phone field is not correct");
+            if($age<18)
+                array_push($fields, "You are not old enough");
+
+            if(count($fields)>0){
+                echo "<div class='error'>";
+                for($i=0; $i<count($fields); $i++){
+                    echo "<li>".$fields[$i]."</li>";
+                }
+            }else{
+                echo "<div class='correct'>Correct data";
+                $register->registerPhysical($name, $lastName, $phone, $age);
             }
-        }else{
-            echo "<div class='correct'>Correct data";
-            $query=$db->connect()->prepare('INSERT INTO users(name, last_name, phone, age)
-                    VALUES(:name, :last_name, :phone, :age)');
-            if($query->execute(['name'=>$name, 'last_name'=>$lastName,
-                    'phone'=>$phone, 'age'=>$age])===false){
-                die("Error when inserting data ".$query->errorCode());
-            }
+            echo "</div>";
         }
-        echo "</div>";
-    }
     ?>
     <h2>Create new user</h2>
     <div class="field-conteiner">

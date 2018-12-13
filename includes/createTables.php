@@ -2,7 +2,7 @@
     include_once 'db.php';
     $db=new DB();
     $db->connect()->query('CREATE TABLE IF NOT EXISTS client(
-            c_code int(4) NOT NULL AUTO_INCREMENT,
+            c_code int(4) NOT NULL,
             c_name varchar(18) NOT NULL, 
             last_name varchar(20) NOT NULL,
             phone varchar(10) NOT NULL,

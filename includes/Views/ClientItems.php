@@ -12,8 +12,6 @@
                         'id'=>$row['c_code'],
                         'name'=>$row['c_name'],
                         'last_name'=>$row['last_name'],
-                        'email'=>$row['email'],
-                        'password'=>$row['password'],
                         'phone'=>$row['phone'],
                         'age'=>$row['age']
                     );
