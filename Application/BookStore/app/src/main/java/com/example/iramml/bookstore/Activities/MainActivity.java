@@ -35,15 +35,24 @@ public class MainActivity extends AppCompatActivity
     ShimmerRecyclerView rvBooks;
     RecyclerView.LayoutManager layoutManager;
     BooksCustomAdapter adapter;
+
+    int itemSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(getIntent()!=null){
+            itemSelected=getIntent().getIntExtra("itemSelected",0);
+        }
         initDrawer();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_search);
+
+        if (itemSelected==0)
+            navigationView.setCheckedItem(R.id.nav_search);
+        else if(itemSelected==2)
+            navigationView.setCheckedItem(R.id.nav_domiciles);
     }
 
     public void initDrawer(){
@@ -55,11 +64,20 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
-        BooksFragment booksFragment = new BooksFragment();
-        booksFragment.setActivity(this);
-        fragmentTransaction.replace(R.id.flContent, booksFragment);
-        fragmentTransaction.commit();
+        if(itemSelected==0){
+            FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
+            BooksFragment booksFragment = new BooksFragment();
+            booksFragment.setActivity(this);
+            fragmentTransaction.replace(R.id.flContent, booksFragment);
+            fragmentTransaction.commit();
+        }else if(itemSelected==2){
+            FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
+            DomicilesFragment domicilesFragment = new DomicilesFragment();
+            domicilesFragment.setActivity(this);
+            fragmentTransaction.replace(R.id.flContent, domicilesFragment);
+            fragmentTransaction.commit();
+        }
+
     }
 
     @Override
@@ -91,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.commit();
                 break;
             case R.id.nav_domiciles:
-
+                domicilesFragment.setActivity(this);
                 fragmentTransaction.replace(R.id.flContent, domicilesFragment);
                 fragmentTransaction.commit();
                 break;

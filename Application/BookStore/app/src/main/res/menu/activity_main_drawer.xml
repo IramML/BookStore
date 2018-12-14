@@ -7,19 +7,21 @@
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
-            android:title="Search" />
-        <item
-            android:id="@+id/nav_orders"
-            android:icon="@drawable/ic_car_shopping"
-            android:title="Order" />
-        <item
-            android:id="@+id/nav_domiciles"
-            android:icon="@drawable/ic_car"
-            android:title="Domiciles" />
+            android:title="Books" />
     </group>
 
     <item android:title="Account">
         <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_orders"
+                    android:icon="@drawable/ic_car_shopping"
+                    android:title="Orders" />
+                <item
+                    android:id="@+id/nav_domiciles"
+                    android:icon="@drawable/ic_car"
+                    android:title="Domiciles" />
+            </group>
             <item
                 android:id="@+id/nav_log_out"
                 android:icon="@drawable/ic_log_out"

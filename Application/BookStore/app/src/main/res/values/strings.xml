@@ -2,6 +2,7 @@
     <string name="app_name">BookStore</string>
 
     <string name="login">LOG IN</string>
+    <string name="register_domicile">Register Domicile</string>
     <string name="signin">SIGN IN</string>
     <string name="fill_fields">Please fill all fields</string>
     <string name="enter_email">Please enter email address</string>
@@ -17,6 +18,12 @@
     <string name="age">Age</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="colony">Colony</string>
+    <string name="state">State</string>
+    <string name="municipality">Municipality</string>
+    <string name="street">Street</string>
+    <string name="outdoor_number">Outdoor Number</string>
     <string name="title_activity_main">Books</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

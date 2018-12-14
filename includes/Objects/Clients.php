@@ -74,5 +74,10 @@
             $query->execute(['id'=>$id]);
             return $query;
         }
+        function getUserIDByToken($token){
+            $query=$this->connect()->prepare('SELECT * FROM token WHERE token=:token');
+            $query->execute(['token'=>$token]);
+            return $query;
+        }
     }
 ?>

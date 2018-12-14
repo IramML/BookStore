@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.iramml.bookstore.Interfaces.HttpResponse;
 import com.example.iramml.bookstore.Interfaces.getBooksInterface;
 import com.example.iramml.bookstore.Interfaces.getTokenInterface;
+import com.example.iramml.bookstore.Model.Domicile;
 import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
 import com.example.iramml.bookstore.Util.Network;
@@ -79,6 +80,30 @@ public class BookStore {
             @Override
             public void httpResponseSuccess(String response) {
                 getBooksInterface.booksGenerated(response);
+            }
+        });
+    }
+    public void registerDomicile(Domicile domicile, final HttpResponse httpResponse){
+        Network network=new Network(activity);
+        String section="domiciles/";
+        String method="add.php?";
+        String url=URL_BASE+section+method;
+        network.httpRegisterDomicileRequest(activity, url, getToken(), domicile, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                httpResponse.httpResponseSuccess(response);
+            }
+        });
+    }
+    public void getDomiciles(final HttpResponse httpResponse){
+        Network network=new Network(activity);
+        String section="domiciles/?";
+        String parameters="token="+getToken();
+        String url=URL_BASE+section+parameters;
+        network.httpRequest(activity, url, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                httpResponse.httpResponseSuccess(response);
             }
         });
     }

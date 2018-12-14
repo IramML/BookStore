@@ -60,7 +60,7 @@
            postal_code int(5) NOT NULL,
            colony varchar(40) NOT NULL,
            state varchar(30) NOT NULL,
-           municipaly varchar(30) NOT NULL,
+           municipality varchar(30) NOT NULL,
            street varchar(50) NOT NULL,
            outdoor_number varchar(20) NOT NULL,
            PRIMARY KEY (domicile_code),

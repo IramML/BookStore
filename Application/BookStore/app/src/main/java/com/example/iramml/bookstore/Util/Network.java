@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.iramml.bookstore.Interfaces.HttpResponse;
+import com.example.iramml.bookstore.Model.Domicile;
 import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
 
@@ -104,6 +105,39 @@ public class Network {
                     Map<String, String> postMap = new HashMap<>();
                     postMap.put("email", user.getEmail());
                     postMap.put("password", user.getPassword());
+                    return postMap;
+                }
+            };
+            queue.add(stringRequest);
+        }
+    }
+    public void httpRegisterDomicileRequest(Context context, String url, final String token, final Domicile domicile, final HttpResponse httpResponse){
+        if(availableNetwok()){
+            RequestQueue queue=Volley.newRequestQueue(context);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("SUCCESS_HTTP", response);
+                            httpResponse.httpResponseSuccess(response);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("ERROR_HTTP", error.getMessage());
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> postMap = new HashMap<>();
+                    postMap.put("token", token);
+                    postMap.put("postal_code", domicile.getPostalCode());
+                    postMap.put("colony", domicile.getColony());
+                    postMap.put("state", domicile.getState());
+                    postMap.put("municipality", domicile.getMunicipality());
+                    postMap.put("street", domicile.getStreet());
+                    postMap.put("outdoor_number", domicile.getOutdoorNumber());
                     return postMap;
                 }
             };
