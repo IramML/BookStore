@@ -84,12 +84,18 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d("TOKEN_USER", token);
                                 Gson gson=new Gson();
                                 TokenResponse tokenResponse=gson.fromJson(token, TokenResponse.class);
-                                Log.d("TOKEN_RESPONSE",tokenResponse.token);
-                                if(bookStore.saveToken(tokenResponse.token)){
-                                    goToHome();
+                                Log.d("CODE_RESPONSE",tokenResponse.code);
+                                if(tokenResponse.code.equals("200")){
+                                    Log.d("TOKEN_RESPONSE",tokenResponse.token);
+                                    if(bookStore.saveToken(tokenResponse.token)){
+                                        goToHome();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "Error when save token", Toast.LENGTH_SHORT).show();
+                                    }
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "Error when save token", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Email or password are incorrect",Toast.LENGTH_SHORT).show();
                                 }
+
                             }
                         });
             }

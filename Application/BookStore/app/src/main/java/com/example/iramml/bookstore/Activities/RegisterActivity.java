@@ -56,13 +56,14 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.d("TOKEN_USER", token);
                         Gson gson=new Gson();
                         TokenResponse tokenResponse=gson.fromJson(token, TokenResponse.class);
-                        Log.d("TOKEN_RESPONSE",tokenResponse.token);
-                        if(bookStore.saveToken(tokenResponse.token)){
-                            goToHome();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Error when save token", Toast.LENGTH_SHORT).show();
+                            Log.d("TOKEN_RESPONSE", tokenResponse.token);
+                            if (bookStore.saveToken(tokenResponse.token)) {
+                                goToHome();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error when save token", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
+
                 });
             }
         });

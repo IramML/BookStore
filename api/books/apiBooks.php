@@ -19,7 +19,6 @@ include_once '../../includes/Objects/Books.php';
                         'image'=>$row['b_image']
                     );
                     array_push($books["books"], $book);
-                    echo "Images\/Books\/MLP06969.jpg";
                 }
                 $this->printJSON($books);
             } else {
@@ -55,7 +54,7 @@ include_once '../../includes/Objects/Books.php';
             echo json_encode(array('code'=>404,'message' => $message));
         }
         function printJSON($array){
-            echo '<code>'.json_encode($array).'</code>';
+            echo json_encode($array);
         }
     }
 ?>

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.iramml.bookstore.Interfaces.HttpResponse;
+import com.example.iramml.bookstore.Interfaces.getBooksInterface;
 import com.example.iramml.bookstore.Interfaces.getTokenInterface;
 import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
@@ -67,6 +68,17 @@ public class BookStore {
             @Override
             public void httpResponseSuccess(String response) {
                 getTokenInterface.tokenGenerated(response);
+            }
+        });
+    }
+    public void getBooks(final getBooksInterface getBooksInterface){
+        Network network=new Network(activity);
+        String section="books/";
+        String url=URL_BASE+section;
+        network.httpRequest(activity, url, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                getBooksInterface.booksGenerated(response);
             }
         });
     }

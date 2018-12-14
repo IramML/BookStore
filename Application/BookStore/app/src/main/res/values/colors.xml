@@ -19,4 +19,6 @@
     <color name="btnSignIn">#00c853</color>
     <color name="btnLogIn">#fff</color>
     <color name="btnDeclinePickup">#ba0000</color>
+
+    <color name="demo_dark_transparent">#24000000</color>
 </resources>

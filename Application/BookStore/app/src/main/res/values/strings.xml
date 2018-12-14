@@ -17,7 +17,7 @@
     <string name="age">Age</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Books</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>

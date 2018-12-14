@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_car_shopping"
-            android:title="Import" />
+            android:title="Orders" />
         <item
             android:id="@+id/nav_domiciles"
             android:icon="@drawable/ic_car"
-            android:title="Gallery" />
+            android:title="Domiciles" />
     </group>
 
     <item android:title="Account">
