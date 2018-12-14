@@ -13,12 +13,9 @@
                         'order_num'=>$row['order_num'],
                         'user_code'=>$row['client_code'],
                         'book_code'=>$row['book_code'],
-                        'loan_date'=>$row['loan_date'],
-                        'delivery_date'=>$row['delivery_date'],
-                        'delivered'=>$row['delivered']
+                        'buy_date'=>$row['buy_date']
                     );
                     array_push($orders["orders"], $order);
-                    
                 }
                 $this->printJSON($orders);
             }else{
@@ -37,9 +34,7 @@
                         'order_num'=>$row['order_num'],
                         'user_code'=>$row['client_code'],
                         'book_code'=>$row['book_code'],
-                        'loan_date'=>$row['loan_date'],
-                        'delivery_date'=>$row['delivery_date'],
-                        'delivered'=>$row['delivered']
+                        'buy_date'=>$row['buy_date']
                     );
                     array_push($orders["orders"], $order);
                 }
@@ -52,7 +47,7 @@
             echo json_encode(array('code'=>404,'message' => $message));
         }
         function printJSON($array){
-            echo '<code>'.json_encode($array).'</code>';
+            echo json_encode($array);
         }
     }
 ?>

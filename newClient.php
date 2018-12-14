@@ -10,8 +10,8 @@ include_once 'includes/db.php';
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/mainTheme.css">
     <link rel="stylesheet" href="css/newUserTheme.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Ultra" rel="stylesheet">
-    <title>Library</title>
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto" rel="stylesheet">
+    <title>Book Store</title>
 </head>
 <body>
 <header>

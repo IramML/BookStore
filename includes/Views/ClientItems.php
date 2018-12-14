@@ -4,18 +4,23 @@
         function getAllItems(){
             $clientsObject=new Clients();
             $clients=array();
-            $res=$clientsObject->getClients();
+            $res=$clientsObject->getPhysicalClients();
             if($res->rowCount()){
                 $clients['clients']=array();
                 while($row=$res->fetch(PDO::FETCH_ASSOC)){
-                    $client=array(
-                        'id'=>$row['c_code'],
-                        'name'=>$row['c_name'],
-                        'last_name'=>$row['last_name'],
-                        'phone'=>$row['phone'],
-                        'age'=>$row['age']
-                    );
-                    array_push($clients['clients'], $client);
+                    $resultClients=$clientsObject->getClient($row['cp_code']);
+                    if($resultClients->rowCount()>0){
+                        while ($rowClient=$resultClients->fetch(PDO::FETCH_ASSOC)){
+                            $client=array(
+                                'id'=>$rowClient['c_code'],
+                                'name'=>$rowClient['c_name'],
+                                'last_name'=>$rowClient['last_name'],
+                                'phone'=>$rowClient['phone'],
+                                'age'=>$rowClient['age']
+                            );
+                            array_push($clients['clients'], $client);
+                        }
+                    }
                 }
                 $this->showItems($clients);
             }else $this->error("There are no clients");

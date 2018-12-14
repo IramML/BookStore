@@ -10,5 +10,12 @@
             $query->execute(['id'=>$id]);
             return $query;
         }
+        function registerOrder($idClient, $idBook){
+            $query=$this->connect()->prepare('INSERT INTO orders(client_code, book_code)
+                                            VALUES(:idClient, :idBook)');
+            if($query->execute(['idClient'=>$idClient, 'idBook'=>$idBook])===false)
+                die("Error when inserting data");
+
+        }
     }
 ?>

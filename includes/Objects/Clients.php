@@ -10,6 +10,10 @@
             $query->execute(['id'=>$id]);
             return $query;
         }
+        function getPhysicalClients(){
+            $query = $this->connect()->query('SELECT * FROM clientphysical');
+            return $query;
+        }
         function deleteUser($id){
             $query=$this->connect()->prepare('DELETE FROM clientphysical WHERE cp_code=:id');
             if($query->execute(['id'=>$id])===false){
