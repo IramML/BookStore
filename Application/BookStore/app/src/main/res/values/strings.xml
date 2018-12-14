@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BookStore</string>
+
+    <string name="login">LOG IN</string>
+    <string name="signin">SIGN IN</string>
+    <string name="fill_fields">Please fill all fields</string>
+    <string name="enter_email">Please enter email address</string>
+    <string name="enter_password">Please enter password</string>
+    <string name="enter_name">Please enter name</string>
+    <string name="enter_phone">Please enter phone number</string>
+    <string name="password_short">Password too short</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="name">Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone">Phone</string>
+    <string name="age">Age</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>

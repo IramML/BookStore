@@ -2,67 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d64e2163-d30b-4f68-a3ba-e91fb471b217" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/biblioteca.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/androidTest/java/com/example/iramml/bookstore/ExampleInstrumentedTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/LoginActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/books.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/btn_log_in_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/btn_sing_in_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/app/src/test/java/com/example/iramml/bookstore/ExampleUnitTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BookStore/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/Books/JDS79241.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/Books/MLP06969.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PDF/MLP06969.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/Helpers/RegisterClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/books/apiBooks.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/books/apiBooks.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Activities/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/BookStoreApi/BookStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Interfaces/getTokenInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Model/TokenResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/ic_car.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/ic_car_shopping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/ic_log_out.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/drawable/side_nav_bar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/app_bar_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/content_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/nav_header_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/menu/activity_main_drawer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values-v21/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Activities/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Activities/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Activities/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Activities/RegisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Util/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/java/com/example/iramml/bookstore/Util/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookStore/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BookStore/app/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/clients/apiClients.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/clients/apiClients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/clients/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/clients/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/Helpers/RegisterClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/Helpers/RegisterClient.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/Objects/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/Objects/Clients.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/Views/ClientItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/Views/ClientItems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/createTables.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/createTables.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makeOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/makeOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/newClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/orders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +55,35 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/clients/register.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/clients/apiClients.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="120" column="9" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/Objects/Clients.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -99,6 +97,7 @@
       <find>$cone</find>
       <find>$resultado</find>
       <find>$pelicula</find>
+      <find>array_push</find>
     </findStrings>
     <replaceStrings>
       <replace>$result</replace>
@@ -122,9 +121,7 @@
         <option value="$PROJECT_DIR$/api/orders/orders.php" />
         <option value="$PROJECT_DIR$/api/orders/index.php" />
         <option value="$USER_HOME$/Develop/GitHub/LibrarySystem/SQL/biblioteca.sql" />
-        <option value="$PROJECT_DIR$/api/clients/register.php" />
         <option value="$PROJECT_DIR$/includes/db.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/includes/Views/Client.php" />
         <option value="$PROJECT_DIR$/includes/Views/clientItem.php" />
         <option value="$PROJECT_DIR$/api/orders/apiOrders.php" />
@@ -142,21 +139,25 @@
         <option value="$PROJECT_DIR$/orders.php" />
         <option value="$PROJECT_DIR$/newClient.php" />
         <option value="$PROJECT_DIR$/includes/createTables.php" />
-        <option value="$PROJECT_DIR$/includes/Helpers/RegisterClient.php" />
-        <option value="$PROJECT_DIR$/includes/Objects/Clients.php" />
         <option value="$PROJECT_DIR$/includes/Views/ClientItems.php" />
         <option value="$PROJECT_DIR$/makeOrder.php" />
         <option value="$PROJECT_DIR$/api/books/apiBooks.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/includes/Helpers/RegisterClient.php" />
+        <option value="$PROJECT_DIR$/api/Register/apiRegister.php" />
+        <option value="$PROJECT_DIR$/api/Register/add.php" />
+        <option value="$PROJECT_DIR$/api/clients/register.php" />
+        <option value="$PROJECT_DIR$/includes/Objects/Clients.php" />
         <option value="$PROJECT_DIR$/api/clients/apiClients.php" />
       </list>
     </option>
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="85" />
-    <option name="y" value="25" />
-    <option name="width" value="1750" />
-    <option name="height" value="970" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -164,7 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,20 +172,11 @@
               <item name="bookstore" type="b2602c69:ProjectViewProjectNode" />
               <item name="bookstore" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="bookstore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bookstore" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bookstore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bookstore" type="462c0819:PsiDirectoryNode" />
-              <item name="includes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -227,18 +218,20 @@
       <workItem from="1544502300739" duration="1201000" />
       <workItem from="1544578848099" duration="13422000" />
       <workItem from="1544594316347" duration="460000" />
-      <workItem from="1544637790309" duration="21877000" />
+      <workItem from="1544637790309" duration="22503000" />
+      <workItem from="1544725709211" duration="9018000" />
+      <workItem from="1544745020809" duration="4595000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45907000" />
+    <option name="totallyTimeSpent" value="60146000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26308724" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.27114093" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
@@ -322,24 +315,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Develop/GitHub/LibrarySystem/SQL/biblioteca.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Develop/GitHub/LibrarySystem/SQL/biblioteca.sql" />
     <entry file="file://$PROJECT_DIR$/api/orders/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/clients/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -369,22 +349,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img/person-add.png" />
-    <entry file="file://$PROJECT_DIR$/includes/Helpers.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Images/Books/base_25_61.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Images/Books/dad23134.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Helpers.php" />
+    <entry file="file://$PROJECT_DIR$/Images/Books/base_25_61.jpg" />
+    <entry file="file://$PROJECT_DIR$/Images/Books/dad23134.png" />
     <entry file="file://$PROJECT_DIR$/css/newUserTheme.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2645">
@@ -410,13 +377,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newBook.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -448,31 +408,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/Helpers/RegisterClient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/Objects/Clients.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="24" column="87" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/makeOrder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-828">
           <caret selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/Helpers/RegisterBook.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-395">
-          <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -497,10 +436,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Helpers/RegisterClient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newBook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="77" column="43" lean-forward="true" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/Register/apiRegister.php" />
+    <entry file="file://$PROJECT_DIR$/api/Register/add.php" />
+    <entry file="file://$PROJECT_DIR$/includes/Helpers/RegisterBook.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="33" column="11" lean-forward="true" selection-start-line="33" selection-start-column="11" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/clients/register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Objects/Clients.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/clients/apiClients.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        <state relative-caret-position="287">
+          <caret line="120" column="9" selection-start-line="120" selection-start-column="9" selection-end-line="120" selection-end-column="9" />
         </state>
       </provider>
     </entry>

@@ -10,8 +10,8 @@
             $clientObject->registerPhysical($id, $name, $lastName, $phone, $age);
         }
         function isDuplicate($id){
-            $booksObject=new Clients();
-            return $booksObject->getClient($id)->rowCount()>0;
+            $clientsObject=new Clients();
+            return $clientsObject->getClient($id)->rowCount()>0;
         }
     }
 ?>

@@ -1,9 +1,5 @@
 <?php
     include_once 'includes/createTables.php';
-
-    /*$password='password';
-    $hash=password_hash($password, PASSWORD_DEFAULT, ['cost'=>10]);
-    echo password_verify($password, $hash);*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
