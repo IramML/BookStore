@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.iramml.bookstore.Interfaces.HttpResponse;
 import com.example.iramml.bookstore.Interfaces.getTokenInterface;
+import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
 import com.example.iramml.bookstore.Util.Network;
 
@@ -18,19 +19,7 @@ public class BookStore {
     public BookStore(AppCompatActivity activity){
         this.activity=activity;
     }
-    public void registerUser(User user, final getTokenInterface getTokenInterface){
-        Network network=new Network(activity);
-        String section="clients/";
-        String method="register.php?";
-        String url=URL_BASE+section+method;
-        Log.d("URL ",url);
-        network.httpPOSTRequest(activity, url, user,new HttpResponse() {
-            @Override
-            public void httpResponseSuccess(String response) {
-                getTokenInterface.tokenGenerated(response);
-            }
-        });
-    }
+
     public Boolean saveToken(String token){
         if(token.isEmpty())
             return false;
@@ -47,5 +36,38 @@ public class BookStore {
     }
     public Boolean tokenAvailable(){
         return getToken()!="";
+    }
+    public void logout(){
+        SharedPreferences settings=activity.getSharedPreferences(SETTINGS, 0);
+        SharedPreferences.Editor editor=settings.edit();
+        editor.putString(ACCESS_TOKEN, "");
+
+        editor.apply();
+    }
+    public void registerUser(User user, final getTokenInterface getTokenInterface){
+        Network network=new Network(activity);
+        String section="clients/";
+        String method="register.php?";
+        String url=URL_BASE+section+method;
+        Log.d("URL ",url);
+        network.httpRegisterRequest(activity, url, user,new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                getTokenInterface.tokenGenerated(response);
+            }
+        });
+    }
+    public void login(String email, String password, final getTokenInterface getTokenInterface){
+        Network network=new Network(activity);
+        String section="clients/";
+        String method="login.php?";
+        String url=URL_BASE+section+method;
+        LoginUser loginUser=new LoginUser(email, password);
+        network.httpLoginRequest(activity, url, loginUser, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                getTokenInterface.tokenGenerated(response);
+            }
+        });
     }
 }

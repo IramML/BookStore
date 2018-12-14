@@ -53,7 +53,6 @@
         }
 
         function registerApplicationClient($clientItem){
-
             $id=$this->id;
             if($this->id==null){
                 $id=rand(1, 9999);
@@ -70,10 +69,8 @@
                 $this->printJSON(['code'=>200, 'token'=>$token]);
             else
                 $this->error('Error inserting data');
-            //echo password_verify($password, $hash);
+
         }
-
-
         function loadImage($image){
             $isImage=getimagesize($image['tmp_name']);
             $imageExtension=strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));
@@ -124,6 +121,30 @@
         }
         function printJSON($array){
             echo json_encode($array);
+        }
+
+        function login($data){
+            $password=$data['password'];
+            $clientObject=new Clients();
+
+            $clients=$clientObject->getClientApplicationByEmail($data['email']);
+            if($clients->rowCount()>0){
+                while($row=$clients->fetch(PDO::FETCH_ASSOC)){
+                    $hash=$row['password'];
+
+                    if(password_verify($password, $hash)){
+                        $tokens=$clientObject->getToken($row['ca_code']);
+                        if($tokens->rowCount()>0){
+                            while($rowToken=$tokens->fetch(PDO::FETCH_ASSOC)){
+                                $this->printJSON(['code'=>200, 'token'=>$rowToken['token']]);
+                            }
+                        }
+                    }else $this->error('Email or password are incorrect');
+                }
+            }else{
+                $this->error('There is no user');
+            }
+            //echo ;
         }
     }
 ?>

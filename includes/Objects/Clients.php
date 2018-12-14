@@ -60,8 +60,15 @@
 
 
         }
-        function generateToken(){
-
+        function getClientApplicationByEmail($email){
+            $query=$this->connect()->prepare('SELECT * FROM clientapplication WHERE email=:email');
+            $query->execute(['email'=>$email]);
+            return $query;
+        }
+        function getToken($id){
+            $query=$this->connect()->prepare('SELECT * FROM token WHERE id_client=:id');
+            $query->execute(['id'=>$id]);
+            return $query;
         }
     }
 ?>

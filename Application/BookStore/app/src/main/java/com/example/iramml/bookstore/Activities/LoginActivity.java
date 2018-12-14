@@ -8,12 +8,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.iramml.bookstore.BookStoreApi.BookStore;
+import com.example.iramml.bookstore.Interfaces.getTokenInterface;
+import com.example.iramml.bookstore.Model.TokenResponse;
 import com.example.iramml.bookstore.R;
+import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class LoginActivity extends AppCompatActivity {
@@ -72,7 +77,21 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 //make login
-
+                bookStore.login(etEmail.getText().toString(), etPassword.getText().toString(),
+                        new getTokenInterface() {
+                            @Override
+                            public void tokenGenerated(String token) {
+                                Log.d("TOKEN_USER", token);
+                                Gson gson=new Gson();
+                                TokenResponse tokenResponse=gson.fromJson(token, TokenResponse.class);
+                                Log.d("TOKEN_RESPONSE",tokenResponse.token);
+                                if(bookStore.saveToken(tokenResponse.token)){
+                                    goToHome();
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "Error when save token", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
         alertDialog.setNegativeButton(this.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -82,5 +101,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+    public void goToHome(){
+        Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

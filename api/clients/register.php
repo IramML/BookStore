@@ -34,6 +34,6 @@
             $api->registerApplicationClient($clientItem);
         }
     }else{
-        $api->error('Error calling the API validate');
+        $api->error('Error calling the API');
     }
 ?>
