@@ -1,11 +1,15 @@
 package com.example.iramml.bookstore.BookStoreApi;
 
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.Volley;
 import com.example.iramml.bookstore.Activities.MainActivity;
@@ -17,6 +21,9 @@ import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
 import com.example.iramml.bookstore.Util.InputStreamVolleyRequest;
 import com.example.iramml.bookstore.Util.Network;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class BookStore {
     AppCompatActivity activity;
@@ -126,8 +133,53 @@ public class BookStore {
             }
         });
     }
+    public void downloadPDF(String id, String title){
+        String URL_BASE="http://192.168.0.17/bookstore/api/";
+        String section="books/";
+        String method="download.php?";
+        String parameters="id="+id;
+        String url=URL_BASE+section+method+parameters;
+        Log.d("URL_PDF", url);
+        downloadFile(url, title);
+    }
+    private void downloadFile(String url, final String pdfName) {
+        InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.GET, url,
+                new Response.Listener<byte[]>() {
+                    @Override
+                    public void onResponse(byte[] response) {
+                        try {
+                            if (response!=null) {
+                                String name=pdfName+".pdf";
 
-    public void downloadPDF(String id, final HttpResponse httpResponse) {
+                                File dir = new File (Environment.getExternalStorageDirectory().getAbsolutePath() + "/directory1/directory2/");
+                                dir.mkdirs();
 
+                                File videoFile = new File(dir.getAbsoluteFile()+"/"+name);
+
+                                FileOutputStream stream = new FileOutputStream(videoFile);
+
+                                try {
+                                    stream.write(response);
+                                } finally {
+                                    stream.close();
+                                }
+                                Toast.makeText(activity, "Download complete.", Toast.LENGTH_LONG).show();
+
+                            }
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            Log.d("ERROR!!", "NOT DOWNLOADED");
+                            e.printStackTrace();
+                        }
+                    }
+                } ,new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }, null);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(activity, new HurlStack());
+        mRequestQueue.add(request);
     }
 }

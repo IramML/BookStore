@@ -87,6 +87,7 @@ public class DomicilesFragment extends Fragment {
                     implementRecyclerView(domicilesResponse);
                 }else{
                     Toast.makeText(appCompatActivity, "You don't have domiciles registered", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

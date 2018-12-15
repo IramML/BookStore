@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.iramml.bookstore.BookStoreApi.BookStore;
@@ -32,6 +33,9 @@ public class BooksFragment extends Fragment {
     BooksCustomAdapter adapter;
     BookStore bookStore;
     AppCompatActivity appCompatActivity;
+
+    BottomSheetBuyPDF bottomSheetBuyPDF;
+    BottomSheetBuyPhysic bottomSheetBuyPhysic;
     public BooksFragment() {
         // Required empty public constructor
     }
@@ -74,26 +78,37 @@ public class BooksFragment extends Fragment {
         layoutManager=new LinearLayoutManager(getActivity());
         rvBooks.setLayoutManager(layoutManager);
     }
-    public void setActivity(AppCompatActivity appCompatActivity){
+    public void setActivity(final AppCompatActivity appCompatActivity){
         this.appCompatActivity=appCompatActivity;
         bookStore=new BookStore(this.appCompatActivity);
+        bottomSheetBuyPDF=BottomSheetBuyPDF.newInstance("PDF bottom sheet");
+        bottomSheetBuyPhysic=BottomSheetBuyPhysic.newInstance("Physic bottom sheet");
         bookStore.getBooks(new getBooksInterface() {
             @Override
             public void booksGenerated(String books) {
                 Gson gson=new Gson();
                 Log.d("RESPONSE", books);
                 BooksResponse booksObject=gson.fromJson(books, BooksResponse.class);
-                implementRecyclerView(booksObject);
+                if(booksObject.code.equals("200"))
+                    implementRecyclerView(booksObject);
+                else
+                    Toast.makeText(appCompatActivity, "There are no books", Toast.LENGTH_SHORT).show();
 
             }
         });
 
     }
-    public void implementRecyclerView(BooksResponse booksObject){
+    public void implementRecyclerView(final BooksResponse booksObject){
         adapter=new BooksCustomAdapter(appCompatActivity, booksObject.books, new ClickListener() {
             @Override
             public void onClick(View view, int index) {
-
+                if(booksObject.books.get(index).is_pdf.equals("yes")){
+                    bottomSheetBuyPDF.setActiviti(appCompatActivity);
+                    bottomSheetBuyPDF.show(getFragmentManager(), bottomSheetBuyPDF.mTag);
+                }else{
+                    bottomSheetBuyPhysic.setActiviti(appCompatActivity);
+                    bottomSheetBuyPhysic.show(getFragmentManager(), bottomSheetBuyPhysic.mTag);
+                }
             }
         });
         rvBooks.setAdapter(adapter);

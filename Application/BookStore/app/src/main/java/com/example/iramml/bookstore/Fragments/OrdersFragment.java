@@ -75,7 +75,10 @@ public class OrdersFragment extends Fragment {
                 Gson gson=new Gson();
                 Log.d("RESPONSE", response);
                 BooksResponse booksObject=gson.fromJson(response, BooksResponse.class);
-                implementRecyclerView(booksObject);
+                if(booksObject.code.equals("200"))
+                    implementRecyclerView(booksObject);
+                else
+                    Toast.makeText(appCompatActivity, "You have not bought any book", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -95,69 +98,19 @@ public class OrdersFragment extends Fragment {
                             Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener(){
                         @Override
                         public void onPermissionsChecked(MultiplePermissionsReport report) {
-
-                            String URL_BASE="http://192.168.0.17/bookstore/api/";
-                            String section="books/";
-                            String method="download.php?";
-                            String parameters="id="+booksObject.books.get(index).id;
-                            String url=URL_BASE+section+method+parameters;
-                            Log.d("URL_PDF", url);
-                            downloadFile(url, booksObject.books.get(index).title);
+                            bookStore.downloadPDF(booksObject.books.get(index).id, booksObject.books.get(index).title);
                         }
-
                         @Override
                         public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
 
                         }
                     }).check();
 
-                }else{
-                    Toast.makeText(appCompatActivity,"Not pdf", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         rvOrders.setAdapter(adapter);
     }
-    private void downloadFile(String url, final String pdfName) {
-        InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.GET, url,
-                new Response.Listener<byte[]>() {
-                    @Override
-                    public void onResponse(byte[] response) {
-                        try {
-                            if (response!=null) {
-                                String name=pdfName+".pdf";
 
-                                File dir = new File (Environment.getExternalStorageDirectory().getAbsolutePath() + "/directory1/directory2/");
-                                dir.mkdirs();
-
-                                File videoFile = new File(dir.getAbsoluteFile()+"/"+name);
-
-                                FileOutputStream stream = new FileOutputStream(videoFile);
-
-                                try {
-                                    stream.write(response);
-                                } finally {
-                                    stream.close();
-                                }
-                                Toast.makeText(appCompatActivity, "Download complete.", Toast.LENGTH_LONG).show();
-
-                            }
-                        } catch (Exception e) {
-                            // TODO Auto-generated catch block
-                            Log.d("ERROR!!", "NOT DOWNLOADED");
-                            e.printStackTrace();
-                        }
-                    }
-                } ,new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO handle the error
-                error.printStackTrace();
-            }
-        }, null);
-        RequestQueue mRequestQueue = Volley.newRequestQueue(appCompatActivity, new HurlStack());
-        mRequestQueue.add(request);
-    }
 
 }

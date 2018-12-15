@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bookStore=new BookStore(this);
         if(getIntent()!=null){
             itemSelected=getIntent().getIntExtra("itemSelected",0);
         }
