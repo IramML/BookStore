@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.commit();
                 break;
             case R.id.nav_orders:
-
+                ordersFragment.setActivity(this);
                 fragmentTransaction.replace(R.id.flContent, ordersFragment);
                 fragmentTransaction.commit();
                 break;

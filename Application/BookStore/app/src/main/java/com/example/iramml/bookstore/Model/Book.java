@@ -17,4 +17,6 @@ public class Book{
     public String cost;
     @SerializedName("image")
     public String image;
+    @SerializedName("is_pdf")
+    public String is_pdf;
 }

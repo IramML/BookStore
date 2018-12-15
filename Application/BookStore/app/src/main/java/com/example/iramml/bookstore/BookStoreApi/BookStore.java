@@ -4,12 +4,18 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.Volley;
+import com.example.iramml.bookstore.Activities.MainActivity;
 import com.example.iramml.bookstore.Interfaces.HttpResponse;
 import com.example.iramml.bookstore.Interfaces.getBooksInterface;
 import com.example.iramml.bookstore.Interfaces.getTokenInterface;
 import com.example.iramml.bookstore.Model.Domicile;
 import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
+import com.example.iramml.bookstore.Util.InputStreamVolleyRequest;
 import com.example.iramml.bookstore.Util.Network;
 
 public class BookStore {
@@ -75,7 +81,8 @@ public class BookStore {
     public void getBooks(final getBooksInterface getBooksInterface){
         Network network=new Network(activity);
         String section="books/";
-        String url=URL_BASE+section;
+        String parameters="?token="+getToken();
+        String url=URL_BASE+section+parameters;
         network.httpRequest(activity, url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
@@ -106,5 +113,21 @@ public class BookStore {
                 httpResponse.httpResponseSuccess(response);
             }
         });
+    }
+    public void getOrders(final HttpResponse httpResponse) {
+        Network network=new Network(activity);
+        String section="orders/?";
+        String parameters="token="+getToken();
+        String url=URL_BASE+section+parameters;
+        network.httpRequest(activity, url, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                httpResponse.httpResponseSuccess(response);
+            }
+        });
+    }
+
+    public void downloadPDF(String id, final HttpResponse httpResponse) {
+
     }
 }

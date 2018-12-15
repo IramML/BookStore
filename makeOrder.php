@@ -71,9 +71,11 @@
                 $result=$bookObject->getBooks();
                 if($result->rowCount()>0){
                     while($row=$result->fetch(PDO::FETCH_ASSOC)){
-                        ?>
-                        <option value="<?php echo $row['b_code']?>" <?php if($bookCode==$row['b_code'])echo "selected"?>><?php echo $row['b_code']." - ".$row['title'];?></option>
-                        <?php
+                        if($bookObject->existPhysical($row['b_code'])) {
+                            ?>
+                                <option value="<?php echo $row['b_code'] ?>" <?php if ($bookCode == $row['b_code']) echo "selected" ?>><?php echo $row['b_code'] . " - " . $row['title']; ?></option>
+                            <?php
+                        }
                     }
                 }
             ?>

@@ -47,5 +47,15 @@
                                               VALUES(:code)');
             $query->execute(['code'=>$code]);
         }
+        function existPhysical($id){
+            $query=$this->connect()->prepare('SELECT * FROM physicalbook WHERE b_physical_code=:id');
+            $query->execute(['id'=>$id]);
+            return $query->rowCount()>0;
+        }
+        function existPDF($id){
+            $query=$this->connect()->prepare('SELECT * FROM pdfbook WHERE pdf_code=:id');
+            $query->execute(['id'=>$id]);
+            return $query->rowCount()>0;
+        }
     }
 ?>

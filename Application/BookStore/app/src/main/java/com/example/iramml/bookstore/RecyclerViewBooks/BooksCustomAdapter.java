@@ -44,6 +44,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
         viewHolder.tvEditorial.setText("Editorial: "+items.get(i).editorial);
         viewHolder.tvPages.setText("pages: "+items.get(i).pages);
         viewHolder.tvCost.setText("$"+items.get(i).cost);
+        viewHolder.tvIsPDF.setText("PDF: "+items.get(i).is_pdf);
     }
     @Override
     public int getItemCount() {
@@ -52,7 +53,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ivImage;
-        TextView tvTitle, tvAuthor, tvEditorial, tvPages, tvCost;
+        TextView tvTitle, tvAuthor, tvEditorial, tvPages, tvCost, tvIsPDF;
         ClickListener listener;
         public ViewHolder(View itemView, ClickListener listener) {
             super(itemView);
@@ -62,6 +63,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
             tvEditorial=itemView.findViewById(R.id.tvEditorial);
             tvPages=itemView.findViewById(R.id.tvPages);
             tvCost=itemView.findViewById(R.id.tvCost);
+            tvIsPDF=itemView.findViewById(R.id.tvIsPDF);
             this.listener=listener;
             itemView.setOnClickListener(this);
         }

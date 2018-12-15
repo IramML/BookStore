@@ -17,5 +17,10 @@
                 die("Error when inserting data");
 
         }
+        function getOrdersByClientID($id){
+            $query=$this->connect()->prepare('SELECT * FROM orders WHERE client_code=:id');
+            $query->execute(['id'=>$id]);
+            return $query;
+        }
     }
 ?>
