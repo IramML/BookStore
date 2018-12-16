@@ -16,11 +16,14 @@ import com.example.iramml.bookstore.Activities.MainActivity;
 import com.example.iramml.bookstore.Interfaces.HttpResponse;
 import com.example.iramml.bookstore.Interfaces.getBooksInterface;
 import com.example.iramml.bookstore.Interfaces.getTokenInterface;
+import com.example.iramml.bookstore.Model.Book;
+import com.example.iramml.bookstore.Model.BuyResponse;
 import com.example.iramml.bookstore.Model.Domicile;
 import com.example.iramml.bookstore.Model.LoginUser;
 import com.example.iramml.bookstore.Model.User;
 import com.example.iramml.bookstore.Util.InputStreamVolleyRequest;
 import com.example.iramml.bookstore.Util.Network;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -181,5 +184,24 @@ public class BookStore {
         }, null);
         RequestQueue mRequestQueue = Volley.newRequestQueue(activity, new HurlStack());
         mRequestQueue.add(request);
+    }
+    public void buyPDF(final String ID, final String title){
+        Network network=new Network(activity);
+        String section="orders/";
+        String method="buyPDF.php";
+        String parameters="?token="+getToken()+"&id_book="+ID;
+        String url=URL_BASE+section+method+parameters;
+        Log.d("URL", url);
+        network.httpRequest(activity, url, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                //Download pdf
+                Gson gson=new Gson();
+                Log.d("RESPONSE_ORDER", response);
+                BuyResponse buyResponse=gson.fromJson(response, BuyResponse.class);
+                if(buyResponse.code.equals("200"))
+                    downloadPDF(ID, title);
+            }
+        });
     }
 }

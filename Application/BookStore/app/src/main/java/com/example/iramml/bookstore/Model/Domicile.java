@@ -1,15 +1,23 @@
 package com.example.iramml.bookstore.Model;
 
 public class Domicile {
-    private String postal_code, colony, state, municipality, street, outdoor_number;
+    private String id, postal_code, colony, state, municipality, street, outdoor_number;
 
-    public Domicile(String postal_code, String colony, String state, String municipality, String street, String outdoor_number) {
+    public Domicile(String id, String postal_code, String colony, String state, String municipality, String street, String outdoor_number) {
         this.postal_code = postal_code;
         this.colony = colony;
         this.state = state;
         this.municipality = municipality;
         this.street = street;
         this.outdoor_number = outdoor_number;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPostalCode() {

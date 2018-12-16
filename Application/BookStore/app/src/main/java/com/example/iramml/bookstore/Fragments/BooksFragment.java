@@ -31,6 +31,7 @@ public class BooksFragment extends Fragment {
     ShimmerRecyclerView rvBooks;
     RecyclerView.LayoutManager layoutManager;
     BooksCustomAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
     BookStore bookStore;
     AppCompatActivity appCompatActivity;
 
@@ -51,7 +52,7 @@ public class BooksFragment extends Fragment {
         // Inflate the layout for this fragment
         view0=inflater.inflate(R.layout.fragment_books, container, false);
         initRecyclerView();
-        final SwipeRefreshLayout swipeRefreshLayout=view0.findViewById(R.id.swipeToRefresh);
+        swipeRefreshLayout=view0.findViewById(R.id.swipeToRefresh);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -70,6 +71,10 @@ public class BooksFragment extends Fragment {
             }
         });
         return view0;
+    }
+    public void hideBottomSheet(){
+        if(bottomSheetBuyPhysic.isVisible()) bottomSheetBuyPhysic.dismiss();
+        else bottomSheetBuyPDF.dismiss();
     }
     private void initRecyclerView() {
         rvBooks=(ShimmerRecyclerView)view0.findViewById(R.id.rvBooks);
@@ -103,10 +108,10 @@ public class BooksFragment extends Fragment {
             @Override
             public void onClick(View view, int index) {
                 if(booksObject.books.get(index).is_pdf.equals("yes")){
-                    bottomSheetBuyPDF.setActiviti(appCompatActivity);
+                    bottomSheetBuyPDF.setActivity(appCompatActivity, booksObject.books.get(index).title, booksObject.books.get(index).id, BooksFragment.this);
                     bottomSheetBuyPDF.show(getFragmentManager(), bottomSheetBuyPDF.mTag);
                 }else{
-                    bottomSheetBuyPhysic.setActiviti(appCompatActivity);
+                    bottomSheetBuyPhysic.setActivity(appCompatActivity, BooksFragment.this);
                     bottomSheetBuyPhysic.show(getFragmentManager(), bottomSheetBuyPhysic.mTag);
                 }
             }

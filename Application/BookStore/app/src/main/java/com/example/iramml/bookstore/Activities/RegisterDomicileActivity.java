@@ -37,7 +37,7 @@ public class RegisterDomicileActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Domicile domicile=new Domicile(etPostalCode.getText().toString(), etColony.getText().toString(),etState.getText().toString(),
+                Domicile domicile=new Domicile("",etPostalCode.getText().toString(), etColony.getText().toString(),etState.getText().toString(),
                         etMunicipality.getText().toString(),etStreet.getText().toString(),etOutdoorNumber.getText().toString());
                 bookStore.registerDomicile(domicile, new HttpResponse() {
                     @Override

@@ -86,8 +86,35 @@
             }else
                 $this->error('No ID user');
         }
-        function downloadPDF(){
+        function buyPDF($token, $idbook){
+            $clientObject=new Clients();
+            $idClient='';
+            $resClientID=$clientObject->getUserIDByToken($token);
+            if($resClientID->rowCount()>0){
+                while ($row=$resClientID->fetch(PDO::FETCH_ASSOC)){
+                    $idClient=$row['id_client'];
+                }
+                $orderObject=new Orders();
 
+                $this->printJSON($orderObject->buyPDF($idClient, $idbook));
+            }else{
+                $this->error('No ID user');
+            }
+        }
+        function buyPhysical($token, $idBook, $domicileID){
+            $clientObject=new Clients();
+            $idClient='';
+            $resClientID=$clientObject->getUserIDByToken($token);
+            if($resClientID->rowCount()>0){
+                while ($row=$resClientID->fetch(PDO::FETCH_ASSOC)){
+                    $idClient=$row['id_client'];
+                }
+                $orderObject=new Orders();
+
+                $this->printJSON($orderObject->buyPhysical($idClient, $idBook));
+            }else{
+                $this->error('No ID user');
+            }
         }
         function error($message){
             echo json_encode(array('code'=>404,'message' => $message));

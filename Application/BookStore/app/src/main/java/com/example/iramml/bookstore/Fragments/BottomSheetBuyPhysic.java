@@ -30,6 +30,7 @@ public class BottomSheetBuyPhysic extends BottomSheetDialogFragment {
     DomicilesCustomAdapter adapter;
     BookStore bookStore;
     AppCompatActivity appCompatActivity;
+    BooksFragment booksFragment;
     public static BottomSheetBuyPhysic newInstance(String tag) {
         BottomSheetBuyPhysic fragment = new BottomSheetBuyPhysic();
         Bundle args = new Bundle();
@@ -51,8 +52,9 @@ public class BottomSheetBuyPhysic extends BottomSheetDialogFragment {
         initRecyclerView();
         return view0;
     }
-    public void setActiviti(AppCompatActivity activiti){
-        this.appCompatActivity=activiti;
+    public void setActivity(AppCompatActivity activity, BooksFragment booksFragment){
+        this.booksFragment=booksFragment;
+        this.appCompatActivity=activity;
         bookStore=new BookStore(appCompatActivity);
         bookStore.getDomiciles(new HttpResponse() {
             @Override
@@ -80,7 +82,7 @@ public class BottomSheetBuyPhysic extends BottomSheetDialogFragment {
         adapter=new DomicilesCustomAdapter(appCompatActivity, domicilesResponse.domiciles, new ClickListener() {
             @Override
             public void onClick(View view, int index) {
-
+                booksFragment.hideBottomSheet();
             }
         });
         rvDomiciles.setAdapter(adapter);

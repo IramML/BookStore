@@ -22,5 +22,26 @@
             $query->execute(['id'=>$id]);
             return $query;
         }
+        function buyPDF($idUser, $idBook){
+            $query=$this->connect()->prepare('INSERT INTO orders(client_code, book_code)
+                                                       VALUES(:userID, :bookID)');
+
+            $query->execute(['userID'=>$idUser, 'bookID'=>$idBook]);
+
+            return array('code'=>200, 'message'=>'purchase made correctly');
+        }
+
+        public function buyPhysical($idClient, $idBook, $domicileID){
+            $query=$this->connect()->prepare('INSERT INTO orders(client_code, book_code)
+                                                       VALUES(:userID, :bookID)');
+
+            $query->execute(['userID'=>$idClient, 'bookID'=>$idBook]);
+
+            $query=$this->connect()->prepare('INSERT INTO orders(client_code, book_code)
+                                                       VALUES(:userID, :bookID)');
+
+            $query->execute(['userID'=>$idClient, 'bookID'=>$idBook]);
+            return array('code'=>200, 'message'=>'purchase made correctly');
+        }
     }
 ?>
