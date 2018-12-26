@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/mainTheme.css">
-    <link rel="stylesheet" href="css/ordersTheme.css">
+    <link rel="shortcut icon" href="public/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="public/css/headerTheme.css">
+    <link rel="stylesheet" href="public/css/ordersTheme.css">
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto" rel="stylesheet">
     <title>Book Store</title>
 </head>

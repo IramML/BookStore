@@ -22,5 +22,39 @@
             $query->execute(['id'=>$id]);
             return $query;
         }
+        function buyPDF($idUser, $idBook){
+            $query=$this->connect()->prepare('INSERT INTO orders(client_code, book_code)
+                                                       VALUES(:userID, :bookID)');
+
+            $query->execute(['userID'=>$idUser, 'bookID'=>$idBook]);
+
+            return array('code'=>200, 'message'=>'purchase made correctly');
+        }
+        function getOrderIDByClientBook($idClient, $idBook){
+            $query=$this->connect()->prepare('SELECT * FROM orders WHERE client_code=:client AND book_code=:book');
+
+            $query->execute(['client'=>$idClient, 'book'=>$idBook]);
+            $res=$query;
+            $orderNum='';
+            if($res->rowCount()>0){
+                while ($row=$res->fetch(PDO::FETCH_ASSOC)){
+                    $orderNum= $row['order_num'];
+                }
+            }
+            return $orderNum;
+        }
+        function buyPhysical($idClient, $idBook, $domicileID){
+            $query=$this->connect()->prepare('INSERT INTO orders(client_code, book_code)
+                                                       VALUES(:userID, :bookID)');
+
+            $query->execute(['userID'=>$idClient, 'bookID'=>$idBook]);
+
+            $query=$this->connect()->prepare('INSERT INTO homedelivery(num_order, dom_code)
+                                                       VALUES(:numOrder, :domCode)');
+
+
+            $query->execute(['numOrder'=>$this->getOrderIDByClientBook($idClient, $idBook), 'domCode'=>$domicileID]);
+            return array('code'=>200, 'message'=>'purchase made correctly');
+        }
     }
 ?>

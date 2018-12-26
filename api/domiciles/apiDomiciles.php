@@ -30,6 +30,7 @@
                 if($resDomicile->rowCount()>0){
                     while ($row=$resDomicile->fetch(PDO::FETCH_ASSOC)){
                         $domicile=array(
+                            'id'=>$row['domicile_code'],
                             'postal_code'=>$row['postal_code'],
                             'colony'=>$row['colony'],
                             'state'=>$row['state'],

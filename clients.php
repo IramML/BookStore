@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/mainTheme.css">
-    <link rel="stylesheet" href="css/usersTheme.css">
+    <link rel="shortcut icon" href="public/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="public/css/headerTheme.css">
+    <link rel="stylesheet" href="public/css/usersTheme.css">
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto" rel="stylesheet">
     <title>Book Store</title>
 </head>
@@ -16,7 +16,7 @@
     </header>
     <div id="title">
         <h2>Clients</h2>
-        <a id="add-user" href="newClient.php"><img class="option" src="img/person-add.png" alt="Add user"></a>
+        <a id="add-user" href="newClient.php"><img class="option" src="public/img/person-add.png" alt="Add user"></a>
     </div>
     <div id="users-content">
         <?php
