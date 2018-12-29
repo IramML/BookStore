@@ -6,10 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="stylesheet" href="<?php echo constant('URL');?>public/css/header.css">
+    <link rel="stylesheet" href="<?php echo constant('URL');?>public/css/deliveries.css">
 </head>
 <body>
     <?php require_once 'views/header.php'?>
-
 </body>
 </html>

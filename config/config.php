@@ -1,6 +1,6 @@
 <?php
 
-define('URL', 'http://localhost/curso/43.%20MVC-02/');
+define('URL', 'http://localhost/bookstore/');
 define('HOST', 'localhost');
 define('DB', 'bookstore');
 define('USER', 'root');
