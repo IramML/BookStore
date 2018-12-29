@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/header.css">
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/orders.css">
+    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/newOrder.css">
 </head>
 <body>
     <?php require_once 'views/header.php'?>

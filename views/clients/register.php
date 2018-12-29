@@ -12,9 +12,15 @@
 </head>
 <body>
     <?php require_once 'views/header.php'?>
-    <form id="form" action="clients/register" method="POST">
-
+    <form id="form" action="<?php echo constant('URL')?>clients/register" method="POST">
         <h2>Create new user</h2>
+        <?php
+            if ($this->message!="")
+                if($this->message=="Successfully registered client")
+                    echo '<h3 class="correct center">'.$this->message.'</h3>';
+                else
+                    echo '<h3 class="error center">'.$this->message.'</h3>';
+        ?>
         <div class="field-conteiner">
             <p>Name:</p>
             <input name="name" type="text" class="field" placeholder="Name..." value=""><br/>

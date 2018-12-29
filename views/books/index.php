@@ -14,7 +14,7 @@
     <?php require_once 'views/header.php'?>
     <div id="book-content">
     <div id="title">
-        <h2>Books</h2>
+        <h2 class="center">Books</h2>
         <a id="add-book" href="<?php constant('URL')?>books/register"><img class="option" src="public/img/plus.png" alt="Add book"></a>
     </div>
 </div>

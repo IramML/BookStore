@@ -1,127 +1,29 @@
+:root{
+    --title_bg_color: #fff;
+
+    --title_txt_color: #336E94;
+}
 #title{
-    text-align: center;
+    background: var(--title_bg_color);
+    color: var(--title_txt_color);
     width: 80%;
-    background: #fff;
-    color: #336E94;
-    border-radius: 20px;
-    padding: 18px 10px;
-    margin: 30px auto;
-    display: block;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 25px;
 }
 #title h2{
-    display: inline;
-    font-weight: bolder;
-    font-size: 1.6em;
-    padding: 0px;
-    margin: 0px 0px 0px 55px;
-}
-#add-book{
-    float: right;
-    margin-right: 25px;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.8em;
+
 }
 .option{
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
     padding: 2px;
     background: rgb(225, 225, 225);
     margin: 0px 5px;
-}
-#book-content{
-    margin: auto;
-    display: block;
-    width: 80%;
-    margin: 20px auto; 
-}
-.book{
-    display: block;
-    padding: 40px 25px;
-    border-radius: 20px;
-    background: #fff;
-    margin: 20px auto; 
-}
-.book-img{
-    width: 100px;
-    height: auto;
-}
-.book-information{
-    display: inline-block;
-    width: 78%;
-}
-.book-code{
-    font-weight: bolder;
-    font-size: 1.2em;
-}
-.book-title{
-    font-weight: bold;
-    font-size: 1.2em;
-}
-.book-editorial{
-    font-weight: normal;
-    font-size: 1em;
-}
-.book-author{
-    font-weight: normal;
-    font-size: 1em;
-}
-.book-num-pages{
-    font-weight: normal;
-    font-size: 1em;
-}
-.book-cost{
-    font-weight: normal;
-    font-size: 1em;
-}
-.item{
-    display: inline-block;
-    margin: 12px 25px;
-}
-.book-options{
-    width: 11%;
-    float: right;
-}
-@media screen and (min-width: 480px){
-
-}
-@media screen and (min-width: 767px){
-
-}
-@media screen and (min-width: 950px){
-    #title{
-        width: 80%;
-        padding: 14px 10px;
-    }
-    .book-information{
-        width: 80%;
-    }
-    .book-code{
-        font-size: 1.8em;
-    }
-    .book-title{
-        font-size: 1.8em;
-    }
-    .book-editorial{
-        font-size: 1.6em;
-    }
-    .book-author{
-        font-size: 1.6em;
-    }
-    .book-num-pages{
-        font-size: 1.6em;
-    }
-    .book-cost{
-        font-size: 1.6em;
-    }
-    .book-options{
-        width: 10%;
-        float: right;
-    }
-    .option{
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        padding: 2px;
-        background: rgb(225, 225, 225);
-        margin: 0px 5px;
-    }
 }
