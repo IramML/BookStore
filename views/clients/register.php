@@ -23,19 +23,19 @@
         ?>
         <div class="field-conteiner">
             <p>Name:</p>
-            <input name="name" type="text" class="field" placeholder="Name..." value=""><br/>
+            <input name="name" type="text" class="field" placeholder="Name..." value="" required><br/>
         </div>
         <div class="field-conteiner">
             <p>Last name:</p>
-            <input name="last_name" type="text" class="field" placeholder="Last name..." value=""><br/>
+            <input name="last_name" type="text" class="field" placeholder="Last name..." value="" required><br/>
         </div>
         <div class="field-conteiner">
             <p>Phone:</p>
-            <input name="phone" type="text" class="field" placeholder="1234567890" value=""><br/>
+            <input name="phone" type="text" class="field" placeholder="1234567890" value="" required><br/>
         </div>
         <div class="field-conteiner">
             <p>Age:</p>
-            <input type="number"  value="18" name="age" min="1" max="120"><br/>
+            <input type="number"  value="18" name="age" min="1" max="120" required><br/>
         </div>
         <input type="submit" id="btn-save" value="Save">
     </form>

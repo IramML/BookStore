@@ -23,10 +23,10 @@ class clientsModel extends Model{
             return [];
         }
     }
-    function getClientsByPhysicals($clientsID){
+    function getClientsByPhysicals($physicalClients){
         $clientItems=[];
         try{
-            foreach($clientsID as $rowPhysical){
+            foreach($physicalClients as $rowPhysical){
                 $query=$this->db->connect()->prepare('SELECT * FROM client WHERE c_code=:code');
                 $query->execute(['code'=>$rowPhysical->code]);
                 while($row=$query->fetch()){

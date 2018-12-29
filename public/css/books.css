@@ -27,3 +27,56 @@
     background: rgb(225, 225, 225);
     margin: 0px 5px;
 }
+#book-content{
+    margin: auto;
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+}
+.book{
+    display: block;
+    padding: 40px 25px;
+    border-radius: 20px;
+    background: #fff;
+    margin: 20px auto;
+}
+.book-img{
+    width: 100px;
+    height: auto;
+}
+.book-information{
+    display: inline-block;
+    width: 78%;
+}
+.book-code{
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+.book-title{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.book-editorial{
+    font-weight: normal;
+    font-size: 1em;
+}
+.book-author{
+    font-weight: normal;
+    font-size: 1em;
+}
+.book-num-pages{
+    font-weight: normal;
+    font-size: 1em;
+}
+.book-cost{
+    font-weight: normal;
+    font-size: 1em;
+}
+.item{
+    display: inline-block;
+    margin: 12px 25px;
+}
+.book-options{
+    width: 11%;
+    float: right;
+}
