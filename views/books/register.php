@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="<?php echo constant('URL')?>public/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/header.css">
-    <link rel="stylesheet" href="<?php echo constant('URL')?>public/css/newBook.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Merienda+One|Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto" rel="stylesheet">
-    <title>Book Store</title>
-</head>
-<body>
-    <?php require_once 'views/header.php'?>
+<?php require_once 'views/header.php'?>
     <form id="form" method="POST" action="<?php echo constant('URL')?>books/register" enctype="multipart/form-data">
         <h2>Register new book</h2>
         <?php

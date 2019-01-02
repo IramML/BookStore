@@ -1,15 +1,37 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bookstore</title>
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/header.css">
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/orders.css">
-</head>
-<body>
-    <?php require_once 'views/header.php'?>
+ <?php require_once 'views/header.php'?>
+    <div id="order-content">
+        <table id="table-orders">
+            <thead>
+            <tr>
+                <th>Number of order</th>
+                <th>Client code</th>
+                <th>Book code</th>
+                <th>Date of purchase</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            include_once 'models/order.php';
+            foreach ($this->orders as $row){
+                $order=new Order();
+                $order=$row;
+                ?>
+                <tr>
+                    <td><?php echo $order->numOrder?></td>
+                    <td><?php echo $order->clientCode?></td>
+                    <td><?php echo $order->bookCode?></td>
+                    <td><?php echo $order->buyDate?></td>
+                    <td class="center"><a href=""><img class="option" src="<?php echo constant('URL')?>public/img/edit.png" alt="Add user"></a></td>
+                    <td class="center"><a href="#"><img class="option" src="<?php echo constant('URL')?>public/img/trash.png" alt="Add user"></a></td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>

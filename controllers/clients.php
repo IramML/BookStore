@@ -4,14 +4,17 @@ class Clients extends Controller {
         parent::__construct();
         $this->view->clients=[];
         $this->view->message="";
+        $this->view->theme="";
     }
     function render(){
         $clientsPhysical=$this->model->getAllPhysical();
         $clients=$this->model->getClientsByPhysicals($clientsPhysical);
         $this->view->clients=$clients;
+        $this->view->theme="clients";
         $this->view->render('clients/index');
     }
     function register(){
+        $this->view->theme="newClient";
         if(isset($_POST['name'])){
             $name=$_POST['name'];
             $lastName=$_POST['last_name'];

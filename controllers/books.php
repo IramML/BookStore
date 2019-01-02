@@ -4,15 +4,17 @@ class Books extends Controller {
         parent::__construct();
         $this->view->books=[];
         $this->view->message="";
-        $this->view->fields=[];
+        $this->view->theme="";
     }
     function render(){
+        $this->view->theme="books";
         $physicBooks=$this->model->getAllPhysics();
         $books=$this->model->getBooksByPhysicals($physicBooks);
         $this->view->books=$books;
         $this->view->render('books/index');
     }
     function register(){
+        $this->view->theme="newBook";
         if(isset($_POST['code'])){
             $bCode=$_POST['code'];
             $title=$_POST['title'];

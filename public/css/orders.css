@@ -1,3 +1,13 @@
+:root{
+    --title_bg_color: #fff;
+    --th_bg_color: #2E3D47;
+    --td_bg_color_odd: #87B3D0;
+    --td_bg_color_even: #fff;
+
+    --title_txt_color: #336E94;
+    --th_txt_color: #fff;
+    --td_txt_color: #000;
+}
 #title{
     text-align: center;
     width: 80%;
@@ -29,56 +39,54 @@ h2{
     width: 80%;
     margin: 20px auto; 
 }
-.order{
-    display: block;
-    padding: 40px 25px;
-    border-radius: 20px;
-    background: #fff;
-    margin: 20px auto; 
-    width: 60%;
-}
-.order-information{
-    display: inline-block;
+#table-orders{
     width: 80%;
-    margin-right: 25px;
+    margin: 20px auto;
 }
-.order-code{
-    font-weight: bolder;
-    font-size: 1.8em;
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
-.client-code{
-    font-weight: normal;
-    font-size: 1.8em;
+th, td{
+    padding: 2px 10px;
+    font-size: 1.2em;
 }
-.book-code{
-    font-weight: normal;
-    font-size: 1.6em;
+th{
+    background: var(--th_bg_color);
+    color: var(--th_txt_color);
 }
-.loan-date{
-    font-weight: normal;
-    font-size: 1.6em;
+tr:nth-child(odd){
+    background: var(--td_bg_color_odd);
 }
-.delivery-date{
-    font-weight: normal;
-    font-size: 1.6em;
+tr:nth-child(even){
+    background: var(--td_bg_color_even);
 }
-.order-cost{
-    font-weight: normal;
-    font-size: 1.6em;
+td:nth-child(5n){
+    width: 50px;
 }
-.item{
-    display: inline-block;
-    margin: 12px 25px;
+td:nth-child(6n){
+    width: 50px;
 }
 .order-options{
     width: 10%;
     float: right;
 }
 .option{
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 10px;
     padding: 2px;
     background: rgb(225, 225, 225);
-    margin: 0px 5px;
+    margin: 5px;
+}
+@media screen and (min-width: 480px){
+
+}
+@media screen and (min-width: 767px){
+
+}
+@media screen and (min-width: 950px){
+    #table-orders{
+        width: 90%;
+    }
 }

@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="<?php echo constant('URL'); ?>img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/header.css">
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/newUser.css">
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto" rel="stylesheet">
-    <title>Book Store</title>
-</head>
-<body>
     <?php require_once 'views/header.php'?>
     <form id="form" action="<?php echo constant('URL')?>clients/register" method="POST">
         <h2>Create new user</h2>
