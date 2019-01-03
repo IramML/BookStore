@@ -4,6 +4,26 @@ class booksModel extends Model{
     function __construct(){
         parent::__construct();
     }
+    function getAll(){
+        $items=[];
+        try{
+            $query=$this->db->connect()->query('SELECT * FROM book');
+            while($row=$query->fetch()){
+                $book=new Book();
+                $book->code=$row['b_code'];
+                $book->title=$row['title'];
+                $book->numPages=$row['num_pages'];
+                $book->editorial=$row['editorial'];
+                $book->author=$row['author'];
+                $book->cost=$row['cost'];
+                $book->bImage=$row['b_image'];
+                array_push($items, $book);
+            }
+            return $items;
+        }catch(PDOException $e){
+            return [];
+        }
+    }
     function getAllPhysics(){
         $items=[];
         try{
@@ -91,6 +111,26 @@ class booksModel extends Model{
                                               VALUES(:code, :url)');
             $query->execute(['code'=>$data['code'], 'url'=>$data['pdf']]);
             return true;
+        }catch (PDOException $e){
+            return false;
+        }
+    }
+    function existPDF($bookCode){
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM pdfbook WHERE pdf_code=:code');
+            $query->execute(['code'=>$bookCode]);
+            if($query->rowCount()>0) return true;
+            else return false;
+        }catch (PDOException $e){
+            return false;
+        }
+    }
+    function existPhysical($bookCode){
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM physicalbook WHERE b_physical_code=:code');
+            $query->execute(['code'=>$bookCode]);
+            if($query->rowCount()>0) return true;
+            else return false;
         }catch (PDOException $e){
             return false;
         }

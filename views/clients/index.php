@@ -25,8 +25,8 @@
                     <td><?php echo $client->code?></td>
                     <td><?php echo $client->name?></td>
                     <td><?php echo $client->lastName?></td>
-                    <td class="center"><a href=""><img class="option" src="<?php echo constant('URL')?>public/img/edit.png" alt="Add user"></a></td>
-                    <td class="center"><a href="#"><img class="option" src="<?php echo constant('URL')?>public/img/person-remove.png" alt="Add user"></a></td>
+                    <td class="center"><a href=""><img class="option option-table" src="<?php echo constant('URL')?>public/img/edit.png" alt="Add user"></a></td>
+                    <td class="center"><a href="#"><img class="option option-table" src="<?php echo constant('URL')?>public/img/person-remove.png" alt="Add user"></a></td>
                 </tr>
                 <?php
             }

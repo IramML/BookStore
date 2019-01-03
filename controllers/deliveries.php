@@ -9,4 +9,3 @@ class Deliveries extends Controller {
         $this->view->render('deliveries/index');
     }
 }
-?>

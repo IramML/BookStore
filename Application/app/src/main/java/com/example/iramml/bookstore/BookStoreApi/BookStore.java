@@ -91,8 +91,9 @@ public class BookStore {
     public void getBooks(final getBooksInterface getBooksInterface){
         Network network=new Network(activity);
         String section="books/";
+        String method="get/";
         String parameters="?token="+getToken();
-        String url=URL_BASE+section+parameters;
+        String url=URL_BASE+section+method+parameters;
         network.httpRequest(activity, url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {

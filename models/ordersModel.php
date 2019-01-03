@@ -24,4 +24,22 @@ class ordersModel extends Model{
     function physicalOrder($data){
         return true;
     }
+    function getOrdersByClientID($ID){
+        $items=array();
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM orders WHERE client_code=:code');
+            $query->execute(['code'=>$ID]);
+            while ($row=$query->fetch()){
+                $order=new Order();
+                $order->numOrder=$row['order_num'];
+                $order->clientCode=$row['client_code'];
+                $order->bookCode=$row['book_code'];
+                $order->buyDate=$row['buy_date'];
+                array_push($items, $order);
+            }
+            return $items;
+        }catch (PDOException $e){
+            return [];
+        }
+    }
 }

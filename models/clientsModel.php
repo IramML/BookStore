@@ -83,5 +83,55 @@ class clientsModel extends Model{
             return false;
         }
     }
+    function getTokenById($ID){
+        $token="";
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM token WHERE id_client=:id');
+            $query->execute(['id'=>$ID]);
+            while ($row=$query->fetch()){
+                $token=$row['token'];
+            }
+            return $token;
+        }catch (PDOException $e){
+            return "";
+        }
+    }
+    function validateToken($token){
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM token WHERE token=:token');
+            $query->execute(['token'=>$token]);
+
+            if($query->rowCount()>0)return true;
+            else return false;
+        }catch (PDOException $e){
+            return false;
+        }
+    }
+    function getIdByToken($token){
+        $ID="";
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM token WHERE token=:token');
+            $query->execute(['token'=>$token]);
+            while($row=$query->fetch()){
+                $ID=$row['id_client'];
+            }
+            return $ID;
+        }catch (PDOException $e){
+            return "";
+        }
+    }
+    function getClientIdByEmail($email){
+        $ID="";
+       try{
+           $query=$this->db->connect()->prepare('SELECT * FROM clientapplication WHERE email=:email');
+           $query->execute(['email'=>$email]);
+           while($row=$query->fetch()){
+
+           }
+           return $ID;
+       }catch (PDOException $e){
+           return [];
+       }
+    }
 }
 ?>

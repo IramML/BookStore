@@ -1,16 +1,9 @@
 :root{
-    --title_bg_color: #fff;
-    --th_bg_color: #2E3D47;
-    --td_bg_color_odd: #87B3D0;
-    --td_bg_color_even: #fff;
-
-    --title_txt_color: #336E94;
-    --th_txt_color: #fff;
-    --td_txt_color: #000;
+    --title-bg-color: #fff;
 }
 #title{
-    background: var(--title_bg_color);
-    color: var(--title_txt_color);
+    background: var(--title-bg-color);
+    color: var(--primary-text-color);
     width: 80%;
     margin: 20px auto;
     display: flex;
@@ -29,8 +22,11 @@
     height: 34px;
     border-radius: 10px;
     padding: 2px;
-    background: rgb(225, 225, 225);
     margin: 5px;
+    background: #e1e1e1;
+}
+.option-table{
+    background: transparent;
 }
 #users-content{
     width: 90%;
@@ -50,14 +46,14 @@ th, td{
     font-size: 1.2em;
 }
 th{
-    background: var(--th_bg_color);
-    color: var(--th_txt_color);
+    background: var(--default-primary-color);
+    color: var(--text-primary-color);
 }
 tr:nth-child(odd){
-    background: var(--td_bg_color_odd);
+    background: #FFFFFF;
 }
 tr:nth-child(even){
-    background: var(--td_bg_color_even);
+    background: var(--light-primary-color);
 }
 td:nth-child(4n){
     width: 50px;

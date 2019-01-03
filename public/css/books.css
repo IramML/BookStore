@@ -1,11 +1,10 @@
 :root{
     --title_bg_color: #fff;
-
     --title_txt_color: #336E94;
 }
 #title{
     background: var(--title_bg_color);
-    color: var(--title_txt_color);
+    color: var(--primary-text-color);
     width: 80%;
     margin: 20px auto;
     display: flex;
@@ -24,11 +23,10 @@
     height: 38px;
     border-radius: 10px;
     padding: 2px;
-    background: rgb(225, 225, 225);
-    margin: 0px 5px;
+    background: #e1e1e1;
+    margin: 0 5px;
 }
 #book-content{
-    margin: auto;
     display: block;
     width: 80%;
     margin: 20px auto;

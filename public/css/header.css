@@ -4,15 +4,29 @@
     font-family: 'Roboto', sans-serif;
 }
 :root{
-    --color_main_bg: #E4E5E6;
-    --color_header_bg: #2E3D47;
-    --color_main_txt_header: #fff;
+    --dark-primary-color: #29434e;
+    --default-primary-color: #546e7a;
+    --light-primary-color: #819ca9;
+    --text-primary-color: #ffffff;
+    --accent-color: #33691e;
+    --primary-text-color: #000000;
+    --secondary-text-color: #757575;
+    --divider-color: #BDBDBD;
+    --body-bg: #E4E5E6;
 }
 body{
-    background: var(--color_main_bg);
+    background: var(--body-bg);
 }
+.dark-primary-color    { background: #455A64; }
+.default-primary-color { background: #607D8B; }
+.light-primary-color   { background: #CFD8DC; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #8BC34A; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
 header{
-    background: var(--color_header_bg);
+    background: var(--dark-primary-color);
     width: 100%;
     padding: 5px 0;
     display: flex;
@@ -20,7 +34,7 @@ header{
 h1{
     padding: 10px;
     text-align: center;
-    color: var(--color_main_txt_header);
+    color: var(--text-primary-color);
     font-family: 'Merienda One', cursive;
     margin: 0 25px;
 }
@@ -28,14 +42,14 @@ h1{
     text-align: center;
 }
 #open-nav{
-    color: var(--color_main_txt_header);
+    color: var(--text-primary-color);
     font-size: 2.5em;
     cursor: pointer;
     margin: 0 10px;
 }
 #close-nav{
     display: block;
-    color: var(--color_main_txt_header);
+    color: var(--text-primary-color);
     font-size: 2.5em;
     text-align: right;
     margin: 10px 25px;
@@ -48,7 +62,7 @@ nav{
     width: 0;
     height: 100vh;
     overflow: hidden;
-    background: rgba(46, 61, 71, .5);
+    background: rgba(2, 136, 209, .2);
     transition: width .5s ease-out;
 }
 .no-list-style{
@@ -62,7 +76,7 @@ nav{
     width: 100%;
     display: block;
     text-decoration: none;
-    color: var(--color_main_txt_header);
+    color: var(--text-primary-color);
     font-size: 1.8em;
     padding: 10px 0;
     font-family: 'Lato', sans-serif;
@@ -70,12 +84,6 @@ nav{
 }
 .link-element:hover{
     background: rgba(0,0,0,.2);
-}
-@media screen and (min-width: 480px){
-
-}
-@media screen and (min-width: 767px){
-
 }
 @media screen and (min-width: 950px){
     header{
@@ -85,7 +93,7 @@ nav{
         position: relative;
         width: 100%;
         height: auto;
-        background: var(--color_header_bg);
+        background: var(--dark-primary-color);
     }
     nav ul{
         display: flex;
