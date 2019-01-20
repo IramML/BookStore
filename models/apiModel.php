@@ -30,7 +30,19 @@ class apiModel extends Model{
     function existPhysical($bookCode){
         return $this->booksModel->existPhysical($bookCode);
     }
-    function login($data){
-        $this->clientsModel->login($data);
+    function getPasswordByEmail($email){
+        return $this->clientsModel->getPasswordByEmail($email);
+    }
+    function getClientIdByEmail($email){
+        return $this->clientsModel->getClientIdByEmail($email);
+    }
+    function getUserByID($ID){
+        return $this->clientsModel->getClientById($ID);
+    }
+    function getAvatarByIDUser($ID){
+        return $this->clientsModel->getAvatarByIDUser($ID);
+    }
+    function uploadAvatar($data){
+        return $this->clientsModel->uploadAvatar($data);
     }
 }

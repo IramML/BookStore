@@ -4,11 +4,13 @@
     font-family: 'Roboto', sans-serif;
 }
 :root{
-    --dark-primary-color: #29434e;
-    --default-primary-color: #546e7a;
-    --light-primary-color: #819ca9;
+    --dark-primary-color: #455A64;
+    --default-primary-color: #607D8B;
+    --light-primary-color: #CFD8DC;
     --text-primary-color: #ffffff;
-    --accent-color: #33691e;
+    --dark-secondary-color: #536DFE;
+    --default-secondary-color: #212121;
+    --light-secondary-color: #757575;
     --primary-text-color: #000000;
     --secondary-text-color: #757575;
     --divider-color: #BDBDBD;
@@ -17,16 +19,17 @@
 body{
     background: var(--body-bg);
 }
-.dark-primary-color    { background: #455A64; }
-.default-primary-color { background: #607D8B; }
-.light-primary-color   { background: #CFD8DC; }
-.text-primary-color    { color: #FFFFFF; }
-.accent-color          { background: #8BC34A; }
-.primary-text-color    { color: #212121; }
-.secondary-text-color  { color: #757575; }
-.divider-color         { border-color: #BDBDBD; }
+.dark-primary-color    { background: var(--dark-primary-color); }
+.default-primary-color { background: var(--default-primary-color); }
+.light-primary-color   { background: var(--light-primary-color);}
+.text-primary-color    { color: var(--text-primary-color);}
+.dark-secondary-color    { background: var(--dark-secondary-color); }
+.default-secondary-color { background: var(--default-secondary-color);}
+.light-secondary-color   { background: var(--light-secondary-color); }
+.primary-text-color    { color: var(--primary-text-color);}
+.secondary-text-color  { color: var(--secondary-text-color); }
+.divider-color         { border-color: var(--divider-color);}
 header{
-    background: var(--dark-primary-color);
     width: 100%;
     padding: 5px 0;
     display: flex;
@@ -34,7 +37,6 @@ header{
 h1{
     padding: 10px;
     text-align: center;
-    color: var(--text-primary-color);
     font-family: 'Merienda One', cursive;
     margin: 0 25px;
 }
@@ -42,14 +44,12 @@ h1{
     text-align: center;
 }
 #open-nav{
-    color: var(--text-primary-color);
     font-size: 2.5em;
     cursor: pointer;
     margin: 0 10px;
 }
 #close-nav{
     display: block;
-    color: var(--text-primary-color);
     font-size: 2.5em;
     text-align: right;
     margin: 10px 25px;
@@ -62,7 +62,7 @@ nav{
     width: 0;
     height: 100vh;
     overflow: hidden;
-    background: rgba(2, 136, 209, .2);
+    opacity: 0.8;
     transition: width .5s ease-out;
 }
 .no-list-style{
@@ -85,6 +85,39 @@ nav{
 .link-element:hover{
     background: rgba(0,0,0,.2);
 }
+footer{
+    padding: 25px 30px;
+    margin: 20px 0 0 0;
+    overflow: auto;
+    font-size: 1.2em;
+}
+.footer-link{
+    width: 25px;
+    height: 25px;
+    text-decoration: none;
+    float: right;
+}
+.footer-link img{
+    width: 30px;
+    height: 30px;
+}
+.footer-link img:hover{
+    animation: 1s gum 1 linear;
+}
+footer h3{
+    float: left;
+}
+@keyframes gum{
+    30%{
+        transform: scaleX(1.25) scaleY(0.75);
+    }
+    50%{
+        transform: scaleX(0.75) scaleY(1.25);
+    }
+    60%{
+        transform: scaleX(1.10) scaleY(0.85);
+    }
+}
 @media screen and (min-width: 950px){
     header{
         display: block;
@@ -93,7 +126,7 @@ nav{
         position: relative;
         width: 100%;
         height: auto;
-        background: var(--dark-primary-color);
+        opacity: 1;
     }
     nav ul{
         display: flex;

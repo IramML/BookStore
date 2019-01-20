@@ -27,5 +27,4 @@
         <input type="submit" id="btn-save" value="Save">
     </form>
 
-</body>
-</html>
+    <?php require_once 'views/footer.php'?>

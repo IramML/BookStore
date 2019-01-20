@@ -1,3 +1,2 @@
 <?php require_once 'views/header.php'?>
-</body>
-</html>
+<?php require_once 'views/footer.php'?>

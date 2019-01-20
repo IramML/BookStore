@@ -36,25 +36,18 @@
 #table-clients{
     width: 80%;
     margin: 20px auto;
+    background: #fff;
+    padding: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
-table, th, td {
-    border: 1px solid black;
+
+thead th{
+    border-bottom: 1px solid black;
     border-collapse: collapse;
 }
-th, td{
-    padding: 2px 10px;
-    font-size: 1.2em;
-}
-th{
-    background: var(--default-primary-color);
-    color: var(--text-primary-color);
-}
-tr:nth-child(odd){
-    background: #FFFFFF;
-}
-tr:nth-child(even){
-    background: var(--light-primary-color);
-}
+
 td:nth-child(4n){
     width: 50px;
 }

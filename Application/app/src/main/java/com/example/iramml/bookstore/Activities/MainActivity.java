@@ -20,13 +20,20 @@ import android.widget.TextView;
 
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.iramml.bookstore.BookStoreApi.BookStore;
+import com.example.iramml.bookstore.Common.Common;
 import com.example.iramml.bookstore.Fragments.BooksFragment;
 import com.example.iramml.bookstore.Fragments.DomicilesFragment;
 import com.example.iramml.bookstore.Fragments.OrdersFragment;
+import com.example.iramml.bookstore.Interfaces.HttpResponse;
 import com.example.iramml.bookstore.Model.BooksResponse;
+import com.example.iramml.bookstore.Model.User;
 import com.example.iramml.bookstore.R;
 import com.example.iramml.bookstore.RecyclerViewBooks.BooksCustomAdapter;
 import com.example.iramml.bookstore.RecyclerViewBooks.ClickListener;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,25 +52,39 @@ public class MainActivity extends AppCompatActivity
         if(getIntent()!=null){
             itemSelected=getIntent().getIntExtra("itemSelected",0);
         }
-        initDrawer();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        if (itemSelected==0)
-            navigationView.setCheckedItem(R.id.nav_search);
-        else if(itemSelected==2)
-            navigationView.setCheckedItem(R.id.nav_domiciles);
+        bookStore.getCurrentUser(new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                Gson gson=new Gson();
+                Common.currentUser=gson.fromJson(response, User.class);
+                String image=Common.URL_BASE+Common.currentUser.getUrlImage();
+                Common.currentUser.setUrlImage(image);
+                initDrawer();
+            }
+        });
     }
 
     public void initDrawer(){
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer=(DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View navigationHeaderView=navigationView.getHeaderView(0);
+        CircleImageView imgAvatar=navigationHeaderView.findViewById(R.id.imgAvatar);
+        TextView tvName=(TextView)navigationHeaderView.findViewById(R.id.tvUserName);
+        tvName.setText(Common.currentUser.getName());
+        if(Common.currentUser.getUrlImage()!=null)
+            Picasso.get().load(Common.currentUser.getUrlImage()).into(imgAvatar);
+        if (itemSelected==0)
+            navigationView.setCheckedItem(R.id.nav_search);
+        else if(itemSelected==2)
+            navigationView.setCheckedItem(R.id.nav_domiciles);
+
 
         if(itemSelected==0){
             FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
@@ -114,11 +135,11 @@ public class MainActivity extends AppCompatActivity
                 fragmentTransaction.replace(R.id.flContent, domicilesFragment);
                 fragmentTransaction.commit();
                 break;
+            case R.id.nav_profile:
+                goToProfile();
+                break;
             case R.id.nav_log_out:
-                bookStore.logout();
-                Intent intent=new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                logout();
                 break;
             default:
                 booksFragment.setActivity(this);
@@ -132,5 +153,14 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    private void goToProfile() {
+        Intent intent=new Intent(MainActivity.this, Profile.class);
+        startActivity(intent);
+    }
+    private void logout() {
+        bookStore.logout();
+        Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -8,25 +8,23 @@
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
             android:title="Books" />
-    </group>
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_car_shopping"
+            android:title="Purchases" />
+        <item
+            android:id="@+id/nav_domiciles"
+            android:icon="@drawable/ic_car"
+            android:title="Domiciles" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile" />
 
-    <item android:title="Account">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_orders"
-                    android:icon="@drawable/ic_car_shopping"
-                    android:title="Purchases" />
-                <item
-                    android:id="@+id/nav_domiciles"
-                    android:icon="@drawable/ic_car"
-                    android:title="Domiciles" />
-            </group>
-            <item
-                android:id="@+id/nav_log_out"
-                android:icon="@drawable/ic_log_out"
-                android:title="Log Out" />
-        </menu>
-    </item>
+    </group>
+    <item
+        android:id="@+id/nav_log_out"
+        android:icon="@drawable/ic_log_out"
+        android:title="Log Out" />
 
 </menu>

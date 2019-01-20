@@ -21,6 +21,9 @@ import com.example.iramml.bookstore.R;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnRegister;
     BookStore bookStore;
@@ -77,7 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 //make login
-                bookStore.login(etEmail.getText().toString(), etPassword.getText().toString(),
+                Map<String, String> postMap=new HashMap<>();
+                postMap.put("email", etEmail.getText().toString());
+                postMap.put("password", etPassword.getText().toString());
+                bookStore.login(postMap,
                         new getTokenInterface() {
                             @Override
                             public void tokenGenerated(String token) {

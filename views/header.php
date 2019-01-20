@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Merienda+One|Roboto" rel="stylesheet">
 </head>
     <body>
-    <header>
+    <header class="dark-primary-color text-primary-color">
         <span id="open-nav">&#9776;</span>
         <h1>Book Store</h1>
     </header>
-    <nav id="nav-side">
+    <nav id="nav-side" class="dark-primary-color">
         <span id="close-nav">X</span>
         <ul>
             <li class="no-list-style nav-element center"><a class="link-element" href="<?php echo constant('URL'); ?>clients">Clients</a></li>

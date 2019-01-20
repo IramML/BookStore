@@ -27,8 +27,11 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BookStore {
+    Network network;
     AppCompatActivity activity;
     String SETTINGS="settings";
     private String ACCESS_TOKEN="accessToken";
@@ -36,8 +39,8 @@ public class BookStore {
 
     public BookStore(AppCompatActivity activity){
         this.activity=activity;
+        this.network=new Network(activity);
     }
-
     public Boolean saveToken(String token){
         if(token.isEmpty())
             return false;
@@ -63,38 +66,39 @@ public class BookStore {
         editor.apply();
     }
     public void registerUser(User user, final getTokenInterface getTokenInterface){
-        Network network=new Network(activity);
+       /*
         String section="clients/";
         String method="register.php?";
         String url=URL_BASE+section+method;
         Log.d("URL ",url);
+        Map<String, String> postMap=new HashMap<>();
         network.httpRegisterRequest(activity, url, user,new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 getTokenInterface.tokenGenerated(response);
             }
-        });
+        });*/
     }
-    public void login(String email, String password, final getTokenInterface getTokenInterface){
-        Network network=new Network(activity);
+    public void login(Map<String, String> postMap, final getTokenInterface getTokenInterface){
         String section="clients/";
-        String method="login.php?";
+        String method="login";
         String url=URL_BASE+section+method;
-        LoginUser loginUser=new LoginUser(email, password);
-        network.httpLoginRequest(activity, url, loginUser, new HttpResponse() {
+        Log.d("URL_REQUEST",url);
+        network.httpPOSTRequest(postMap, url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
+                Log.d("TOKEN_RES", response);
                 getTokenInterface.tokenGenerated(response);
             }
         });
     }
     public void getBooks(final getBooksInterface getBooksInterface){
-        Network network=new Network(activity);
         String section="books/";
         String method="get/";
         String parameters="?token="+getToken();
         String url=URL_BASE+section+method+parameters;
-        network.httpRequest(activity, url, new HttpResponse() {
+        Log.d("URL_BOOKS", url);
+        network.httpRequest(url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 getBooksInterface.booksGenerated(response);
@@ -102,7 +106,7 @@ public class BookStore {
         });
     }
     public void registerDomicile(Domicile domicile, final HttpResponse httpResponse){
-        Network network=new Network(activity);
+      /*
         String section="domiciles/";
         String method="add.php?";
         String url=URL_BASE+section+method;
@@ -111,35 +115,35 @@ public class BookStore {
             public void httpResponseSuccess(String response) {
                 httpResponse.httpResponseSuccess(response);
             }
-        });
+        });*/
     }
     public void getDomiciles(final HttpResponse httpResponse){
-        Network network=new Network(activity);
+       /*
         String section="domiciles/?";
         String parameters="token="+getToken();
         String url=URL_BASE+section+parameters;
-        network.httpRequest(activity, url, new HttpResponse() {
+        network.httpRequest(url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 httpResponse.httpResponseSuccess(response);
             }
-        });
+        });*/
     }
     public void getOrders(final HttpResponse httpResponse) {
-        Network network=new Network(activity);
+        /*
         String section="orders/?";
         String parameters="token="+getToken();
         String url=URL_BASE+section+parameters;
-        network.httpRequest(activity, url, new HttpResponse() {
+        network.httpRequest(url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 httpResponse.httpResponseSuccess(response);
             }
-        });
+        });*/
     }
     public void downloadPDF(String id, String title){
         String URL_BASE="http://192.168.0.17/bookstore/api/";
-        String section="books/";
+        String section="book/";
         String method="download.php?";
         String parameters="id="+id;
         String url=URL_BASE+section+method+parameters;
@@ -193,7 +197,7 @@ public class BookStore {
         String parameters="?token="+getToken()+"&id_book="+ID;
         String url=URL_BASE+section+method+parameters;
         Log.d("URL", url);
-        network.httpRequest(activity, url, new HttpResponse() {
+        network.httpRequest(url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 //Download pdf
@@ -202,6 +206,31 @@ public class BookStore {
                 BuyResponse buyResponse=gson.fromJson(response, BuyResponse.class);
                 if(buyResponse.code.equals("200"))
                     downloadPDF(ID, title);
+            }
+        });
+    }
+    public void getCurrentUser(final HttpResponse httpResponse){
+        Network network=new Network(activity);
+        String section="clients/";
+        String method="currentUser/?";
+        String parameters="token="+getToken();
+        String url=URL_BASE+section+method+parameters;
+        network.httpRequest(url, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                httpResponse.httpResponseSuccess(response);
+            }
+        });
+    }
+    public void uploadAvatar(Map<String, String> postMap, final HttpResponse httpResponse){
+        String section="clients/";
+        String method="avatar";
+        String url=URL_BASE+section+method;
+        Log.d("URL_REQUEST",url);
+        network.httpPOSTRequest(postMap, url, new HttpResponse() {
+            @Override
+            public void httpResponseSuccess(String response) {
+                httpResponse.httpResponseSuccess(response);
             }
         });
     }

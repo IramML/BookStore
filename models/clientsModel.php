@@ -126,12 +126,66 @@ class clientsModel extends Model{
            $query=$this->db->connect()->prepare('SELECT * FROM clientapplication WHERE email=:email');
            $query->execute(['email'=>$email]);
            while($row=$query->fetch()){
-
+                $ID=$row['ca_code'];
            }
            return $ID;
        }catch (PDOException $e){
            return [];
        }
+    }
+    function getPasswordByEmail($email){
+        $password="";
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM clientapplication WHERE email=:email');
+            $query->execute(['email'=>$email]);
+            while($row=$query->fetch()){
+                $password=$row['password'];
+            }
+            return $password;
+        }catch (PDOException $e){
+            return "";
+        }
+    }
+    function getClientById($ID){
+        $client=[];
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM client WHERE c_code=:code');
+            $query->execute(['code'=>$ID]);
+            while($row=$query->fetch()){
+                $client=[
+                    'name'=>$row['c_name'],
+                    'last_name'=>$row['last_name'],
+                    'phone'=>$row['phone'],
+                    'age'=>$row['age']
+                ];
+            }
+            return $client;
+        }catch (PDOException $e){
+            return [];
+        }
+    }
+    function getAvatarByIDUser($ID){
+        $avatar;
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM clientapplication WHERE ca_code=:code');
+            $query->execute(['code'=>$ID]);
+            while($row=$query->fetch()){
+                $avatar=$row['c_image'];
+            }
+            return $avatar;
+        }catch (PDOException $e){
+            return "";
+        }
+    }
+    function uploadAvatar($data){
+        try{
+            $query=$this->db->connect()->prepare('UPDATE clientapplication 
+                                                SET c_image=:image
+                                                WHERE ca_code=:code');
+            return $query->execute(['code'=>$data['id'], 'image'=>$data['image']]);;
+        }catch (PDOException $e){
+            return false;
+        }
     }
 }
 ?>

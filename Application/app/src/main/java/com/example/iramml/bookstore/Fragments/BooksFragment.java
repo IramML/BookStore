@@ -97,7 +97,7 @@ public class BooksFragment extends Fragment {
                 if(booksObject.code.equals("200"))
                     implementRecyclerView(booksObject);
                 else
-                    Toast.makeText(appCompatActivity, "There are no books", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(appCompatActivity, "There are no book", Toast.LENGTH_SHORT).show();
 
             }
         });

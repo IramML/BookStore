@@ -13,13 +13,14 @@
         android:background="@color/primaryColor"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/Theme.AppCompat.Light" />
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivLoadImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -30,7 +31,9 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/add_image" />
+        android:src="@drawable/add_image"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/divider"/>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -55,12 +58,12 @@
             android:inputType="textPersonName"
             android:nextFocusDown="@+id/etLastName"
             android:selectAllOnFocus="false"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
             android:textSize="20sp"
-            app:met_baseColor="@color/colorPrimary"
+            app:met_baseColor="@color/colorAccent"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
+            app:met_primaryColor="@color/colorAccent"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -73,12 +76,12 @@
             android:hint="@string/last_name"
             android:nextFocusDown="@+id/etPhone"
             android:inputType="textPersonName"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
             android:textSize="20sp"
-            app:met_baseColor="@color/colorPrimary"
+            app:met_baseColor="@color/colorAccent"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
+            app:met_primaryColor="@color/colorAccent"
             app:met_singleLineEllipsis="true" />
     </LinearLayout>
 
@@ -105,12 +108,12 @@
             android:hint="@string/phone"
             android:nextFocusDown="@+id/etAge"
             android:inputType="phone"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
             android:textSize="20sp"
-            app:met_baseColor="@color/colorPrimary"
+            app:met_baseColor="@color/colorAccent"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
+            app:met_primaryColor="@color/colorAccent"
             app:met_singleLineEllipsis="true" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -124,12 +127,12 @@
             android:hint="@string/age"
             android:nextFocusDown="@+id/etEmail"
             android:inputType="number"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
             android:textSize="20sp"
-            app:met_baseColor="@color/colorPrimary"
+            app:met_baseColor="@color/colorAccent"
             app:met_floatingLabel="highlight"
-            app:met_primaryColor="@color/colorPrimary"
+            app:met_primaryColor="@color/colorAccent"
             app:met_singleLineEllipsis="true" />
     </LinearLayout>
 
@@ -144,16 +147,16 @@
         android:hint="@string/email"
         android:nextFocusDown="@+id/etPassword"
         android:inputType="textEmailAddress"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:met_baseColor="@color/colorPrimary"
+        app:met_baseColor="@color/colorAccent"
         app:met_floatingLabel="highlight"
-        app:met_primaryColor="@color/colorPrimary"
+        app:met_primaryColor="@color/colorAccent"
         app:met_singleLineEllipsis="true" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
@@ -166,8 +169,8 @@
         android:layout_marginBottom="8dp"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnSignin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -175,9 +178,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail"
         app:layout_constraintVertical_bias="0.0"
-        app:met_baseColor="@color/colorPrimary"
+        app:met_baseColor="@color/colorAccent"
         app:met_floatingLabel="highlight"
-        app:met_primaryColor="@color/colorPrimary"
+        app:met_primaryColor="@color/colorAccent"
         app:met_singleLineEllipsis="true" />
 
     <Button

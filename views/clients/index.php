@@ -35,5 +35,4 @@
         </table>
 
     </div>
-</body>
-</html>
+    <?php require_once 'views/footer.php'?>
