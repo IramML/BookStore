@@ -1,0 +1,80 @@
+:root{
+    --title_bg_color: #fff;
+    --title_txt_color: #336E94;
+}
+#title{
+    background: var(--title_bg_color);
+    color: var(--primary-text-color);
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 25px;
+}
+#title h2{
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.8em;
+
+}
+.option{
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    padding: 2px;
+    background: #e1e1e1;
+    margin: 0 5px;
+}
+#book-content{
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+}
+.book{
+    display: block;
+    padding: 40px 25px;
+    border-radius: 20px;
+    background: #fff;
+    margin: 20px auto;
+}
+.book-img{
+    width: 100px;
+    height: auto;
+}
+.book-information{
+    display: inline-block;
+    width: 78%;
+}
+.book-code{
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+.book-title{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.book-editorial{
+    font-weight: normal;
+    font-size: 1em;
+}
+.book-author{
+    font-weight: normal;
+    font-size: 1em;
+}
+.book-num-pages{
+    font-weight: normal;
+    font-size: 1em;
+}
+.book-cost{
+    font-weight: normal;
+    font-size: 1em;
+}
+.item{
+    display: inline-block;
+    margin: 12px 25px;
+}
+.book-options{
+    width: 11%;
+    float: right;
+}

@@ -1,0 +1,72 @@
+:root{
+    --title-bg-color: #fff;
+}
+#title{
+    background: var(--title-bg-color);
+    color: var(--primary-text-color);
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 25px;
+}
+#title h2{
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+#add-order{
+    float: right;
+    margin-right: 25px;
+}
+#order-content{
+    display: block;
+    width: 80%;
+    margin: 20px auto; 
+}
+#table-orders{
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+thead th{
+    border-bottom: 1px solid black;
+    border-collapse: collapse;
+}
+td:nth-child(5n){
+    width: 50px;
+}
+td:nth-child(6n){
+    width: 50px;
+}
+.order-options{
+    width: 10%;
+    float: right;
+}
+.option{
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 5px;
+    background: #e1e1e1;
+}
+.option-table{
+    background: transparent;
+}
+@media screen and (min-width: 480px){
+
+}
+@media screen and (min-width: 767px){
+
+}
+@media screen and (min-width: 950px){
+    #table-orders{
+        width: 90%;
+    }
+}

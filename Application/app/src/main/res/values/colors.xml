@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#536DFE</color>
+
+    <color name="primaryColor">#607D8B</color>
+    <color name="primaryLightColor">#CFD8DC</color>
+    <color name="primaryDarkColor">#455A64</color>
+    <color name="secondaryColor">#536DFE</color>
+    <color name="secondaryLightColor">#C5CAE9</color>
+    <color name="secondaryDarkColor">#303F9F</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
+    <color name="backgroundLogin">#87B3D0</color>
+
+
+    <color name="rippleEfectColor">#000</color>
+    <color name="btnSignIn">#00c853</color>
+    <color name="btnLogIn">#fff</color>
+    <color name="btnDeclinePickup">#ba0000</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <color name="demo_dark_transparent">#24000000</color>
+</resources>
