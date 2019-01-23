@@ -16,12 +16,11 @@
             android:id="@+id/nav_domiciles"
             android:icon="@drawable/ic_car"
             android:title="Domiciles" />
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_profile"
-            android:title="Profile" />
-
     </group>
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile" />
     <item
         android:id="@+id/nav_log_out"
         android:icon="@drawable/ic_log_out"

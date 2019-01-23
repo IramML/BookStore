@@ -115,6 +115,27 @@ class booksModel extends Model{
             return false;
         }
     }
+    function getBookByCode($code){
+        $items=[];
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM book WHERE b_code=:code');
+            $query->execute(['code'=>$code]);
+            while($row=$query->fetch()){
+                $book=new Book();
+                $book->code=$row['b_code'];
+                $book->title=$row['title'];
+                $book->numPages=$row['num_pages'];
+                $book->editorial=$row['editorial'];
+                $book->author=$row['author'];
+                $book->cost=$row['cost'];
+                $book->bImage=$row['b_image'];
+                array_push($items, $book);
+            }
+            return $items;
+        }catch(PDOException $e){
+            return [];
+        }
+    }
     function existPDF($bookCode){
         try{
             $query=$this->db->connect()->prepare('SELECT * FROM pdfbook WHERE pdf_code=:code');

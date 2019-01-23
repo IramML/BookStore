@@ -118,28 +118,28 @@ public class BookStore {
         });*/
     }
     public void getDomiciles(final HttpResponse httpResponse){
-       /*
-        String section="domiciles/?";
-        String parameters="token="+getToken();
-        String url=URL_BASE+section+parameters;
+        String section="domiciles/";
+        String method="get/";
+        String parameters="?token="+getToken();
+        String url=URL_BASE+section+method+parameters;
         network.httpRequest(url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 httpResponse.httpResponseSuccess(response);
             }
-        });*/
+        });
     }
     public void getOrders(final HttpResponse httpResponse) {
-        /*
-        String section="orders/?";
-        String parameters="token="+getToken();
-        String url=URL_BASE+section+parameters;
+        String section="orders/";
+        String method="get/";
+        String parameters="?token="+getToken();
+        String url=URL_BASE+section+method+parameters;
         network.httpRequest(url, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 httpResponse.httpResponseSuccess(response);
             }
-        });*/
+        });
     }
     public void downloadPDF(String id, String title){
         String URL_BASE="http://192.168.0.17/bookstore/api/";

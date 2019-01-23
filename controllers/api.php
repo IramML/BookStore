@@ -167,6 +167,91 @@ class Api extends Controller {
 
     function domiciles($param = null){
         $method=$param[0];
+        if($method=="get"){
+            if(isset($_GET['token'])){
+                $ID=$this->model->getIdByToken($_GET['token']);
+                 
+                $domiciles=$this->model->getDomicilesByClientID($ID);
+                if($domiciles!=[]){
+                    $this->view->json['code']=200;
+                    $this->view->json['domiciles']=[];
+                    foreach($domiciles as $itemDomicile){
+                        $domicileObject=new Domicile();
+                        $domicileObject=$itemDomicile;
+                        $domicile=array(
+                            'postal_code'=>$domicileObject->postalCode,
+                            'colony'=>$domicileObject->colony,
+                            'state'=>$domicileObject->state,
+                            'municipality'=>$domicileObject->municipality,
+                            'street'=>$domicileObject->street,
+                            'outdoor_number'=>$domicileObject->outDoorNum);
+                        array_push($this->view->json['domiciles'], $domicile);
+                    }
+                    $this->view->render('api/index');
+                }else{
+                    $this->error("No domiciles registered");
+                }
+                
+                 
+            }else{
+                $this->error("Error when calling API");
+            }
+        }else{
+            $this->error("Error when calling API");
+        }
+    }
+
+    function orders($param = null){
+        $method=$param[0];
+        if($method=="get"){
+            if(isset($_GET['token'])){
+                $userID=$this->model->getIdByToken($_GET['token']);
+                $orders=$this->model->getOrdersByClientID($userID);
+                if($orders!=[]){
+                    $this->view->json['code']=200;
+                    $this->view->json['books']=[];
+                    foreach ($orders as $itemOrder) {
+                        $order=new Order();
+                        $order=$itemOrder;
+                        $books=$this->model->getBookByCode($order->bookCode);
+                        foreach($books as $itemBook){
+                            $bookObject=new Book();
+                            $bookObject=$itemBook;
+                            $book=[
+                                'id'=>$bookObject->code,
+                                'title'=>$bookObject->title,
+                                'pages'=>$bookObject->numPages,
+                                'editorial'=>$bookObject->editorial,
+                                'author'=>$bookObject->author,
+                                'cost'=>$bookObject->cost,
+                                'image'=>$bookObject->bImage,
+                                'there_pdf'=>"",
+                                'there_physical'=>""
+                            ];
+                            if($this->model->existPDF($bookObject->code))
+                                $book['there_pdf']="yes";
+                            else 
+                                $book['there_pdf']="no";
+
+                            if($this->model->existPhysical($bookObject->code))
+                                $book['there_physical']="yes";
+                            else 
+                                $book['there_physical']="no";
+
+                            array_push($this->view->json['books'], $book);
+                        }
+                    }
+                    $this->view->render('api/index');
+                }else{
+                    $this->error("Error when calling API");
+                }
+               
+            }else{
+                $this->error("Error when calling API");
+            }
+        }else{
+            $this->error("Error when calling API");
+        }
     }
 
     function isPurchased($idBooks, $book){

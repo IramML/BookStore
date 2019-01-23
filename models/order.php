@@ -1,5 +1,4 @@
 <?php
-
 class Order{
     public $numOrder;
     public $clientCode;
