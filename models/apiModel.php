@@ -36,6 +36,12 @@ class apiModel extends Model{
     function uploadAvatar($data){
         return $this->clientsModel->uploadAvatar($data);
     }
+    function isClientIDDuplicate($ID){
+        return $this->clientsModel->isClientIDDuplicate($ID);
+    }
+    function registerApplication($data){
+        return $this->clientsModel->registerApplication($data);
+    }
      //Books
     function getAllBooks(){
         return $this->booksModel->getAll();

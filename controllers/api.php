@@ -110,6 +110,63 @@ class Api extends Controller {
             $this->error('The email and password must not be empty');
             return;
             }
+        }else if($method=="register"){
+            if(isset($_POST['name']) && isset($_POST['last_name']) && isset($_POST['phone'])
+            && isset($_POST['age']) && isset($_POST['email']) && isset($_POST['password'])){
+                //create ID
+                $ID=rand(1, 9999);
+                while ($this->model->isClientIDDuplicate($ID))
+                    $ID=rand(1, 9999);
+                $hash=password_hash($_POST['password'], PASSWORD_DEFAULT, ['cost'=>10]);
+                $token=substr(str_shuffle(str_repeat("0123456789ABCDEFGHIJKLMNOPQRSTVWXYZabcdefghijklmnopqrstuvwxyz",
+                5)), 0, 40);
+                $data=[
+                    'id'=>$ID,
+                    'name'=>$_POST['name'],
+                    'last_name'=>$_POST['last_name'],
+                    'phone'=>$_POST['phone'],
+                    'age'=>$_POST['age'],
+                    'email'=>$_POST['email'],
+                    'password'=>$hash,
+                    'image'=>null,
+                    'token'=>$token
+                ];
+                if($this->model->registerApplication($data)){
+                    $this->view->json['code']=200;
+                    $this->view->json['token']=$data['token'];
+
+                }else{
+                    $this->error('Error when inserting data');
+                    return;
+                }
+                if(isset($_POST['image'])) {
+                    //register with avatar
+                    $image=$_POST['image'];
+                    $imageName=$ID.".png";
+                    $directoryImage="public/Images/Clients/";
+                    $fileImage=$directoryImage.$imageName;
+    
+                    if(file_put_contents($fileImage, base64_decode($image))) {
+                        $data=[
+                            'id'=>$ID,
+                            'image'=>$fileImage
+                        ];
+                        if($this->model->uploadAvatar($data)){
+                            $this->view->json['code']=200;
+                            $this->view->json['message']="Image uploaded successfully";
+                        }else{
+                            $this->error('Error when inserting data');
+                            return;
+                        }
+                    }else{
+                        $this->error('Error when upload image');
+                        return;
+                    }
+                } 
+            }else{
+                $this->error('Error calling the API');
+                return;  
+            }
         }else if($method=="currentUser"){
             if(isset($_GET['token'])){
                 $ID=$this->model->getIdByToken($_GET['token']);

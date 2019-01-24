@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,10 +30,14 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import dmax.dialog.SpotsDialog;
 
 public class RegisterActivity extends AppCompatActivity {
     CircleImageView ivLoadImage;
@@ -40,9 +45,9 @@ public class RegisterActivity extends AppCompatActivity {
     BookStore bookStore;
     MaterialEditText etName, etLastName, etPhone, etAge,
             etEmail, etPassword;
-    Uri imgPath;
 
     int PERMISSION_PICK_IMG=200;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +76,24 @@ public class RegisterActivity extends AppCompatActivity {
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user=new User(etName.getText().toString(),etLastName.getText().toString(),etPhone.getText().toString(),
-                        etAge.getText().toString(),etEmail.getText().toString(),etPassword.getText().toString(), imgPath);
-                bookStore.registerUser(user, new getTokenInterface() {
+                Map<String, String> postMap=new HashMap<>();
+                postMap.put("name", etName.getText().toString());
+                postMap.put("last_name", etLastName.getText().toString());
+                postMap.put("phone", etPhone.getText().toString());
+                postMap.put("age", etAge.getText().toString());
+                postMap.put("email", etEmail.getText().toString());
+                postMap.put("password", etPassword.getText().toString());
+                if(getStringImage(bitmap)!=null && !getStringImage(bitmap).equals("")){
+                    postMap.put("image", getStringImage(bitmap));
+                }
+                final SpotsDialog waitingDialog = new SpotsDialog(RegisterActivity.this);
+                waitingDialog.show();
+                bookStore.registerUser(postMap, new getTokenInterface() {
                     @Override
                     public void tokenGenerated(String token) {
                         Log.d("TOKEN_USER", token);
                         Gson gson=new Gson();
+                        waitingDialog.dismiss();
                         TokenResponse tokenResponse=gson.fromJson(token, TokenResponse.class);
                             Log.d("TOKEN_RESPONSE", tokenResponse.token);
                             if (bookStore.saveToken(tokenResponse.token)) {
@@ -133,14 +149,23 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode==RESULT_OK && requestCode==PERMISSION_PICK_IMG) {
-             imgPath= data.getData();
             try {
-                Bitmap bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                 ivLoadImage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
+    }
+    public String getStringImage(Bitmap bitmap){
+        Log.i("MyHitesh",""+bitmap);
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+
+
+        return temp;
     }
 }

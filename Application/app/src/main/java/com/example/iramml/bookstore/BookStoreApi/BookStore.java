@@ -65,19 +65,17 @@ public class BookStore {
 
         editor.apply();
     }
-    public void registerUser(User user, final getTokenInterface getTokenInterface){
-       /*
+    public void registerUser(Map<String, String> postMap, final getTokenInterface getTokenInterface){
         String section="clients/";
-        String method="register.php?";
+        String method="register/";
         String url=URL_BASE+section+method;
         Log.d("URL ",url);
-        Map<String, String> postMap=new HashMap<>();
-        network.httpRegisterRequest(activity, url, user,new HttpResponse() {
+        network.httpPOSTRequest(postMap, url,new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 getTokenInterface.tokenGenerated(response);
             }
-        });*/
+        });
     }
     public void login(Map<String, String> postMap, final getTokenInterface getTokenInterface){
         String section="clients/";

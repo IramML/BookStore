@@ -187,5 +187,33 @@ class clientsModel extends Model{
             return false;
         }
     }
+    function isClientIDDuplicate($ID){
+        try{
+            $query=$this->db->connect()->prepare('SELECT * FROM client WHERE c_code=:code');
+            $query->execute(['code'=>$ID]);
+           
+            return $query->rowCount()>0;
+        }catch (PDOException $e){
+            return false;
+        }
+    }
+    function registerApplication($data){
+        try{
+            $query=$this->db->connect()->prepare('INSERT INTO client(c_code, c_name, last_name, phone, age) 
+                                                  VALUES(:id, :name, :last_name, :phone, :age)');
+            $query->execute(['id'=>$data['id'], 'name'=>$data['name'], 'last_name'=>$data['last_name'], 'phone'=>$data['phone'], 'age'=>$data['age']]);
+
+            $query=$this->db->connect()->prepare('INSERT INTO clientapplication(ca_code, email, password, c_image) 
+                                                  VALUES(:id, :email, :password, :image)');
+            $query->execute(['id'=>$data['id'], 'email'=>$data['email'], 'password'=>$data['password'], 'image'=>$data['image']]);
+
+            $query=$this->db->connect()->prepare('INSERT INTO token(id_client, token)
+                                               VALUES(:id, :token)');
+            $query->execute(['id'=>$data['id'], 'token'=>$data['token']]);
+            return true;
+        }catch (PDOException $e){
+            return false;
+        }
+    }
 }
 ?>
