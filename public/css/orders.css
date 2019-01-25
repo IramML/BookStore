@@ -37,6 +37,10 @@
 thead th{
     border-bottom: 1px solid black;
     border-collapse: collapse;
+    padding: 8px 12px;
+}
+td{
+    padding: 4px 12px;
 }
 td:nth-child(5n){
     width: 50px;
