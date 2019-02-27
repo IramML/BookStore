@@ -6,4 +6,3 @@ define('DB', 'bookstore');
 define('USER', 'root');
 define('PASSWORD', '123!"#QWE');
 define('CHARSET', 'utf8mb4');
-?>

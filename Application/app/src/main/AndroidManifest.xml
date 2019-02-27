@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.State"></activity>
         <activity
             android:name=".Activities.LoginActivity"
             android:screenOrientation="portrait"
@@ -50,7 +51,9 @@
         <activity
             android:name=".Activities.Profile"
             android:parentActivityName=".Activities.MainActivity" />
-        <activity android:name=".Activities.EditProfile" android:parentActivityName=".Activities.Profile"></activity>
+        <activity
+            android:name=".Activities.EditProfile"
+            android:parentActivityName=".Activities.Profile" />
     </application>
 
 </manifest>

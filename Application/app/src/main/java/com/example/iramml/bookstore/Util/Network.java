@@ -30,7 +30,7 @@ public class Network {
     public Network(AppCompatActivity appCompatActivity){
         this.appCompatActivity=appCompatActivity;
     }
-    private Boolean availableNetwok(){
+    public Boolean availableNetwok(){
         ConnectivityManager connectivityManager=(ConnectivityManager) appCompatActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
         return networkInfo!=null && networkInfo.isConnected();

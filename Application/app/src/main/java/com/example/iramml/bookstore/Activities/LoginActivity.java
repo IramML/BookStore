@@ -18,19 +18,27 @@ import com.example.iramml.bookstore.BookStoreApi.BookStore;
 import com.example.iramml.bookstore.Interfaces.getTokenInterface;
 import com.example.iramml.bookstore.Model.TokenResponse;
 import com.example.iramml.bookstore.R;
+import com.example.iramml.bookstore.Util.Network;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import sakout.mehdi.StateViews.StateView;
+
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnRegister;
     BookStore bookStore;
+    Network network;
+    StateView mStatusPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mStatusPage=findViewById(R.id.status_page);
+        mStatusPage.hideStates();
+        network=new Network(this);
         btnLogin=findViewById(R.id.btnLogin);
         btnRegister=findViewById(R.id.btnSignin);
         bookStore=new BookStore(this);
@@ -50,6 +58,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+        mStatusPage.setOnStateButtonClicked(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -114,6 +128,21 @@ public class LoginActivity extends AppCompatActivity {
         });
         alertDialog.show();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!network.availableNetwok()){
+            mStatusPage.displayState("error");
+            mStatusPage.setOnStateButtonClicked(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+    }
+
     public void goToHome(){
         Intent intent=new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);

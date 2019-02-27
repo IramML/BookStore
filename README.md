@@ -1,5 +1,5 @@
-# libraryPHP
+# Bookstore
 
 **In development**
 
-library system developed with PHP and MySQL
+Library system with web page and Android application that connects with the API of the book store 
