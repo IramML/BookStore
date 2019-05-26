@@ -190,7 +190,7 @@
         android:background="@drawable/btn_sing_in_bg"
         android:text="@string/register_domicile"
         android:textAllCaps="false"
-        android:textColor="@color/secondaryTextColor"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

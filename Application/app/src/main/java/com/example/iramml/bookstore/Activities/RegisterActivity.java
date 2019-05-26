@@ -83,9 +83,12 @@ public class RegisterActivity extends AppCompatActivity {
                 postMap.put("age", etAge.getText().toString());
                 postMap.put("email", etEmail.getText().toString());
                 postMap.put("password", etPassword.getText().toString());
-                if(getStringImage(bitmap)!=null && !getStringImage(bitmap).equals("")){
-                    postMap.put("image", getStringImage(bitmap));
+                if(bitmap!=null){
+                    if(getStringImage(bitmap)!=null && !getStringImage(bitmap).equals("")){
+                        postMap.put("image", getStringImage(bitmap));
+                    }
                 }
+
                 final SpotsDialog waitingDialog = new SpotsDialog(RegisterActivity.this);
                 waitingDialog.show();
                 bookStore.registerUser(postMap, new getTokenInterface() {

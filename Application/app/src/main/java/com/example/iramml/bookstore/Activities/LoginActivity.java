@@ -25,19 +25,15 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.HashMap;
 import java.util.Map;
 
-import sakout.mehdi.StateViews.StateView;
 
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnRegister;
     BookStore bookStore;
     Network network;
-    StateView mStatusPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mStatusPage=findViewById(R.id.status_page);
-        mStatusPage.hideStates();
         network=new Network(this);
         btnLogin=findViewById(R.id.btnLogin);
         btnRegister=findViewById(R.id.btnSignin);
@@ -60,12 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mStatusPage.setOnStateButtonClicked(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
     public void showLoginDialog(){
         final ConstraintLayout root;
@@ -132,15 +123,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!network.availableNetwok()){
-            mStatusPage.displayState("error");
-            mStatusPage.setOnStateButtonClicked(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
-        }
     }
 
     public void goToHome(){

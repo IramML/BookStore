@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/tvUserName"
-        android:textColor="@color/secondaryTextColor"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="12dp"

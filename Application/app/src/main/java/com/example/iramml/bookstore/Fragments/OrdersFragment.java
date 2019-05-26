@@ -78,7 +78,7 @@ public class OrdersFragment extends Fragment {
                 if(booksObject.code.equals("200"))
                     implementRecyclerView(booksObject);
                 else
-                    Toast.makeText(appCompatActivity, "You have not bought any book", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(appCompatActivity, "You have not bought any books", Toast.LENGTH_SHORT).show();
             }
         });
     }

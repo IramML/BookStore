@@ -11,7 +11,7 @@
     <string name="enter_phone">Please enter phone number</string>
     <string name="password_short">Password too short</string>
     <string name="cancel">Cancel</string>
-
+    <string name="books_store">Book Store</string>
     <string name="name">Name</string>
     <string name="last_name">Last Name</string>
     <string name="phone">Phone</string>

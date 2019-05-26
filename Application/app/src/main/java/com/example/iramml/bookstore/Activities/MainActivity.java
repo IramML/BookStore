@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson=new Gson();
+                Log.d("USER_RESPONSE", response);
                 Common.currentUser=gson.fromJson(response, User.class);
                 String image=Common.URL_BASE+Common.currentUser.getUrlImage();
                 Common.currentUser.setUrlImage(image);

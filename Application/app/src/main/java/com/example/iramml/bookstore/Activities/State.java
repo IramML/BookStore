@@ -8,9 +8,6 @@ import android.view.View;
 
 import com.example.iramml.bookstore.R;
 
-import sakout.mehdi.StateViews.StateView;
-import sakout.mehdi.StateViews.StateViewsBuilder;
-
 public class State extends AppCompatActivity {
 
     @Override

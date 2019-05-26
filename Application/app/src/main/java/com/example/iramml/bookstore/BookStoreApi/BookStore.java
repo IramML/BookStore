@@ -44,7 +44,6 @@ public class BookStore {
     public Boolean saveToken(String token){
         if(token.isEmpty())
             return false;
-
         SharedPreferences settings=activity.getSharedPreferences(SETTINGS, 0);
         SharedPreferences.Editor editor=settings.edit();
         editor.putString(ACCESS_TOKEN, token);
@@ -141,7 +140,7 @@ public class BookStore {
     }
     public void downloadPDF(String id, String title){
         String URL_BASE="http://192.168.0.17/bookstore/api/";
-        String section="book/";
+        String section="books/";
         String method="download.php?";
         String parameters="id="+id;
         String url=URL_BASE+section+method+parameters;
