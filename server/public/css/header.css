@@ -1,0 +1,29 @@
+
+.main-navbar{
+    color: #fff;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #1A2980;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1A2980, #26D0CE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1A2980, #26D0CE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+}
+.main-navbar button i{
+    color: #fff;
+    font-size: 1.6em;
+}
+.main-navbar a{
+    color: #fff !important;
+    vertical-align: middle !important;
+}
+.intellery-title{
+    vertical-align: middle;
+    display: inline;
+    font-size: 1em;
+    font-weight: 800;
+    margin: 0 0 0 6px;
+}
+footer{
+    background: #1A237E;
+    padding: 12px 0;
+}
