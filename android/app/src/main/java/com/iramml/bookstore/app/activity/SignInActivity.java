@@ -2,9 +2,9 @@ package com.iramml.bookstore.app.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -83,14 +83,14 @@ public class SignInActivity extends AppCompatActivity {
         postMap.put("email", etEmail.getText().toString());
         postMap.put("password", etPassword.getText().toString());
 
-        bookStore.signUp(postMap, new HttpResponse() {
+        bookStore.signIn(postMap, new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();
                 TokenResponse responseObject = gson.fromJson(response, TokenResponse.class);
                 waitingDialog.dismiss();
                 if (responseObject.getCode().equals("200")){
-                    SharedHelper.putKey(SignInActivity.this, "token", responseObject.getToken());
+                    SharedHelper.putKey(SignInActivity.this, "token", responseObject.getAccess_token());
                     startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                     finish();
                 }

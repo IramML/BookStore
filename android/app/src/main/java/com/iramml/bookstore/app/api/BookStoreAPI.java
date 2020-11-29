@@ -1,6 +1,8 @@
 package com.iramml.bookstore.app.api;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.android.volley.VolleyError;
 import com.iramml.bookstore.app.common.ConfigApp;
 import com.iramml.bookstore.app.helper.SharedHelper;
@@ -18,7 +20,7 @@ public class BookStoreAPI {
     }
 
     public void signUp(Map<String, String> postMap, final HttpResponse httpResponse){
-        String url = ConfigApp.URL_API + "sign/in/index.php";
+        String url = ConfigApp.URL_API + "sign/up/index.php";
         postRequest(postMap, url, httpResponse);
     }
 
@@ -35,7 +37,7 @@ public class BookStoreAPI {
 
     public void registerDomicile(Map<String, String> postMap, final HttpResponse httpResponse){
         String url = ConfigApp.URL_API + "domiciles/add/index.php";
-        network.httpPOSTRequest(postMap, url, httpResponse);
+        postRequest(postMap, url, httpResponse);
     }
 
     public void getDomiciles(final HttpResponse httpResponse){
@@ -51,7 +53,7 @@ public class BookStoreAPI {
     }
 
     public void buyPDF(final Map<String, String> postMap, final HttpResponse httpResponse){
-        String url = ConfigApp.URL_API + "book/buy/index.php";
+        String url = ConfigApp.URL_API + "books/buy/index.php";
         postRequest(postMap, url, httpResponse);
     }
 
@@ -63,6 +65,7 @@ public class BookStoreAPI {
     public void getCurrentUser(final HttpResponse httpResponse){
         String parameters = "?token=" + getToken();
         String url = ConfigApp.URL_API + "profile/get/index.php" +parameters;
+        Log.d("URL_PROFILE", "getCurrentUser: " + url);
         network.httpRequest(url, httpResponse);
     }
 
@@ -71,8 +74,8 @@ public class BookStoreAPI {
     }
 
     private void postRequest(Map<String, String> postMap, String url, final HttpResponse httpResponse){
-        if(!SharedHelper.getKey(context, "token").equals(""))
-            postMap.put("token", SharedHelper.getKey(context, "token"));
+        if(!getToken().equals(""))
+            postMap.put("token", getToken());
 
         network.httpPOSTRequest(postMap, url, new HttpResponse() {
             @Override

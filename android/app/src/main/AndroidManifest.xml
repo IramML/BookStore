@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".activity.BookDetailsActivity"></activity>
         <activity
             android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait">
@@ -48,12 +48,12 @@
         <activity
             android:name=".activity.HomeActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.RegisterDomicileActivity"
             android:parentActivityName=".activity.HomeActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,7 +67,7 @@
         <activity
             android:name=".activity.EditProfile"
             android:parentActivityName=".activity.ProfileActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

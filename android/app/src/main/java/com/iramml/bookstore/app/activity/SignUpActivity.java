@@ -5,15 +5,15 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.helper.SharedHelper;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
-import com.iramml.bookstore.app.interfaces.getTokenInterface;
 import com.iramml.bookstore.app.model.TokenResponse;
 import com.iramml.bookstore.app.R;
 import com.google.gson.Gson;
@@ -32,7 +31,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -47,6 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
     private View root;
     private CircleImageView ivAvatar;
     private Button btnContinue;
+    private CardView cvBack;
     private TextInputEditText etFirstName, etLastName, etEmail, etPassword;
 
     private BookStoreAPI bookStore;
@@ -73,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         ivAvatar = findViewById(R.id.iv_avatar);
         btnContinue = findViewById(R.id.btn_continue);
+        cvBack = findViewById(R.id.cv_back);
     }
 
     private void initListeners(){
@@ -107,6 +107,13 @@ public class SignUpActivity extends AppCompatActivity {
                 openImageFromGallery();
             }
         });
+
+        cvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void signUp(){
@@ -129,7 +136,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 TokenResponse responseObject = gson.fromJson(response, TokenResponse.class);
                 if (responseObject.getCode().equals("200")){
-                    SharedHelper.putKey(SignUpActivity.this, "token", responseObject.getToken());
+                    SharedHelper.putKey(SignUpActivity.this, "token", responseObject.getAccess_token());
                     startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                     finish();
                 }

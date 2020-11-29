@@ -63,6 +63,6 @@ public class User {
         if (this.image == null || this.image.equals(""))
             return "";
 
-        return ConfigApp.URL_UPLOADS + "users/images/" + this.image;
+        return ConfigApp.URL_UPLOADS + "clients/images/" + this.image;
     }
 }

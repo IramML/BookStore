@@ -1,8 +1,8 @@
 package com.iramml.bookstore.app.adapter.rvbooks;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +41,6 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
         Picasso.get().load(items.get(i).getImageURL()).placeholder(R.drawable.placeholder).into(viewHolder.ivImage);
         viewHolder.tvTitle.setText(items.get(i).getTitle());
         viewHolder.tvAuthor.setText(items.get(i).getAuthor());
-        viewHolder.tvEditorial.setText(String.format("Editorial: %s", items.get(i).getEditorial()));
-        viewHolder.tvPages.setText(String.format("pages: %s", items.get(i).getNum_pages()));
         viewHolder.tvCost.setText(String.format("$%s", items.get(i).getCost()));
     }
 
@@ -53,7 +51,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ivImage;
-        TextView tvTitle, tvAuthor, tvEditorial, tvPages, tvCost;
+        TextView tvTitle, tvAuthor, tvCost;
         ClickListener listener;
 
         public ViewHolder(View itemView, ClickListener listener) {
@@ -61,8 +59,6 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
             ivImage = itemView.findViewById(R.id.ivImage);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
-            tvEditorial = itemView.findViewById(R.id.tvEditorial);
-            tvPages = itemView.findViewById(R.id.tvPages);
             tvCost = itemView.findViewById(R.id.tvCost);
             this.listener=listener;
             itemView.setOnClickListener(this);

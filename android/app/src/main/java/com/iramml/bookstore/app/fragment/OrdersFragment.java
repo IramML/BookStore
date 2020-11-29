@@ -1,13 +1,12 @@
 package com.iramml.bookstore.app.fragment;
 
 
-import android.Manifest;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
-import com.iramml.bookstore.app.activity.HomeActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
 import com.iramml.bookstore.app.model.Book;
@@ -24,14 +22,8 @@ import com.iramml.bookstore.app.R;
 import com.iramml.bookstore.app.adapter.rvbooks.BooksCustomAdapter;
 import com.iramml.bookstore.app.adapter.rvbooks.ClickListener;
 import com.google.gson.Gson;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,10 +67,12 @@ public class OrdersFragment extends Fragment {
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();
                 BooksResponse booksObject = gson.fromJson(response, BooksResponse.class);
-                if(booksObject.getCode().equals("200"))
+                if (booksObject.getCode().equals("200")) {
                     implementRecyclerView(booksObject.getBooks());
-                else
+                } else {
                     Toast.makeText(getActivity(), "You have not bought any books", Toast.LENGTH_SHORT).show();
+                    rvOrders.hideShimmerAdapter();
+                }
             }
 
             @Override

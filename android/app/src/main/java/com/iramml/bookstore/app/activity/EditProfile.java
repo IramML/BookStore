@@ -5,14 +5,14 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,7 +26,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.rengwuxian.materialedittext.MaterialEditText;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -40,6 +39,7 @@ import dmax.dialog.SpotsDialog;
 
 public class EditProfile extends AppCompatActivity {
     private TextInputEditText etFirstName, etLastName;
+    private CardView cvBack;
     private CircleImageView ivAvatar;
 
     private final int PERMISSION_PICK_IMG=200;
@@ -59,7 +59,8 @@ public class EditProfile extends AppCompatActivity {
     private void initViews(){
         etFirstName = findViewById(R.id.et_first_name);
         etLastName = findViewById(R.id.et_last_name);
-        ivAvatar = findViewById(R.id.imgAvatar);
+        ivAvatar = findViewById(R.id.iv_avatar);
+        cvBack = findViewById(R.id.cv_back);
     }
 
     private void initListeners(){
@@ -67,6 +68,12 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openImageFromGalery();
+            }
+        });
+        cvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

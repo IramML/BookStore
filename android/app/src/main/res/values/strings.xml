@@ -20,6 +20,12 @@
     <string name="enter_password">Please enter password</string>
     <string name="enter_first_name">Please enter first name</string>
     <string name="enter_last_name">Please enter last name</string>
+    <string name="enter_postal_code">Please enter postal code</string>
+    <string name="enter_country">Please enter country</string>
+    <string name="enter_state">Please enter state</string>
+    <string name="enter_city">Please enter city</string>
+    <string name="enter_street">Please enter street</string>
+    <string name="enter_outdoor_number">Please enter outdoor number</string>
 
     <string name="fill_fields">Please fill all fields</string>
 

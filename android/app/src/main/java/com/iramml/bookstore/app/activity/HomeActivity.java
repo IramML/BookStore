@@ -3,45 +3,43 @@ package com.iramml.bookstore.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.util.Log;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.common.Common;
 import com.iramml.bookstore.app.fragment.BooksFragment;
 import com.iramml.bookstore.app.fragment.DomicilesFragment;
 import com.iramml.bookstore.app.fragment.OrdersFragment;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
-import com.iramml.bookstore.app.model.User;
 import com.iramml.bookstore.app.R;
-import com.iramml.bookstore.app.adapter.rvbooks.BooksCustomAdapter;
 import com.google.gson.Gson;
+import com.iramml.bookstore.app.model.UserResponse;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private BookStoreAPI bookStore;
+    private BookStoreAPI bookStoreAPI;
     private int itemSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        bookStore = new BookStoreAPI(this);
+        bookStoreAPI = new BookStoreAPI(this);
 
         if(getIntent() != null)
             itemSelected = getIntent().getIntExtra("itemSelected",0);
@@ -50,15 +48,18 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void getCurrentProfile() {
-        bookStore.getCurrentUser(new HttpResponse() {
+        bookStoreAPI.getCurrentUser(new HttpResponse() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson=new Gson();
-                Log.d("USER_RESPONSE", response);
-                Common.currentUser=gson.fromJson(response, User.class);
-                String image=Common.URL_BASE+Common.currentUser.getUrlImage();
-                Common.currentUser.setUrlImage(image);
-                initDrawer();
+                Log.d("PROFILE_RESPONSE", "httpResponseSuccess: " + response);
+                UserResponse responseObject = gson.fromJson(response, UserResponse.class);
+
+                if (responseObject.getCode().equals("200")) {
+                    Common.currentUser = responseObject.getUser();
+                    initDrawer();
+                }
+
             }
 
             @Override
@@ -68,7 +69,7 @@ public class HomeActivity extends AppCompatActivity
         });
     }
 
-    public void initDrawer(){
+    public void initDrawer() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -84,9 +85,10 @@ public class HomeActivity extends AppCompatActivity
         CircleImageView imgAvatar = navigationHeaderView.findViewById(R.id.imgAvatar);
         TextView tvName = (TextView) navigationHeaderView.findViewById(R.id.tvUserName);
 
-        tvName.setText(Common.currentUser.getName());
-        if(Common.currentUser.getUrlImage()!=null)
-            Picasso.get().load(Common.currentUser.getUrlImage()).into(imgAvatar);
+        tvName.setText(String.format("%s %s", Common.currentUser.getFirst_name(), Common.currentUser.getLast_name()));
+        if(Common.currentUser.getImageURL() != null && !Common.currentUser.getImageURL().equals(""))
+            Picasso.get().load(Common.currentUser.getImageURL()).into(imgAvatar);
+
         if (itemSelected==0)
             navigationView.setCheckedItem(R.id.nav_search);
         else if(itemSelected==2)
@@ -159,7 +161,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void logout() {
-        bookStore.logout();
+        bookStoreAPI.logout();
         Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();

@@ -3,11 +3,11 @@ package com.iramml.bookstore.app.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
-import com.iramml.bookstore.app.activity.HomeActivity;
 import com.iramml.bookstore.app.activity.RegisterDomicileActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
@@ -81,7 +80,7 @@ public class DomicilesFragment extends Fragment {
                     implementRecyclerView(domicilesResponse);
                 }else{
                     Toast.makeText(getActivity(), "You don't have domiciles registered", Toast.LENGTH_SHORT).show();
-
+                    rvDomiciles.hideShimmerAdapter();
                 }
             }
 

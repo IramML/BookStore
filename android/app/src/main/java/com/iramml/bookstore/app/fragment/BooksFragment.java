@@ -2,23 +2,21 @@ package com.iramml.bookstore.app.fragment;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
-import com.iramml.bookstore.app.interfaces.getBooksInterface;
 import com.iramml.bookstore.app.model.Book;
 import com.iramml.bookstore.app.model.BooksResponse;
 import com.iramml.bookstore.app.R;
@@ -27,7 +25,6 @@ import com.iramml.bookstore.app.adapter.rvbooks.ClickListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BooksFragment extends Fragment {
     private View root;
