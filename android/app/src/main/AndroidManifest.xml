@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.iramml.bookstore">
+    package="com.iramml.bookstore.app">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,11 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.State"></activity>
+
         <activity
-            android:name=".Activities.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreenTheme">
+            android:name=".activity.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,8 +26,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.RegisterActivity"
-            android:parentActivityName=".Activities.LoginActivity"
+            android:name=".activity.SignInActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SignUpActivity"
+            android:parentActivityName=".activity.SignInActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,12 +46,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".activity.HomeActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.RegisterDomicileActivity"
-            android:parentActivityName=".Activities.MainActivity">
+            android:name=".activity.RegisterDomicileActivity"
+            android:parentActivityName=".activity.HomeActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,11 +61,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Profile"
-            android:parentActivityName=".Activities.MainActivity" />
+            android:name=".activity.ProfileActivity"
+            android:parentActivityName=".activity.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.EditProfile"
-            android:parentActivityName=".Activities.Profile" />
+            android:name=".activity.EditProfile"
+            android:parentActivityName=".activity.ProfileActivity"
+            android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
