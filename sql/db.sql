@@ -2,7 +2,8 @@ CREATE TABLE IF NOT EXISTS admin_user(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     email varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    password varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+    password varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    image varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 )ENGINE=InnoDB CHARSET=utf8 DEFAULT COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS client_user(
