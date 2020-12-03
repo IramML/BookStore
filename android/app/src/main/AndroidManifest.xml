@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.BookDetailsActivity"></activity>
+        
+        <activity
+            android:name=".activity.BookDetailsActivity"
+            android:parentActivityName=".activity.HomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SplashScreenActivity"
             android:screenOrientation="portrait">

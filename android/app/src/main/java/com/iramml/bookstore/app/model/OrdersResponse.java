@@ -1,20 +1,18 @@
 package com.iramml.bookstore.app.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
 
-public class DomicilesResponse {
+public class OrdersResponse {
     private String code, message;
-    private ArrayList<Domicile> domiciles;
+    private ArrayList<Order> orders;
 
-    public DomicilesResponse() {
+    public OrdersResponse() {
     }
 
-    public DomicilesResponse(String code, String message, ArrayList<Domicile> domiciles) {
+    public OrdersResponse(String code, String message, ArrayList<Order> orders) {
         this.code = code;
         this.message = message;
-        this.domiciles = domiciles;
+        this.orders = orders;
     }
 
     public String getCode() {
@@ -33,11 +31,11 @@ public class DomicilesResponse {
         this.message = message;
     }
 
-    public ArrayList<Domicile> getDomiciles() {
-        return domiciles;
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
 
-    public void setDomiciles(ArrayList<Domicile> domiciles) {
-        this.domiciles = domiciles;
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
     }
 }

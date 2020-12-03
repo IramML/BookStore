@@ -86,20 +86,20 @@ public class HomeActivity extends AppCompatActivity
         TextView tvName = (TextView) navigationHeaderView.findViewById(R.id.tvUserName);
 
         tvName.setText(String.format("%s %s", Common.currentUser.getFirst_name(), Common.currentUser.getLast_name()));
-        if(Common.currentUser.getImageURL() != null && !Common.currentUser.getImageURL().equals(""))
+        if (Common.currentUser.getImageURL() != null && !Common.currentUser.getImageURL().equals(""))
             Picasso.get().load(Common.currentUser.getImageURL()).into(imgAvatar);
 
-        if (itemSelected==0)
-            navigationView.setCheckedItem(R.id.nav_search);
-        else if(itemSelected==2)
-            navigationView.setCheckedItem(R.id.nav_domiciles);
-
         FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
-
-        if(itemSelected==0){
+        if (itemSelected == 0){
+            navigationView.setCheckedItem(R.id.nav_search);
             BooksFragment booksFragment = new BooksFragment();
             fragmentTransaction.replace(R.id.flContent, booksFragment);
-        }else if(itemSelected==2){
+        }else if(itemSelected == 1) {
+            navigationView.setCheckedItem(R.id.nav_orders);
+            OrdersFragment ordersFragment = new OrdersFragment();
+            fragmentTransaction.replace(R.id.flContent, ordersFragment);
+        }else if(itemSelected == 2) {
+            navigationView.setCheckedItem(R.id.nav_domiciles);
             DomicilesFragment domicilesFragment = new DomicilesFragment();
             fragmentTransaction.replace(R.id.flContent, domicilesFragment);
         }

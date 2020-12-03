@@ -19,11 +19,14 @@ import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.iramml.bookstore.app.activity.RegisterDomicileActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.model.Domicile;
 import com.iramml.bookstore.app.model.DomicilesResponse;
 import com.iramml.bookstore.app.R;
 import com.iramml.bookstore.app.adapter.rvdomiciles.ClickListener;
 import com.iramml.bookstore.app.adapter.rvdomiciles.DomicilesCustomAdapter;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 public class DomicilesFragment extends Fragment {
     private View root;
@@ -76,8 +79,8 @@ public class DomicilesFragment extends Fragment {
                 Gson gson = new Gson();
                 DomicilesResponse domicilesResponse = gson.fromJson(response, DomicilesResponse.class);
                 Log.d("RESPONSE", response);
-                if(domicilesResponse.code.equals("200")){
-                    implementRecyclerView(domicilesResponse);
+                if(domicilesResponse.getCode().equals("200")){
+                    implementRecyclerView(domicilesResponse.getDomiciles());
                 }else{
                     Toast.makeText(getActivity(), "You don't have domiciles registered", Toast.LENGTH_SHORT).show();
                     rvDomiciles.hideShimmerAdapter();
@@ -97,8 +100,8 @@ public class DomicilesFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void implementRecyclerView(DomicilesResponse domicilesResponse){
-        adapter = new DomicilesCustomAdapter(getActivity(), domicilesResponse.domiciles, new ClickListener() {
+    public void implementRecyclerView(ArrayList<Domicile> domiciles){
+        adapter = new DomicilesCustomAdapter(getActivity(), domiciles, new ClickListener() {
             @Override
             public void onClick(View view, int index) {
 

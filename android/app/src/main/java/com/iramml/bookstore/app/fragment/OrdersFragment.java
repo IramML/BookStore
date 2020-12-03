@@ -14,14 +14,17 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.iramml.bookstore.app.adapter.rvorders.ClickListener;
+import com.iramml.bookstore.app.adapter.rvorders.OrdersCustomAdapter;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
 import com.iramml.bookstore.app.model.Book;
 import com.iramml.bookstore.app.model.BooksResponse;
 import com.iramml.bookstore.app.R;
 import com.iramml.bookstore.app.adapter.rvbooks.BooksCustomAdapter;
-import com.iramml.bookstore.app.adapter.rvbooks.ClickListener;
 import com.google.gson.Gson;
+import com.iramml.bookstore.app.model.Order;
+import com.iramml.bookstore.app.model.OrdersResponse;
 
 import java.util.ArrayList;
 
@@ -33,7 +36,7 @@ public class OrdersFragment extends Fragment {
     private ShimmerRecyclerView rvOrders;
 
     private RecyclerView.LayoutManager layoutManager;
-    private BooksCustomAdapter adapter;
+    private OrdersCustomAdapter adapter;
 
     private BookStoreAPI bookStore;
 
@@ -66,9 +69,9 @@ public class OrdersFragment extends Fragment {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();
-                BooksResponse booksObject = gson.fromJson(response, BooksResponse.class);
-                if (booksObject.getCode().equals("200")) {
-                    implementRecyclerView(booksObject.getBooks());
+                OrdersResponse responseObject = gson.fromJson(response, OrdersResponse.class);
+                if (responseObject.getCode().equals("200")) {
+                    implementRecyclerView(responseObject.getOrders());
                 } else {
                     Toast.makeText(getActivity(), "You have not bought any books", Toast.LENGTH_SHORT).show();
                     rvOrders.hideShimmerAdapter();
@@ -82,10 +85,10 @@ public class OrdersFragment extends Fragment {
         });
     }
 
-    public void implementRecyclerView(final ArrayList<Book> books){
-        adapter=new BooksCustomAdapter(getActivity(), books, new ClickListener() {
+    public void implementRecyclerView(final ArrayList<Order> orders){
+        adapter = new OrdersCustomAdapter(getActivity(), orders, new ClickListener() {
             @Override
-            public void onClick(View view, final int index) {
+            public void onClick(View view, int index) {
                 /*if(books.get(index).is_pdf.equals("yes")){
                     Dexter.withActivity(getActivity()).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener(){

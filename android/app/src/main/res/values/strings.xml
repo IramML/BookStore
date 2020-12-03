@@ -36,6 +36,8 @@
     <string name="last_name">Last Name</string>
 
     <string name="login">LOG IN</string>
+    <string name="buy_pdf">Buy PDF</string>
+    <string name="buy_physical_book">Buy physical book</string>
 
     <string name="municipality">Municipality</string>
 

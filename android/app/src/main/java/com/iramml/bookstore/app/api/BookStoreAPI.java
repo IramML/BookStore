@@ -35,6 +35,12 @@ public class BookStoreAPI {
         network.httpRequest(url, httpResponse);
     }
 
+    public void getBookDetailsByID(String bookID, final HttpResponse httpResponse){
+        String parameters = "?token=" + getToken() + "&book_id=" + bookID;
+        String url = ConfigApp.URL_API + "books/details/index.php" + parameters;
+        network.httpRequest(url, httpResponse);
+    }
+
     public void registerDomicile(Map<String, String> postMap, final HttpResponse httpResponse){
         String url = ConfigApp.URL_API + "domiciles/add/index.php";
         postRequest(postMap, url, httpResponse);

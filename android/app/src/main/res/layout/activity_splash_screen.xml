@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".activity.SplashScreenActivity">
 
+    <ImageView
+        android:layout_width="126dp"
+        android:layout_height="126dp"
+        android:src="@drawable/books"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

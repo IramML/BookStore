@@ -1,6 +1,7 @@
 package com.iramml.bookstore.app.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.iramml.bookstore.app.activity.BookDetailsActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.interfaces.HttpResponse;
 import com.iramml.bookstore.app.model.Book;
@@ -124,9 +126,6 @@ public class BooksFragment extends Fragment {
                     implementRecyclerView(responseObject.getBooks());
                     swipeRefreshLayout.setRefreshing(false);
                 }
-
-
-
             }
 
             @Override
@@ -140,17 +139,9 @@ public class BooksFragment extends Fragment {
         adapter=new BooksCustomAdapter(getActivity(), books, new ClickListener() {
             @Override
             public void onClick(View view, int index) {
-
-                    /*
-                    bottomSheetBuyPDF.setActivity(getActivity(), books.get(index).title, books.get(index).id, BooksFragment.this);
-                    bottomSheetBuyPDF.show(getFragmentManager(), bottomSheetBuyPDF.mTag);
-                    */
-
-                    /*
-                    bottomSheetBuyPhysic.setActivity(getActivity(), BooksFragment.this);
-                    bottomSheetBuyPhysic.show(getFragmentManager(), bottomSheetBuyPhysic.mTag);
-                     */
-
+                Intent intent = new Intent(getActivity(), BookDetailsActivity.class);
+                intent.putExtra("book_id", books.get(index).getId());
+                startActivity(intent);
             }
         });
         rvBooks.setAdapter(adapter);
