@@ -10,10 +10,14 @@ class GetBooksModel extends Model {
     function getBooks(){
         $items = [];
         try {
-            $query = $this->db->connect()->query("SELECT * FROM book WHERE is_archived = 0");
+            $query = $this->db->connect()->query("SELECT book.*, book_category.name as category_name 
+                FROM book 
+                INNER JOIN book_category ON book.category_id = book_category.id
+                WHERE book.is_archived = 0");
             $items = $query->fetchAll(PDO::FETCH_ASSOC);
             return $items;
         } catch (PDOException $e) {
+            var_dump($e);
             return [];
         }
     }
