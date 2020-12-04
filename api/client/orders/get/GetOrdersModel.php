@@ -17,7 +17,8 @@ class GetOrdersModel extends Model {
                 FROM client_user_order 
                 INNER JOIN book ON client_user_order.book_id = book.id
                 INNER JOIN book_category ON book.category_id = book_category.id
-                WHERE client_user_order.user_id = '$userID'");
+                WHERE client_user_order.user_id = '$userID'
+                ORDER BY client_user_order.id DESC");
             $items = $query->fetchAll(PDO::FETCH_ASSOC);
             return $items;
         } catch (PDOException $e) {
