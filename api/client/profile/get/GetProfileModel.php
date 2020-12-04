@@ -9,7 +9,7 @@ class GetProfileModel extends Model {
 
     function getProfileByUserID($userID) {
         try {
-            $query = $this->db->connect()->query("SELECT * FROM client_user WHERE id = '$userID'");
+            $query = $this->db->connect()->query("SELECT first_name, last_name, email,image FROM client_user WHERE id = '$userID'");
             $res = $query->fetch(PDO::FETCH_ASSOC);
             return $res;
         } catch (PDOException $e) {

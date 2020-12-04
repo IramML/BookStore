@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><?php echo $this->strings['site_name']?> | <?php echo $this->strings['nav_orders']?></title>
+  <title><?php echo $this->strings['site_name'] ?> | <?php echo $this->strings['nav_orders'] ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,7 +29,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?php echo constant('URL') ?>" class="nav-link"><?php echo $this->strings['nav_dashboard']?></a>
+          <a href="<?php echo constant('URL') ?>" class="nav-link"><?php echo $this->strings['nav_dashboard'] ?></a>
         </li>
       </ul>
     </nav>
@@ -40,7 +40,7 @@
       <!-- Brand Logo -->
       <a href="<?php echo constant('URL') ?>" class="brand-link">
         <img src="<?php echo constant('URL') ?>public/img/favicon.png" alt="BookStore Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light"><?php echo $this->strings['site_name']?></span>
+        <span class="brand-text font-weight-light"><?php echo $this->strings['site_name'] ?></span>
       </a>
 
       <!-- Sidebar -->
@@ -60,7 +60,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1><?php echo $this->strings['nav_orders']?></h1>
+              <h1><?php echo $this->strings['nav_orders'] ?></h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Blank Page</li>
 -->
-                <li class="breadcrumb-item"><?php echo $this->strings['nav_orders']?></li>
+                <li class="breadcrumb-item"><?php echo $this->strings['nav_orders'] ?></li>
               </ol>
             </div>
           </div>
@@ -77,7 +77,74 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="row"></div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title"><?php echo $this->strings['clients_list'] ?></h3>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover" id="main-table">
+                    <thead>
+                      <tr>
+                        <th scope="col"><?php echo $this->strings['id'] ?></th>
+                        <th scope="col"><?php echo $this->strings['image'] ?></th>
+                        <th scope="col"><?php echo $this->strings['name'] ?></th>
+                        <th scope="col"><?php echo $this->strings['book_title'] ?></th>
+                        <th scope="col"><?php echo $this->strings['address'] ?></th>
+                        <th scope="col"><?php echo $this->strings['order_status'] ?></th>
+                        <th scope="col"><?php echo $this->strings['actions'] ?></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      foreach ($this->orders as $index => $item) {
+                      ?>
+                        <tr>
+                          <th scope="row"><?php echo $item['id'] ?></th>
+                          <td><img class="rounded-circle" src="<?php echo constant('URL_UPLOADS') . "books/images/" . $item['image'] ?>" width="62" height="62"></td>
+                          <td><?php echo "$item[first_name] $item[last_name] ($item[email])" ?></td>
+                          <td><?php echo $item['title'] ?></td>
+                          <td><?php echo $item['country'] . ", " . $item['state'] . ", " . $item['city']
+                                                    . ", " . $item['postal_code']. ", " . $item['street']. ", #" . $item['outdoor_number'] ?></td>
+                          <td>
+                            <?php 
+                            switch ($item['status']) {
+                              case 'pending':
+                                ?>
+                                <span class="badge badge-info"><?php echo $this->strings['status_pending']?></span>
+                                <?php
+                                break;
+                              case 'on_way':
+                                ?>
+                                <span class="badge badge-warning"><?php echo $this->strings['status_on_way']?></span>
+                                <?php
+                                break;
+                              
+                              default:
+                                ?>
+
+                                <?php
+                                break;
+                            }
+                            ?>
+                            
+                          </td>
+                          <td>
+                            <a class="btn btn-info" href="<?php echo constant('URL')."orders/details/".$item['id'] ?>"><?php echo $this->strings['details']?></a>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- /.content -->
     </div>

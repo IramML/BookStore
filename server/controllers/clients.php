@@ -5,6 +5,7 @@ class Clients extends Controller {
         $this->view->tab = "clients";
     }
     function render(){
+        $this->view->clients = $this->model->getAllUsers();
         $this->view->render('clients/index');
     }
 }

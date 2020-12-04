@@ -9,8 +9,8 @@ class BuyBookModel extends Model {
 
     function buyPhysicBook($data) {
         try {
-            $this->db->connect()->query("INSERT INTO client_user_order(is_pdf, user_id, domicile_id, book_id)
-                    VALUES(0, '$data[user_id]', '$data[domicile_id]', '$data[book_id]')");
+            $this->db->connect()->query("INSERT INTO client_user_order(is_pdf, status, user_id, domicile_id, book_id)
+                    VALUES(0, 'pending, '$data[user_id]', '$data[domicile_id]', '$data[book_id]')");
             return true;
         } catch (PDOException $e) {
             return false;
@@ -19,8 +19,8 @@ class BuyBookModel extends Model {
 
     function buyPDFBook($data) {
         try {
-            $this->db->connect()->query("INSERT INTO client_user_order(is_pdf, user_id, domicile_id, book_id)
-                    VALUES(1, '$data[user_id]', NULL, '$data[book_id]')");
+            $this->db->connect()->query("INSERT INTO client_user_order(is_pdf, status, user_id, domicile_id, book_id)
+                    VALUES(1, 'complete', '$data[user_id]', NULL, '$data[book_id]')");
             return true;
         } catch (PDOException $e) {
             return false;

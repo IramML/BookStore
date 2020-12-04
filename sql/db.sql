@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS client_user_domicile(
 CREATE TABLE IF NOT EXISTS client_user_order(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     is_pdf boolean NOT NULL,
+    status varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL NOT NULL,
     datetime timestamp NOT NULL,
     user_id int NOT NULL,
     domicile_id int NULL,
