@@ -3,18 +3,19 @@ package com.iramml.bookstore.app.model;
 import com.iramml.bookstore.app.common.ConfigApp;
 
 public class Order {
-    private String id, title, author, editorial, num_pages, description, cost, stock, is_archived, pdf, image, order_id, is_pdf, created_date;
+    private String id, title, author, editorial, num_pages, description, category_name, cost, stock, is_archived, pdf, image, order_id, is_pdf, created_date;
 
     public Order() {
     }
 
-    public Order(String id, String title, String author, String editorial, String num_pages, String description, String cost, String stock, String is_archived, String pdf, String image, String order_id, String is_pdf, String created_date) {
+    public Order(String id, String title, String author, String editorial, String num_pages, String description, String category_name, String cost, String stock, String is_archived, String pdf, String image, String order_id, String is_pdf, String created_date) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.editorial = editorial;
         this.num_pages = num_pages;
         this.description = description;
+        this.category_name = category_name;
         this.cost = cost;
         this.stock = stock;
         this.is_archived = is_archived;
@@ -71,6 +72,14 @@ public class Order {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
     public String getCost() {
@@ -139,5 +148,9 @@ public class Order {
 
     public String getBookImageURL(){
         return ConfigApp.URL_UPLOADS + "books/images/" + this.image;
+    }
+
+    public String getBookPDFURL(){
+        return ConfigApp.URL_UPLOADS + "books/pdf/" + this.pdf;
     }
 }

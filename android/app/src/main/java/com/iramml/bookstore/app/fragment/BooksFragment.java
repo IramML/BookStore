@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -18,7 +17,7 @@ import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.iramml.bookstore.app.activity.BookDetailsActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.model.Book;
 import com.iramml.bookstore.app.model.BooksResponse;
 import com.iramml.bookstore.app.R;
@@ -116,7 +115,7 @@ public class BooksFragment extends Fragment {
     }
 
     private void getBooks(){
-        bookStore.getBooks(new HttpResponse() {
+        bookStore.getBooks(new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson=new Gson();

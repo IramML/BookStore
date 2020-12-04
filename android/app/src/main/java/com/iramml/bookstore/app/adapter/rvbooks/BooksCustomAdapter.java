@@ -15,14 +15,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.ViewHolder>{
+public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<Book> items;
-    private ClickListener listener;
-    private ViewHolder viewHolder;
+    private final Context context;
+    private final ArrayList<Book> items;
 
-    public BooksCustomAdapter(Context context, ArrayList<Book> items, ClickListener listener ){
+    private final ClickListener listener;
+
+    public BooksCustomAdapter(Context context, ArrayList<Book> items, ClickListener listener) {
         this.context = context;
         this.items = items;
         this.listener = listener;
@@ -32,7 +32,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.template_books,viewGroup,false);
-        viewHolder = new ViewHolder(view, listener);
+        ViewHolder viewHolder = new ViewHolder(view, listener);
         return viewHolder;
     }
 
@@ -49,7 +49,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivImage;
         TextView tvTitle, tvAuthor, tvCost;
         ClickListener listener;
@@ -60,7 +60,7 @@ public class BooksCustomAdapter extends RecyclerView.Adapter<BooksCustomAdapter.
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             tvCost = itemView.findViewById(R.id.tvCost);
-            this.listener=listener;
+            this.listener = listener;
             itemView.setOnClickListener(this);
         }
 

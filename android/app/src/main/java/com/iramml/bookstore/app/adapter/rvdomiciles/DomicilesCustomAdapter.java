@@ -13,13 +13,12 @@ import com.iramml.bookstore.app.R;
 
 import java.util.ArrayList;
 
-public class DomicilesCustomAdapter extends RecyclerView.Adapter<DomicilesCustomAdapter.ViewHolder>{
-    private Context context;
-    private ArrayList<Domicile> items;
-    private ClickListener listener;
-    private ViewHolder viewHolder;
+public class DomicilesCustomAdapter extends RecyclerView.Adapter<DomicilesCustomAdapter.ViewHolder> {
+    private final Context context;
+    private final ArrayList<Domicile> items;
+    private final ClickListener listener;
 
-    public DomicilesCustomAdapter(Context context, ArrayList<Domicile> items, ClickListener listener ){
+    public DomicilesCustomAdapter(Context context, ArrayList<Domicile> items, ClickListener listener ) {
         this.context = context;
         this.items = items;
         this.listener = listener;
@@ -29,7 +28,7 @@ public class DomicilesCustomAdapter extends RecyclerView.Adapter<DomicilesCustom
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.template_domiciles,viewGroup,false);
-        viewHolder = new ViewHolder(view, listener);
+        ViewHolder viewHolder = new ViewHolder(view, listener);
         return viewHolder;
     }
 
@@ -44,7 +43,7 @@ public class DomicilesCustomAdapter extends RecyclerView.Adapter<DomicilesCustom
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvStreet, tvAddress;
         ClickListener listener;
 

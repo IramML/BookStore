@@ -7,11 +7,11 @@ import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
-import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
-import androidx.appcompat.widget.Toolbar;
+
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.common.Common;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.R;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -42,7 +42,7 @@ public class EditProfile extends AppCompatActivity {
     private CardView cvBack;
     private CircleImageView ivAvatar;
 
-    private final int PERMISSION_PICK_IMG=200;
+    private final int PERMISSION_PICK_IMG = 200;
     private Bitmap bitmapAvatar;
     private BookStoreAPI bookStoreAPI;
 
@@ -56,18 +56,18 @@ public class EditProfile extends AppCompatActivity {
         setValues();
     }
 
-    private void initViews(){
+    private void initViews() {
         etFirstName = findViewById(R.id.et_first_name);
         etLastName = findViewById(R.id.et_last_name);
         ivAvatar = findViewById(R.id.iv_avatar);
         cvBack = findViewById(R.id.cv_back);
     }
 
-    private void initListeners(){
+    private void initListeners() {
         ivAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openImageFromGalery();
+                openImageFromGallery();
             }
         });
         cvBack.setOnClickListener(new View.OnClickListener() {
@@ -88,8 +88,8 @@ public class EditProfile extends AppCompatActivity {
         etLastName.setText(Common.currentUser.getLast_name());
     }
 
-    private void openImageFromGalery(){
-        Dexter.withActivity(this)
+    private void openImageFromGallery() {
+        Dexter.withContext(this)
                 .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
@@ -113,6 +113,7 @@ public class EditProfile extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PERMISSION_PICK_IMG) {
             try {
                 bitmapAvatar = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
@@ -125,7 +126,7 @@ public class EditProfile extends AppCompatActivity {
             postMap.put("image", getStringImage(bitmapAvatar));
             final AlertDialog waitingDialog = new SpotsDialog.Builder().setContext(EditProfile.this).build();
             waitingDialog.show();
-            bookStoreAPI.uploadAvatar(postMap, new HttpResponse() {
+            bookStoreAPI.uploadAvatar(postMap, new HttpResponseListener() {
                 @Override
                 public void httpResponseSuccess(String response) {
                     waitingDialog.dismiss();
@@ -140,7 +141,7 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-    public String getStringImage(Bitmap bitmap){
+    public String getStringImage(Bitmap bitmap) {
         ByteArrayOutputStream baos = new  ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
         byte [] b = baos.toByteArray();

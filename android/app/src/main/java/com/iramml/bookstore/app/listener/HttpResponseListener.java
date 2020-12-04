@@ -1,8 +1,8 @@
-package com.iramml.bookstore.app.interfaces;
+package com.iramml.bookstore.app.listener;
 
 import com.android.volley.VolleyError;
 
-public interface HttpResponse {
+public interface HttpResponseListener {
     void httpResponseSuccess(String response);
     void httpResponseError(VolleyError error);
 }

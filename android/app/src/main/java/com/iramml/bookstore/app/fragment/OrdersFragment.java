@@ -1,9 +1,9 @@
 package com.iramml.bookstore.app.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,33 +14,23 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.iramml.bookstore.app.activity.OrderDetailActivity;
 import com.iramml.bookstore.app.adapter.rvorders.ClickListener;
 import com.iramml.bookstore.app.adapter.rvorders.OrdersCustomAdapter;
 import com.iramml.bookstore.app.api.BookStoreAPI;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
-import com.iramml.bookstore.app.model.Book;
-import com.iramml.bookstore.app.model.BooksResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.R;
-import com.iramml.bookstore.app.adapter.rvbooks.BooksCustomAdapter;
 import com.google.gson.Gson;
 import com.iramml.bookstore.app.model.Order;
 import com.iramml.bookstore.app.model.OrdersResponse;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class OrdersFragment extends Fragment {
     private View root;
     private ShimmerRecyclerView rvOrders;
 
-    private RecyclerView.LayoutManager layoutManager;
-    private OrdersCustomAdapter adapter;
-
     private BookStoreAPI bookStore;
-
-    int count;
 
     public OrdersFragment() {
         // Required empty public constructor
@@ -57,15 +47,15 @@ public class OrdersFragment extends Fragment {
     }
 
     private void initViews() {
-        rvOrders = (ShimmerRecyclerView)root.findViewById(R.id.rvOrders);
+        rvOrders = (ShimmerRecyclerView) root.findViewById(R.id.rvOrders);
         rvOrders.showShimmerAdapter();
         rvOrders.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvOrders.setLayoutManager(layoutManager);
     }
 
     private void getOrders() {
-        bookStore.getOrders(new HttpResponse() {
+        bookStore.getOrders(new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();
@@ -86,24 +76,12 @@ public class OrdersFragment extends Fragment {
     }
 
     public void implementRecyclerView(final ArrayList<Order> orders){
-        adapter = new OrdersCustomAdapter(getActivity(), orders, new ClickListener() {
+        OrdersCustomAdapter adapter = new OrdersCustomAdapter(getActivity(), orders, new ClickListener() {
             @Override
             public void onClick(View view, int index) {
-                /*if(books.get(index).is_pdf.equals("yes")){
-                    Dexter.withActivity(getActivity()).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener(){
-                        @Override
-                        public void onPermissionsChecked(MultiplePermissionsReport report) {
-
-                            //bookStore.downloadPDF(booksObject.books.get(index).id, booksObject.books.get(index).title);
-                        }
-                        @Override
-                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-
-                        }
-                    }).check();
-
-                }*/
+                Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+                intent.putExtra("order_id", orders.get(index).getOrder_id());
+                startActivity(intent);
             }
         });
         rvOrders.setAdapter(adapter);

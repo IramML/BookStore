@@ -13,27 +13,27 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 
 import java.util.Map;
 
 public class NetworkUtil{
-    private Context context;
+    private final Context context;
     private RequestQueue queue;
 
-    public NetworkUtil(Context context){
+    public NetworkUtil(Context context) {
         this.context = context;
     }
 
-    public Boolean availableNetwork(){
+    public Boolean availableNetwork() {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
 
-    public void httpRequest(String url, final HttpResponse httpResponse){
-        if(availableNetwork()){
-            if(queue == null)
+    public void httpRequest(String url, final HttpResponseListener httpResponse) {
+        if (availableNetwork()) {
+            if (queue == null)
                 queue = Volley.newRequestQueue(context);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -52,9 +52,9 @@ public class NetworkUtil{
         }
     }
 
-    public void httpPOSTRequest(final Map<String, String> postMap, String url, final HttpResponse httpResponse){
-        if(availableNetwork()){
-            if(queue == null)
+    public void httpPOSTRequest(final Map<String, String> postMap, String url, final HttpResponseListener httpResponse) {
+        if (availableNetwork()) {
+            if (queue == null)
                 queue = Volley.newRequestQueue(context);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

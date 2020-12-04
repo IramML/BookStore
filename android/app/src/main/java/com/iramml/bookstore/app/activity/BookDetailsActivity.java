@@ -4,7 +4,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,15 +17,10 @@ import com.iramml.bookstore.app.R;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.fragment.BottomSheetBuyPDF;
 import com.iramml.bookstore.app.fragment.BottomSheetBuyPhysic;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.model.Book;
 import com.iramml.bookstore.app.model.BookDetailResponse;
-import com.iramml.bookstore.app.model.BooksResponse;
-import com.iramml.bookstore.app.model.GenericResponse;
 import com.squareup.picasso.Picasso;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class BookDetailsActivity extends AppCompatActivity {
     private ImageView ivBook;
@@ -96,11 +90,10 @@ public class BookDetailsActivity extends AppCompatActivity {
     }
 
     private void getProductDetails() {
-        bookStoreAPI.getBookDetailsByID(bookID, new HttpResponse() {
+        bookStoreAPI.getBookDetailsByID(bookID, new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();
-                Log.d("BOOK_DETAILS_RES", "httpResponseSuccess: " + response);
                 BookDetailResponse responseObject = gson.fromJson(response, BookDetailResponse.class);
 
                 if (responseObject.getCode().equals("200")) {
@@ -120,6 +113,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         Picasso.get().load(bookDetails.getImageURL()).placeholder(R.drawable.placeholder).into(ivBook);
 
         tvBookName.setText(bookDetails.getTitle());
+        tvCategoryName.setText(bookDetails.getCategory_name());
         tvPrice.setText(String.format("$%s", bookDetails.getCost()));
         tvDescription.setText(bookDetails.getDescription());
 
@@ -130,7 +124,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         if (stock > 0)
             btnBuyPhysical.setVisibility(View.VISIBLE);
 
-        bottomSheetBuyPDF = BottomSheetBuyPDF.newInstance("PDF bottom sheet", bookID, bookDetails.getTitle());
+        bottomSheetBuyPDF = BottomSheetBuyPDF.newInstance("PDF bottom sheet", bookID, bookDetails.getTitle(), bookDetails.getBookPDFURL());
         bottomSheetBuyPhysic = BottomSheetBuyPhysic.newInstance("Physic bottom sheet", bookID, bookDetails.getTitle());
     }
 

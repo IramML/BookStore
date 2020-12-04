@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -18,7 +17,7 @@ import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.iramml.bookstore.app.activity.RegisterDomicileActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.model.Domicile;
 import com.iramml.bookstore.app.model.DomicilesResponse;
 import com.iramml.bookstore.app.R;
@@ -73,7 +72,7 @@ public class DomicilesFragment extends Fragment {
     }
 
     private void getDomiciles() {
-        bookStore.getDomiciles(new HttpResponse() {
+        bookStore.getDomiciles(new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();

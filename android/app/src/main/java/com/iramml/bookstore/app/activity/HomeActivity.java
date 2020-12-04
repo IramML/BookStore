@@ -22,7 +22,7 @@ import com.iramml.bookstore.app.common.Common;
 import com.iramml.bookstore.app.fragment.BooksFragment;
 import com.iramml.bookstore.app.fragment.DomicilesFragment;
 import com.iramml.bookstore.app.fragment.OrdersFragment;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.R;
 import com.google.gson.Gson;
 import com.iramml.bookstore.app.model.UserResponse;
@@ -48,10 +48,10 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void getCurrentProfile() {
-        bookStoreAPI.getCurrentUser(new HttpResponse() {
+        bookStoreAPI.getCurrentUser(new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
-                Gson gson=new Gson();
+                Gson gson = new Gson();
                 Log.d("PROFILE_RESPONSE", "httpResponseSuccess: " + response);
                 UserResponse responseObject = gson.fromJson(response, UserResponse.class);
 
@@ -89,23 +89,7 @@ public class HomeActivity extends AppCompatActivity
         if (Common.currentUser.getImageURL() != null && !Common.currentUser.getImageURL().equals(""))
             Picasso.get().load(Common.currentUser.getImageURL()).into(imgAvatar);
 
-        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
-        if (itemSelected == 0){
-            navigationView.setCheckedItem(R.id.nav_search);
-            BooksFragment booksFragment = new BooksFragment();
-            fragmentTransaction.replace(R.id.flContent, booksFragment);
-        }else if(itemSelected == 1) {
-            navigationView.setCheckedItem(R.id.nav_orders);
-            OrdersFragment ordersFragment = new OrdersFragment();
-            fragmentTransaction.replace(R.id.flContent, ordersFragment);
-        }else if(itemSelected == 2) {
-            navigationView.setCheckedItem(R.id.nav_domiciles);
-            DomicilesFragment domicilesFragment = new DomicilesFragment();
-            fragmentTransaction.replace(R.id.flContent, domicilesFragment);
-        }
-
-        fragmentTransaction.commit();
-
+        replaceFragment(itemSelected);
     }
 
     @Override
@@ -118,24 +102,17 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
-
-        int id = item.getItemId();
-        switch (id){
+        switch (item.getItemId()){
             case R.id.nav_search:
-                fragmentTransaction.replace(R.id.flContent, new BooksFragment());
-                fragmentTransaction.commit();
+                replaceFragment(0);
                 break;
             case R.id.nav_orders:
-                fragmentTransaction.replace(R.id.flContent, new OrdersFragment());
-                fragmentTransaction.commit();
+                replaceFragment(1);
                 break;
             case R.id.nav_domiciles:
-                fragmentTransaction.replace(R.id.flContent, new DomicilesFragment());
-                fragmentTransaction.commit();
+                replaceFragment(2);
                 break;
             case R.id.nav_profile:
                 goToProfile();
@@ -143,13 +120,11 @@ public class HomeActivity extends AppCompatActivity
             case R.id.nav_log_out:
                 logout();
                 break;
-            default:
-                fragmentTransaction.replace(R.id.flContent, new BooksFragment());
-                fragmentTransaction.commit();
-                break;
         }
+
         item.setChecked(true);
         setTitle(item.getTitle());
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -165,5 +140,20 @@ public class HomeActivity extends AppCompatActivity
         Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void replaceFragment(int fragmentIndex){
+        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
+        switch (fragmentIndex){
+            case 1:
+                fragmentTransaction.replace(R.id.flContent, new OrdersFragment());
+                break;
+            case 2:
+                fragmentTransaction.replace(R.id.flContent, new DomicilesFragment());
+                break;
+            default:
+                fragmentTransaction.replace(R.id.flContent, new BooksFragment());
+        }
+        fragmentTransaction.commit();
     }
 }

@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.android.volley.VolleyError;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.helper.SharedHelper;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.model.TokenResponse;
 import com.iramml.bookstore.app.R;
 import com.google.gson.Gson;
@@ -83,7 +83,7 @@ public class SignInActivity extends AppCompatActivity {
         postMap.put("email", etEmail.getText().toString());
         postMap.put("password", etPassword.getText().toString());
 
-        bookStore.signIn(postMap, new HttpResponse() {
+        bookStore.signIn(postMap, new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();

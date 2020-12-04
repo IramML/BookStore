@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -18,7 +18,7 @@ import com.android.volley.VolleyError;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.iramml.bookstore.app.activity.HomeActivity;
 import com.iramml.bookstore.app.api.BookStoreAPI;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.model.Domicile;
 import com.iramml.bookstore.app.model.DomicilesResponse;
 import com.iramml.bookstore.app.R;
@@ -67,7 +67,7 @@ public class BottomSheetBuyPhysic extends BottomSheetDialogFragment {
         root = inflater.inflate(R.layout.bottom_sheet_buy_physic, container, false);
         initRecyclerView();
         bookStoreAPI = new BookStoreAPI(getActivity());
-        bookStoreAPI.getDomiciles(new HttpResponse() {
+        bookStoreAPI.getDomiciles(new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();
@@ -113,7 +113,7 @@ public class BottomSheetBuyPhysic extends BottomSheetDialogFragment {
         postMap.put("is_pdf", "0");
         postMap.put("book_id", bookID);
         postMap.put("domicile_id", domicileID);
-        bookStoreAPI.buyPDF(postMap, new HttpResponse() {
+        bookStoreAPI.buyPDF(postMap, new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Gson gson = new Gson();

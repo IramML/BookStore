@@ -7,11 +7,11 @@ import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
-import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
-import androidx.appcompat.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.iramml.bookstore.app.api.BookStoreAPI;
 import com.iramml.bookstore.app.helper.SharedHelper;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.model.TokenResponse;
 import com.iramml.bookstore.app.R;
 import com.google.gson.Gson;
@@ -129,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         final AlertDialog waitingDialog = new SpotsDialog.Builder().setContext(SignUpActivity.this).build();
         waitingDialog.show();
-        bookStore.signUp(postMap, new HttpResponse() {
+        bookStore.signUp(postMap, new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 waitingDialog.dismiss();
@@ -151,14 +151,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void openImageFromGallery(){
-        Dexter.withActivity(this)
+        Dexter.withContext(this)
                 .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if(report.areAllPermissionsGranted()){
-                            Intent intent=new Intent(Intent.ACTION_PICK);
+                            Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
                             startActivityForResult(intent, PERMISSION_PICK_IMG);
                         }else{
@@ -175,25 +175,25 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PERMISSION_PICK_IMG) {
             try {
-                bitmap=MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                 ivAvatar.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
-    public String getStringImage(Bitmap bitmap){
-        ByteArrayOutputStream baos =new  ByteArrayOutputStream();
+    public String getStringImage(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
+        byte [] b = baos.toByteArray();
         return Base64.encodeToString(b, Base64.DEFAULT);
     }
 
-    private void displayMessage(String message){
+    private void displayMessage(String message) {
         utilities.displayMessage(root, this, message);
     }
 }

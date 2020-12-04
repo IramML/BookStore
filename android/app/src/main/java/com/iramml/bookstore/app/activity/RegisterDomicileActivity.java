@@ -1,11 +1,11 @@
 package com.iramml.bookstore.app.activity;
 
 import android.content.Intent;
-import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
-import androidx.appcompat.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.iramml.bookstore.app.api.BookStoreAPI;
-import com.iramml.bookstore.app.interfaces.HttpResponse;
+import com.iramml.bookstore.app.listener.HttpResponseListener;
 import com.iramml.bookstore.app.R;
 import com.iramml.bookstore.app.model.GenericResponse;
 import com.iramml.bookstore.app.util.Utilities;
@@ -105,7 +105,7 @@ public class RegisterDomicileActivity extends AppCompatActivity {
         postMap.put("city", etCity.getText().toString());
         postMap.put("street", etStreet.getText().toString());
         postMap.put("outdoor_number", etOutdoorNumber.getText().toString());
-        bookStore.registerDomicile(postMap, new HttpResponse() {
+        bookStore.registerDomicile(postMap, new HttpResponseListener() {
             @Override
             public void httpResponseSuccess(String response) {
                 Log.d("RESPONSE",response);

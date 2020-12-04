@@ -17,14 +17,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class OrdersCustomAdapter extends RecyclerView.Adapter<OrdersCustomAdapter.ViewHolder>{
+public class OrdersCustomAdapter extends RecyclerView.Adapter<OrdersCustomAdapter.ViewHolder> {
 
-    private Context context;
-    private ArrayList<Order> items;
-    private ClickListener listener;
-    private ViewHolder viewHolder;
+    private final Context context;
+    private final ArrayList<Order> items;
+    private final ClickListener listener;
 
-    public OrdersCustomAdapter(Context context, ArrayList<Order> items, ClickListener listener ){
+    public OrdersCustomAdapter(Context context, ArrayList<Order> items, ClickListener listener) {
         this.context = context;
         this.items = items;
         this.listener = listener;
@@ -33,8 +32,8 @@ public class OrdersCustomAdapter extends RecyclerView.Adapter<OrdersCustomAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.template_books,viewGroup,false);
-        viewHolder = new ViewHolder(view, listener);
+        View view = LayoutInflater.from(context).inflate(R.layout.templete_order,viewGroup,false);
+        ViewHolder viewHolder = new ViewHolder(view, listener);
         return viewHolder;
     }
 
@@ -51,7 +50,7 @@ public class OrdersCustomAdapter extends RecyclerView.Adapter<OrdersCustomAdapte
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivImage;
         TextView tvTitle, tvAuthor, tvCost;
         ClickListener listener;
@@ -62,7 +61,7 @@ public class OrdersCustomAdapter extends RecyclerView.Adapter<OrdersCustomAdapte
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
             tvCost = itemView.findViewById(R.id.tvCost);
-            this.listener=listener;
+            this.listener = listener;
             itemView.setOnClickListener(this);
         }
 

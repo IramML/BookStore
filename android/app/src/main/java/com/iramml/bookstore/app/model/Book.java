@@ -4,18 +4,19 @@ import com.google.gson.annotations.SerializedName;
 import com.iramml.bookstore.app.common.ConfigApp;
 
 public class Book{
-    private String id, title, author, editorial, num_pages, description, cost, stock, is_archived, pdf, image;
+    private String id, title, author, editorial, num_pages, description, category_name, cost, stock, is_archived, pdf, image;
 
     public Book() {
     }
 
-    public Book(String id, String title, String author, String editorial, String num_pages, String description, String cost, String stock, String is_archived, String pdf, String image) {
+    public Book(String id, String title, String author, String editorial, String num_pages, String description, String category_name, String cost, String stock, String is_archived, String pdf, String image) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.editorial = editorial;
         this.num_pages = num_pages;
         this.description = description;
+        this.category_name = category_name;
         this.cost = cost;
         this.stock = stock;
         this.is_archived = is_archived;
@@ -71,6 +72,14 @@ public class Book{
         this.description = description;
     }
 
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
     public String getCost() {
         return cost;
     }
@@ -113,5 +122,9 @@ public class Book{
 
     public String getImageURL(){
         return ConfigApp.URL_UPLOADS + "books/images/" + this.image;
+    }
+
+    public String getBookPDFURL(){
+        return ConfigApp.URL_UPLOADS + "books/pdf/" + this.pdf;
     }
 }
