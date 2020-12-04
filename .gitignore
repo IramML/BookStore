@@ -1,3 +1,9 @@
-server/uploads/books/pdf/
-server/uploads/books/images/
-server/uploads/clients/images/
+server/uploads/books/pdf/*.pdf
+server/uploads/books/images/*.jpg
+server/uploads/books/images/*.png
+server/uploads/books/images/*.jpeg
+server/uploads/clients/images/*.jpg
+server/uploads/clients/images/*.png
+server/uploads/clients/images/*.jpeg
+
+! server/uploads/*.txt
